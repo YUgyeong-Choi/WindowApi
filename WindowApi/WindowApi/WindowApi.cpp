@@ -1,9 +1,10 @@
 ﻿// WindowApi.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
-#include "framework.h"
-#include "WindowApi.h"
 #include "pch.h"
+#include "framework.h" 
+#include "WindowApi.h"
+#include "MainGame.h"
 
 #define MAX_LOADSTRING 100
 
@@ -12,16 +13,16 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
+HWND		g_hWnd;
+
+
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-RECT rc{ 350,400,400,450 };
-list<RECT> leftBullets;
-list<RECT> midBullets;
-list<RECT> rightBullets;
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -47,14 +48,30 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWAPI));
 
     MSG msg;
+    msg.message = WM_NULL;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+    MainGame mainGame;
+    mainGame.Initialize();
+
+    ULONGLONG dwTime = GetTickCount64();
+    while (true) {
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+            if (WM_QUIT == msg.message) break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else {
+            
+            if (dwTime + 10 < GetTickCount64()) { //프레임 제한
+                mainGame.Update();
+                mainGame.Render();
+
+                dwTime = GetTickCount64();
+            }
         }
     }
 
@@ -103,13 +120,18 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   RECT rc{ 0,0,WINCX, WINCY };
+   AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, 800,600, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, rc.right - rc.left,rc.bottom-rc.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
       return FALSE;
    }
+
+   g_hWnd = hWnd;
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
@@ -131,12 +153,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_CREATE:
-        SetTimer(hWnd, 0, 0, 0);
-        break;
-    case WM_TIMER:
-        InvalidateRect(hWnd, 0, TRUE);
-        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -152,102 +168,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
-        }
-        break;
-    case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-
-            HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 103, 163));
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
-
-            Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom); //플레이어
-
-            SelectObject(hdc, oldBrush);
-            DeleteObject(myBrush);
-
-
-            myBrush = (HBRUSH)CreateSolidBrush(RGB(240, 86, 80));
-            oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
-            for (auto& leftbullet : leftBullets) {
-                leftbullet.left -= 5;
-                leftbullet.right -= 5;
-                leftbullet.top -= 10;
-                leftbullet.bottom -= 10;
-                Ellipse(hdc, leftbullet.left, leftbullet.top, leftbullet.right, leftbullet.bottom);
-            }
-            for (auto& midbullet : midBullets) {
-                midbullet.top -= 10;
-                midbullet.bottom -= 10;
-                Ellipse(hdc, midbullet.left, midbullet.top, midbullet.right, midbullet.bottom);
-            }
-
-            for (auto& rightbullet : rightBullets) {
-                rightbullet.left += 5;
-                rightbullet.right += 5;
-                rightbullet.top -= 10;
-                rightbullet.bottom -= 10;
-                Ellipse(hdc, rightbullet.left, rightbullet.top, rightbullet.right, rightbullet.bottom);
-            }
-            SelectObject(hdc, oldBrush);
-            DeleteObject(myBrush);
-            
-            Ellipse(hdc, 570, 200, 730, 350); //머리
-            myBrush = (HBRUSH)CreateSolidBrush(RGB(100, 100, 100));
-            oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
-            Ellipse(hdc, 600, 240, 630, 280); //눈
-            Ellipse(hdc, 670, 240, 700, 280); //눈
-            SelectObject(hdc, oldBrush);
-            DeleteObject(myBrush);
-            MoveToEx(hdc, 615, 300, nullptr); //입
-            LineTo(hdc, 635, 320); 
-            LineTo(hdc, 665, 320);
-            LineTo(hdc, 685, 300);
-            Ellipse(hdc, 550, 350, 750, 550); //몸
-            myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 100, 0));
-            oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
-            Rectangle(hdc, 600, 330 , 700, 370); //목도리1
-            Rectangle(hdc, 670, 370 , 700, 500); //목도리1
-            SelectObject(hdc, oldBrush);
-            DeleteObject(myBrush);
-            
-            MoveToEx(hdc, 600, 370, nullptr);  //목도리 줄무늬
-            for (int x = 600; x < 700; x += 10) {
-                LineTo(hdc, x+10, 330); 
-                MoveToEx(hdc, x+10, 370, nullptr); 
-            }
-
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            EndPaint(hWnd, &ps);
-        }
-        break;
-    case WM_KEYDOWN:
-        switch (wParam)
-        {
-        case VK_RIGHT:
-            rc.right += 10;
-            rc.left += 10;
-            if (rc.right > 600) {
-                rc.left = 550;
-                rc.right = 600;
-            }
-            break;
-        case VK_LEFT:
-            rc.right -= 10;
-            rc.left -= 10;
-            if (rc.left < 200) {
-                rc.left = 200;
-                rc.right = 250;
-            }
-            break;
-        case VK_SPACE:
-            leftBullets.push_back(rc);
-            midBullets.push_back(rc);
-            rightBullets.push_back(rc);
-            break;
-        default:
-            break;
         }
         break;
     case WM_DESTROY:

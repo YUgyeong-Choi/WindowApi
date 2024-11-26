@@ -127,13 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Obj.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WindowApi.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="phc.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="WindowApi.cpp" />
   </ItemGroup>
   <ItemGroup>
