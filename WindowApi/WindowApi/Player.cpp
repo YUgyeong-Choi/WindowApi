@@ -14,6 +14,11 @@ void Player::Initialize()
 {
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 15.f, 15.f };
 	m_fSpeed = 5.f;
+
+	bKeyPressed.push_back(false);
+	bKeyPressed.push_back(false);
+	bKeyPressed.push_back(false);
+	bKeyPressed.push_back(false);
 }
 
 void Player::Update()
@@ -65,24 +70,48 @@ void Player::Key_Input()
 		}
 	}
 
-	if (GetAsyncKeyState('W'))
-	{
-		m_BulletList->push_back(Create_Bullet(Direction::UP));
-	}
-
-	if (GetAsyncKeyState('S'))
-	{
-		m_BulletList->push_back(Create_Bullet(Direction::DOWN));
-	}
-
 	if (GetAsyncKeyState('A'))
 	{
-		m_BulletList->push_back(Create_Bullet(Direction::LEFT));
+		if (!bKeyPressed[Direction::LEFT]) {
+			m_BulletList->push_back(Create_Bullet(Direction::LEFT));
+			bKeyPressed[Direction::LEFT] = true;
+		}
+	}
+	else {
+		bKeyPressed[Direction::LEFT] = false;
+	}
+
+	if (GetAsyncKeyState('W'))
+	{
+		if (!bKeyPressed[Direction::UP]) {
+			m_BulletList->push_back(Create_Bullet(Direction::UP));
+			bKeyPressed[Direction::UP] = true;
+		}
+	}
+	else {
+		bKeyPressed[Direction::UP] = false;
 	}
 
 	if (GetAsyncKeyState('D'))
 	{
-		m_BulletList->push_back(Create_Bullet(Direction::RIGHT));
+		if (!bKeyPressed[Direction::RIGHT]) {
+			m_BulletList->push_back(Create_Bullet(Direction::RIGHT));
+			bKeyPressed[Direction::RIGHT] = true;
+		}
+	}
+	else {
+		bKeyPressed[Direction::RIGHT] = false;
+	}
+
+	if (GetAsyncKeyState('S'))
+	{
+		if (!bKeyPressed[Direction::DOWN]) {
+			m_BulletList->push_back(Create_Bullet(Direction::DOWN));
+			bKeyPressed[Direction::DOWN] = true;
+		}
+	}
+	else {
+		bKeyPressed[Direction::DOWN] = false;
 	}
 }
 

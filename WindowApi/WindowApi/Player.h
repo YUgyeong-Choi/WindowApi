@@ -19,6 +19,7 @@ private:
 	void Key_Input();
 	Obj* Create_Bullet(Direction _dir);
 private:
-	list<Obj*>* m_BulletList;
+	vector<bool> bKeyPressed;
+ 	list<Obj*>* m_BulletList;
 };
 

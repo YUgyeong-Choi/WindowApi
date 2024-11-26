@@ -19,6 +19,8 @@ public:
 	void Release();
 private:
 	void CheckOut();
+	void MonsterDie();
+	void SpawnMonster();
 private:
 	HDC m_hDC;
 	Obj* m_pPlayer;

@@ -43,7 +43,7 @@ void Bullet::Update()
 
 void Bullet::Render(HDC _hdc)
 {
-	Ellipse(_hdc,m_tRect.left,m_tRect.top,m_tRect.right,m_tRect.bottom);
+	Rectangle(_hdc,m_tRect.left,m_tRect.top,m_tRect.right,m_tRect.bottom);
 }
 
 void Bullet::Release()

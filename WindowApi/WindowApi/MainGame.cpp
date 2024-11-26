@@ -20,19 +20,15 @@ void MainGame::Initialize()
 	}
 
 	static_cast<Player*>(m_pPlayer)->Set_Bullet(&m_BulletList);
-
-	m_pMonsterList.push_back(new Monster(Direction::LEFT));
-	m_pMonsterList.push_back(new Monster(Direction::UP));
-	m_pMonsterList.push_back(new Monster(Direction::RIGHT));
-	m_pMonsterList.push_back(new Monster(Direction::DOWN));
-
-	for (auto& monster : m_pMonsterList) {
-		monster->Initialize();
-	}
+	SpawnMonster();
 }
 
 void MainGame::Update()
 {
+	if (m_pMonsterList.empty()) {
+		SpawnMonster();
+	}
+
 	m_pPlayer->Update();
 	for (auto& bullet : m_BulletList) {
 		bullet->Update();
@@ -42,6 +38,7 @@ void MainGame::Update()
 		monster->Update();
 	}
 	CheckOut();
+	MonsterDie();
 }
 
 void MainGame::Render()
@@ -80,5 +77,31 @@ void MainGame::CheckOut()
 		else {
 			++iterBullet; 
 		}
+	}
+}
+
+void MainGame::MonsterDie()
+{
+	for (auto iterMonster = m_pMonsterList.begin(); iterMonster != m_pMonsterList.end();) {
+		Monster* monster = static_cast<Monster*>(*iterMonster);
+		if (monster->CheckHit(m_BulletList)) {
+			Safe_Delete<Monster*>(monster);
+			iterMonster = m_pMonsterList.erase(iterMonster);
+		}
+		else {
+			++iterMonster;
+		}
+	}
+}
+
+void MainGame::SpawnMonster()
+{
+	m_pMonsterList.push_back(new Monster(Direction::LEFT));
+	m_pMonsterList.push_back(new Monster(Direction::UP));
+	m_pMonsterList.push_back(new Monster(Direction::RIGHT));
+	m_pMonsterList.push_back(new Monster(Direction::DOWN));
+
+	for (auto& monster : m_pMonsterList) {
+		monster->Initialize();
 	}
 }

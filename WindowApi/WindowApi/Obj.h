@@ -7,6 +7,7 @@ public:
 	Obj();
 	virtual ~Obj();
 public:
+	RECT Get_Rect() { return m_tRect; }
 	void		Set_Pos(float _fX, float _fY)
 	{
 		m_tInfo.fX = _fX;
@@ -20,8 +21,8 @@ public:
 public:
 	void		Update_Rect();
 protected:
-	INFO		m_tInfo; //중점 & 반지름
-	RECT		m_tRect; //도형 그리기 위한 좌표
+	INFO		m_tInfo;
+	RECT		m_tRect;
 	float		m_fSpeed;
 };
 

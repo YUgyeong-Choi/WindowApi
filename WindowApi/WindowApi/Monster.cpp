@@ -17,16 +17,16 @@ void Monster::Initialize()
 	switch (m_dir)
 	{
 	case LEFT:
-		m_tInfo = { 110, 110, 15.f, 15.f };
+		m_tInfo = { 120, 120, 20.f, 20.f };
 		break;
 	case UP:
-		m_tInfo = { 110, 110, 15.f, 15.f };
+		m_tInfo = { 120, 120, 20.f, 20.f };
 		break;
 	case RIGHT:
-		m_tInfo = { 690, 110, 15.f, 15.f };
+		m_tInfo = { 680, 120, 20.f, 20.f };
 		break;
 	case DOWN:
-		m_tInfo = { 110, 490, 15.f, 15.f };
+		m_tInfo = { 680, 480, 20.f, 20.f };
 		break;
 	case NONE:
 		break;
@@ -76,4 +76,16 @@ void Monster::Render(HDC _hdc)
 
 void Monster::Release()
 {
+}
+
+bool Monster::CheckHit(list<Obj*> m_BulletList)
+{
+	RECT intersectRect;
+	for (auto& bullet : m_BulletList) {
+		RECT a = bullet->Get_Rect();
+		if (IntersectRect(&intersectRect, &m_tRect, &a)) {
+			return true;
+		}
+	}
+	return false;
 }
