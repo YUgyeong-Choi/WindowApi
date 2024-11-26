@@ -5,6 +5,7 @@
 #include "framework.h"
 
 #include <list>
+#include <algorithm>
 
 #ifdef _DEBUG
 

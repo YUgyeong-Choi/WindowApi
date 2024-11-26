@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Bullet.h"
 
-Player::Player()
+Player::Player():m_BulletList(nullptr)
 {
 }
 
@@ -24,11 +24,7 @@ void Player::Update()
 
 void Player::Render(HDC _hdc)
 {
-	Rectangle(_hdc,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+	Rectangle(_hdc,m_tRect.left,m_tRect.top,m_tRect.right,m_tRect.bottom);
 }
 
 void Player::Release()
@@ -37,42 +33,54 @@ void Player::Release()
 
 void Player::Key_Input()
 {
-	if (GetAsyncKeyState(VK_RIGHT))
-	{
-		m_tInfo.fX += m_fSpeed;
-	}
-
 	if (GetAsyncKeyState(VK_LEFT))
 	{
 		m_tInfo.fX -= m_fSpeed;
+		if (100 >= LONG(m_tInfo.fX - (m_tInfo.fCX * 0.5f))) {
+			m_tInfo.fX += m_fSpeed;
+		}
 	}
 
 	if (GetAsyncKeyState(VK_UP))
 	{
 		m_tInfo.fY -= m_fSpeed;
+		if (100 >= LONG(m_tInfo.fY - (m_tInfo.fCY * 0.5f))) {
+			m_tInfo.fY += m_fSpeed;
+		}
+	}
+
+	if (GetAsyncKeyState(VK_RIGHT))
+	{
+		m_tInfo.fX += m_fSpeed;
+		if (WINCX - 100 <= LONG(m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
+			m_tInfo.fX -= m_fSpeed;
+		}
 	}
 
 	if (GetAsyncKeyState(VK_DOWN))
 	{
 		m_tInfo.fY += m_fSpeed;
+		if (WINCY - 100 <= LONG(m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
+			m_tInfo.fY += m_fSpeed;
+		}
 	}
 
-	if (GetAsyncKeyState('w'))
+	if (GetAsyncKeyState('W'))
 	{
 		m_BulletList->push_back(Create_Bullet(BulletDirection::UP));
 	}
 
-	if (GetAsyncKeyState('s'))
+	if (GetAsyncKeyState('S'))
 	{
 		m_BulletList->push_back(Create_Bullet(BulletDirection::DOWN));
 	}
 
-	if (GetAsyncKeyState('a'))
+	if (GetAsyncKeyState('A'))
 	{
 		m_BulletList->push_back(Create_Bullet(BulletDirection::LEFT));
 	}
 
-	if (GetAsyncKeyState('d'))
+	if (GetAsyncKeyState('D'))
 	{
 		m_BulletList->push_back(Create_Bullet(BulletDirection::RIGHT));
 	}

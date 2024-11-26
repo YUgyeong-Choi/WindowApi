@@ -27,4 +27,4 @@ void Safe_Delete(T& Temp)
 	}
 }
 
-enum BulletDirection{ LEFT, UP, RIGHT, DOWN};
+enum BulletDirection{ LEFT, UP, RIGHT, DOWN, NONE};

@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet()
+Bullet::Bullet():m_dir(BulletDirection::NONE)
 {
 }
 
@@ -37,6 +37,7 @@ void Bullet::Update()
 	default:
 		break;
 	}
+
 	Obj::Update_Rect();
 }
 
@@ -47,4 +48,25 @@ void Bullet::Render(HDC _hdc)
 
 void Bullet::Release()
 {
+}
+
+bool Bullet::CheckOut()
+{
+	if (m_tRect.left <= 100) {
+		return true;
+	}
+
+	if (m_tRect.top <= 100) {
+		return true;
+	}
+
+	if (m_tRect.right >= WINCX - 100) {
+		return true;
+	}
+
+	if (m_tRect.bottom >= WINCY - 100) {
+		return true;
+	}
+
+	return false;
 }

@@ -16,6 +16,8 @@ public:
 	void Render();
 	void Release();
 private:
+	void CheckOut();
+private:
 	HDC m_hDC;
 	Obj* m_pPlayer;
 	list<Obj*> m_BulletList;

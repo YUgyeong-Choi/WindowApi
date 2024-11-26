@@ -11,6 +11,7 @@ public:
 	void Update() override;
 	void Render(HDC _hdc) override;
 	void Release() override;
+	bool CheckOut();
 private:
 	BulletDirection m_dir;
 };
