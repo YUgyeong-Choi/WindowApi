@@ -29,7 +29,11 @@ void Player::Update()
 
 void Player::Render(HDC _hdc)
 {
-	Rectangle(_hdc,m_tRect.left,m_tRect.top,m_tRect.right,m_tRect.bottom);
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 153, 0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, myBrush);
+	Rectangle(_hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	SelectObject(_hdc, oldBrush);
+	DeleteObject(myBrush);
 }
 
 void Player::Release()

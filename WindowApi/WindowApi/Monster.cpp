@@ -70,8 +70,14 @@ void Monster::Update()
 }
 
 void Monster::Render(HDC _hdc)
-{
+{;
+
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 103, 163));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, myBrush);
 	Rectangle(_hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	SelectObject(_hdc, oldBrush);
+	DeleteObject(myBrush);
+
 }
 
 void Monster::Release()

@@ -54,6 +54,14 @@ void MainGame::Render()
 	for (auto& bullet : m_BulletList) {
 		bullet->Render(m_hDC);
 	}
+
+	TCHAR szBullet[32];
+	wsprintf(szBullet, L"Bullet: %d", (int)m_BulletList.size()); 
+	TextOut(m_hDC, 50, 50, szBullet, lstrlen(szBullet));
+
+	TCHAR szMonster[32];
+	wsprintf(szMonster, L"Monster: %d", (int)m_pMonsterList.size());
+	TextOut(m_hDC, 150, 50, szMonster, lstrlen(szMonster));
 }
 
 void MainGame::Release()
@@ -104,4 +112,18 @@ void MainGame::SpawnMonster()
 	for (auto& monster : m_pMonsterList) {
 		monster->Initialize();
 	}
+
+
+	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
+
+
+	HFONT newFont = CreateFont(48, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
+	HFONT oldFont = (HFONT)SelectObject(m_hDC, newFont);
+
+	TCHAR szMonsterSpawn[32];
+	wsprintf(szMonsterSpawn, L"Monster Spawn");
+	TextOut(m_hDC, WINCX/2-150,WINCY/2-100, szMonsterSpawn, lstrlen(szMonsterSpawn));
+	SelectObject(m_hDC, oldFont);
+	DeleteObject(newFont);
+	Sleep(1500);
 }
