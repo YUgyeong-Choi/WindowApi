@@ -26,5 +26,9 @@ private:
 	Obj* m_pPlayer;
 	list<Obj*> m_pMonsterList;
 	list<Obj*> m_BulletList;
+
+	ULONGLONG	m_dwTime;
+	int			m_iFPS;
+	TCHAR		m_szFPS[16];
 };
 

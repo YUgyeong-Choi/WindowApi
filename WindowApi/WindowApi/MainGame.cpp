@@ -1,8 +1,9 @@
 #include "MainGame.h"
 #include "Bullet.h"
 
-MainGame::MainGame() :m_pPlayer(nullptr), m_hDC(nullptr)
+MainGame::MainGame() :m_pPlayer(nullptr), m_hDC(nullptr), m_dwTime(GetTickCount64()), m_iFPS(0)
 {
+	ZeroMemory(m_szFPS, sizeof(m_szFPS));
 }
 
 MainGame::~MainGame()
@@ -62,6 +63,14 @@ void MainGame::Render()
 	TCHAR szMonster[32];
 	wsprintf(szMonster, L"Monster: %d", (int)m_pMonsterList.size());
 	TextOut(m_hDC, 150, 50, szMonster, lstrlen(szMonster));
+
+	++m_iFPS;
+	if (m_dwTime + 1000 < GetTickCount64()) {
+		wsprintf(m_szFPS, L"FPS : %d", m_iFPS);
+		m_iFPS = 0;
+		m_dwTime = GetTickCount64();
+	}
+	TextOut(m_hDC, 250, 50, m_szFPS, lstrlen(m_szFPS));
 }
 
 void MainGame::Release()
