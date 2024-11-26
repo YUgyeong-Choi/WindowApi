@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet():m_dir(BulletDirection::NONE)
+Bullet::Bullet():m_dir(Direction::NONE)
 {
 }
 

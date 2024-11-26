@@ -67,26 +67,26 @@ void Player::Key_Input()
 
 	if (GetAsyncKeyState('W'))
 	{
-		m_BulletList->push_back(Create_Bullet(BulletDirection::UP));
+		m_BulletList->push_back(Create_Bullet(Direction::UP));
 	}
 
 	if (GetAsyncKeyState('S'))
 	{
-		m_BulletList->push_back(Create_Bullet(BulletDirection::DOWN));
+		m_BulletList->push_back(Create_Bullet(Direction::DOWN));
 	}
 
 	if (GetAsyncKeyState('A'))
 	{
-		m_BulletList->push_back(Create_Bullet(BulletDirection::LEFT));
+		m_BulletList->push_back(Create_Bullet(Direction::LEFT));
 	}
 
 	if (GetAsyncKeyState('D'))
 	{
-		m_BulletList->push_back(Create_Bullet(BulletDirection::RIGHT));
+		m_BulletList->push_back(Create_Bullet(Direction::RIGHT));
 	}
 }
 
-Obj* Player::Create_Bullet(BulletDirection _dir)
+Obj* Player::Create_Bullet(Direction _dir)
 {
 	Obj* pBullet = new Bullet(_dir);
 

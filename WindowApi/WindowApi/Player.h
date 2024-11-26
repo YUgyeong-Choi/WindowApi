@@ -17,7 +17,7 @@ public:
 	void Release() override;
 private:
 	void Key_Input();
-	Obj* Create_Bullet(BulletDirection _dir);
+	Obj* Create_Bullet(Direction _dir);
 private:
 	list<Obj*>* m_BulletList;
 };

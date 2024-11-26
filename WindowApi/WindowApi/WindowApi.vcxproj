@@ -131,6 +131,7 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
@@ -141,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="phc.cpp" />
     <ClCompile Include="Player.cpp" />
