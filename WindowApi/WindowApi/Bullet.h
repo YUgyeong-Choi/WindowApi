@@ -4,16 +4,15 @@ class Bullet :public Obj
 {
 public:
 	Bullet();
-	Bullet(Direction _dir) { m_dir = _dir; }
+	Bullet(DIR _dir) { m_dir = _dir; }
 	~Bullet();
 public:
 	void Initialize() override;
-	void Update() override;
+	int Update() override;
+	void LateUpdate() override;
 	void Render(HDC _hdc) override;
 	void Release() override;
-public:
-	bool CheckOut();
 private:
-	Direction m_dir;
+	DIR m_dir;
 };
 

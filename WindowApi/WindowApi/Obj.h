@@ -7,7 +7,7 @@ public:
 	Obj();
 	virtual ~Obj();
 public:
-	RECT Get_Rect() { return m_tRect; }
+	const RECT* Get_Rect() { return &m_tRect; }
 	void		Set_Pos(float _fX, float _fY)
 	{
 		m_tInfo.fX = _fX;
@@ -15,14 +15,17 @@ public:
 	}
 public:
 	virtual void Initialize() PURE;
-	virtual void Update() PURE;
+	virtual int Update() PURE;
+	virtual void LateUpdate() PURE;
 	virtual void Render(HDC _hdc) PURE;
 	virtual void Release() PURE;
 public:
 	void		Update_Rect();
+	void SetDead() { m_bDead = true; }
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;
+	bool		m_bDead;
 	float		m_fSpeed;
 };
 

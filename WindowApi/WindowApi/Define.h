@@ -7,6 +7,9 @@
 #define	PURE		= 0
 #define PI			3.141592f
 
+#define OBJ_NOEVENT			0
+#define OBJ_DEAD			1	
+
 extern HWND		g_hWnd;
 
 typedef struct tagInfo
@@ -27,4 +30,5 @@ void Safe_Delete(T& Temp)
 	}
 }
 
-enum Direction{ LEFT, UP, RIGHT, DOWN, NONE};
+enum DIR{ LEFT, UP, RIGHT, DOWN, NONE};
+enum OBJID{OBJ_PLAYER, OBJ_BULLET, OBJ_MONSTER, OBJ_END};

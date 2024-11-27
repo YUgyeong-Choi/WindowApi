@@ -28,6 +28,9 @@
     <Filter Include="01_Object\Monster">
       <UniqueIdentifier>{375564bc-aea6-4004-b70f-6360e7f796e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Collision">
+      <UniqueIdentifier>{db3e28c0-e46f-45fb-987f-3b8dd02c096b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="Monster.h">
       <Filter>01_Object\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>02_Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowApi.cpp">
@@ -85,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>01_Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>02_Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

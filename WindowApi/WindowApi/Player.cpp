@@ -14,17 +14,18 @@ void Player::Initialize()
 {
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 15.f, 15.f };
 	m_fSpeed = 5.f;
-
-	bKeyPressed.push_back(false);
-	bKeyPressed.push_back(false);
-	bKeyPressed.push_back(false);
-	bKeyPressed.push_back(false);
 }
 
-void Player::Update()
+int Player::Update()
 {
 	Key_Input();
 	Obj::Update_Rect();
+
+	return OBJ_NOEVENT;
+}
+
+void Player::LateUpdate()
+{
 }
 
 void Player::Render(HDC _hdc)
@@ -76,50 +77,50 @@ void Player::Key_Input()
 
 	if (GetAsyncKeyState('A'))
 	{
-		if (!bKeyPressed[Direction::LEFT]) {
-			m_BulletList->push_back(Create_Bullet(Direction::LEFT));
-			bKeyPressed[Direction::LEFT] = true;
+		if (!bKeyPressed[DIR::LEFT]) {
+			m_BulletList->push_back(Create_Bullet(DIR::LEFT));
+			bKeyPressed[DIR::LEFT] = true;
 		}
 	}
 	else {
-		bKeyPressed[Direction::LEFT] = false;
+		bKeyPressed[DIR::LEFT] = false;
 	}
 
 	if (GetAsyncKeyState('W'))
 	{
-		if (!bKeyPressed[Direction::UP]) {
-			m_BulletList->push_back(Create_Bullet(Direction::UP));
-			bKeyPressed[Direction::UP] = true;
+		if (!bKeyPressed[DIR::UP]) {
+			m_BulletList->push_back(Create_Bullet(DIR::UP));
+			bKeyPressed[DIR::UP] = true;
 		}
 	}
 	else {
-		bKeyPressed[Direction::UP] = false;
+		bKeyPressed[DIR::UP] = false;
 	}
 
 	if (GetAsyncKeyState('D'))
 	{
-		if (!bKeyPressed[Direction::RIGHT]) {
-			m_BulletList->push_back(Create_Bullet(Direction::RIGHT));
-			bKeyPressed[Direction::RIGHT] = true;
+		if (!bKeyPressed[DIR::RIGHT]) {
+			m_BulletList->push_back(Create_Bullet(DIR::RIGHT));
+			bKeyPressed[DIR::RIGHT] = true;
 		}
 	}
 	else {
-		bKeyPressed[Direction::RIGHT] = false;
+		bKeyPressed[DIR::RIGHT] = false;
 	}
 
 	if (GetAsyncKeyState('S'))
 	{
-		if (!bKeyPressed[Direction::DOWN]) {
-			m_BulletList->push_back(Create_Bullet(Direction::DOWN));
-			bKeyPressed[Direction::DOWN] = true;
+		if (!bKeyPressed[DIR::DOWN]) {
+			m_BulletList->push_back(Create_Bullet(DIR::DOWN));
+			bKeyPressed[DIR::DOWN] = true;
 		}
 	}
 	else {
-		bKeyPressed[Direction::DOWN] = false;
+		bKeyPressed[DIR::DOWN] = false;
 	}
 }
 
-Obj* Player::Create_Bullet(Direction _dir)
+Obj* Player::Create_Bullet(DIR _dir)
 {
 	Obj* pBullet = new Bullet(_dir);
 

@@ -1,10 +1,10 @@
 #include "Monster.h"
 
-Monster::Monster():m_dir(Direction::NONE)
+Monster::Monster():m_dir(DIR::NONE)
 {
 }
 
-Monster::Monster(Direction _dir):m_dir(_dir)
+Monster::Monster(DIR _dir):m_dir(_dir)
 {}
 
 Monster::~Monster()
@@ -36,13 +36,37 @@ void Monster::Initialize()
 	m_fSpeed = 5.f;
 }
 
-void Monster::Update()
+int Monster::Update()
 {
+	if (m_bDead) {
+		return OBJ_DEAD;
+	}
 	switch (m_dir)
 	{
 	case LEFT:
 	case RIGHT:
 		m_tInfo.fY += m_fSpeed;
+		break;
+	case UP:
+	case DOWN:
+		m_tInfo.fX += m_fSpeed;
+		break;
+	case NONE:
+		break;
+	default:
+		break;
+	}
+	Obj::Update_Rect();
+
+	return OBJ_NOEVENT;
+}
+
+void Monster::LateUpdate()
+{
+	switch (m_dir)
+	{
+	case LEFT:
+	case RIGHT:
 		if (WINCY - 100 <= LONG(m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
 			m_fSpeed *= -1;
 		}
@@ -52,7 +76,6 @@ void Monster::Update()
 		break;
 	case UP:
 	case DOWN:
-		m_tInfo.fX += m_fSpeed;
 		if (WINCX - 100 <= LONG(m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
 			m_fSpeed *= -1;
 		}
@@ -66,7 +89,7 @@ void Monster::Update()
 	default:
 		break;
 	}
-	Obj::Update_Rect();
+
 }
 
 void Monster::Render(HDC _hdc)
@@ -82,16 +105,4 @@ void Monster::Render(HDC _hdc)
 
 void Monster::Release()
 {
-}
-
-bool Monster::CheckHit(list<Obj*> m_BulletList)
-{
-	RECT intersectRect;
-	for (auto& bullet : m_BulletList) {
-		RECT a = bullet->Get_Rect();
-		if (IntersectRect(&intersectRect, &m_tRect, &a)) {
-			return true;
-		}
-	}
-	return false;
 }

@@ -15,17 +15,15 @@ public:
 public:
 	void Initialize();
 	void Update();
+	void LateUpdate();
 	void Render();
 	void Release();
 private:
-	void CheckOut();
-	void MonsterDie();
+	void GameStart();
 	void SpawnMonster();
 private:
 	HDC m_hDC;
-	Obj* m_pPlayer;
-	list<Obj*> m_pMonsterList;
-	list<Obj*> m_BulletList;
+	list<Obj*> m_ObjList[OBJ_END];
 
 	ULONGLONG	m_dwTime;
 	int			m_iFPS;

@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet():m_dir(Direction::NONE)
+Bullet::Bullet():m_dir(DIR::NONE)
 {
 }
 
@@ -17,8 +17,11 @@ void Bullet::Initialize()
 	m_fSpeed = 10.f;
 }
 
-void Bullet::Update()
+int Bullet::Update()
 {
+	if (m_bDead) {
+		return OBJ_DEAD;
+	}
 
 	switch (m_dir)
 	{
@@ -39,6 +42,14 @@ void Bullet::Update()
 	}
 
 	Obj::Update_Rect();
+	return OBJ_NOEVENT;
+}
+
+void Bullet::LateUpdate()
+{
+	if (m_tRect.left <= 100 || m_tRect.top <= 100 || m_tRect.right >= WINCX - 100 || m_tRect.bottom >= WINCY - 100) {
+		m_bDead = true;
+	}
 }
 
 void Bullet::Render(HDC _hdc)
@@ -55,23 +66,3 @@ void Bullet::Release()
 {
 }
 
-bool Bullet::CheckOut()
-{
-	if (m_tRect.left <= 100) {
-		return true;
-	}
-
-	if (m_tRect.top <= 100) {
-		return true;
-	}
-
-	if (m_tRect.right >= WINCX - 100) {
-		return true;
-	}
-
-	if (m_tRect.bottom >= WINCY - 100) {
-		return true;
-	}
-
-	return false;
-}

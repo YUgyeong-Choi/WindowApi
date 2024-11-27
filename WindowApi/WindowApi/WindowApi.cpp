@@ -68,6 +68,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             
             if (dwTime + 10 < GetTickCount64()) { //프레임 제한
                 mainGame.Update();
+                mainGame.LateUpdate();
                 mainGame.Render();
 
                 dwTime = GetTickCount64();
