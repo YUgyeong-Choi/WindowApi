@@ -71,7 +71,7 @@ void Player::Key_Input()
 	{
 		m_tInfo.fY += m_fSpeed;
 		if (WINCY - 100 <= LONG(m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
-			m_tInfo.fY += m_fSpeed;
+			m_tInfo.fY -= m_fSpeed;
 		}
 	}
 

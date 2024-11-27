@@ -15,7 +15,7 @@ extern HWND		g_hWnd;
 typedef struct tagInfo
 {
 	float		fX, fY;
-	float		fCX, fCY;
+	float		fCX, fCY; //±Ê¿Ã 
 
 }INFO;
 

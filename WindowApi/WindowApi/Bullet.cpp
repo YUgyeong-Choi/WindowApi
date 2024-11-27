@@ -56,7 +56,7 @@ void Bullet::Render(HDC _hdc)
 {
 	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(220, 20, 60));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, myBrush); 
-	Rectangle(_hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	Ellipse(_hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	SelectObject(_hdc, oldBrush);
 	DeleteObject(myBrush);
 	

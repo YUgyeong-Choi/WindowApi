@@ -53,7 +53,7 @@ void MainGame::LateUpdate()
 			pObj->LateUpdate();
 	}
 
-	CollisionMgr::Collision_RectRect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
+	CollisionMgr::Collision_RectCircle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
 }
 
 void MainGame::Render()

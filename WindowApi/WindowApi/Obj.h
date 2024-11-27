@@ -8,6 +8,7 @@ public:
 	virtual ~Obj();
 public:
 	const RECT* Get_Rect() { return &m_tRect; }
+	INFO Get_INFO() { return m_tInfo; }
 	void		Set_Pos(float _fX, float _fY)
 	{
 		m_tInfo.fX = _fX;
