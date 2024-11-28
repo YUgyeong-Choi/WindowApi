@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="00_MainGame">
+      <UniqueIdentifier>{b7370fdb-0882-4cb5-828e-32e54b8dac9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes">
+      <UniqueIdentifier>{da972fba-f340-4731-b925-e945f51ef00e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes\1_Start">
+      <UniqueIdentifier>{1754f260-c0cb-4395-b84d-8ebe0ab11bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes\2_Stage">
+      <UniqueIdentifier>{1f0cd2eb-3d22-4d5d-a6b3-952b5f219563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes\3_End">
+      <UniqueIdentifier>{fce48f11-7c15-4c98-bf46-d381e4573425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object">
+      <UniqueIdentifier>{4078d17e-de58-4bd6-94b9-f6f12c4c76dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Player">
+      <UniqueIdentifier>{c612bac8-447b-4830-b275-e891154fc32d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Team1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>00_MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObj.h">
+      <Filter>01_Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>01_Scenes\1_Start</Filter>
+    </ClInclude>
+    <ClInclude Include="StageScene.h">
+      <Filter>01_Scenes\2_Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h">
+      <Filter>01_Scenes\3_End</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>02_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>02_Object\Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Team1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>00_MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObj.cpp">
+      <Filter>01_Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>01_Scenes\1_Start</Filter>
+    </ClCompile>
+    <ClCompile Include="StageScene.cpp">
+      <Filter>01_Scenes\2_Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="EndScene.cpp">
+      <Filter>01_Scenes\3_End</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>02_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>02_Object\Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Team1.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Team1.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
