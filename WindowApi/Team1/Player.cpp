@@ -49,39 +49,88 @@ void Player::Key_Input()
 {
 	if (GetAsyncKeyState('A'))
 	{
-		m_tInfo.fX -= m_fSpeed;
-		if (0 >= LONG(m_tInfo.fX - (m_tInfo.fCX * 0.5f))) {
-			m_tInfo.fX += m_fSpeed;
+		if (GetAsyncKeyState('W'))
+		{
+			m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+			m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+			if (GAME_WIN_LEFT >= (m_tInfo.fX - (m_tInfo.fCX * 0.5f))) {
+				m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+			}
+			if (GAME_WIN_TOP >= (m_tInfo.fY - (m_tInfo.fCY * 0.5f))) {
+				m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+			}
+		}
+		else if (GetAsyncKeyState('S')) {
+			m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+			m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+			if (GAME_WIN_LEFT >= (m_tInfo.fX - (m_tInfo.fCX * 0.5f))) {
+				m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+			}
+			if (GAME_WIN_BOTTOM <= (m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
+				m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+			}
+		}
+		else {
+			m_tInfo.fX -= m_fSpeed;
+			if (GAME_WIN_LEFT >= (m_tInfo.fX - (m_tInfo.fCX * 0.5f))) {
+				m_tInfo.fX += m_fSpeed;
+			}
 		}
 	}
-
-	if (GetAsyncKeyState('W'))
+	else if (GetAsyncKeyState('D'))
 	{
+		if (GetAsyncKeyState('W'))
+		{
+			m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+			m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+			if (GAME_WIN_RIGHT <= (m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
+				m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+			}
+			if (GAME_WIN_TOP >= (m_tInfo.fY - (m_tInfo.fCY * 0.5f))) {
+				m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+			}
+		}
+		else if (GetAsyncKeyState('S')) {
+			m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+			m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+			if (GAME_WIN_RIGHT <= (m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
+				m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+			}
+			if (GAME_WIN_BOTTOM <= (m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
+				m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+				m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+			}
+		}
+		else {
+			m_tInfo.fX += m_fSpeed;
+			if (GAME_WIN_RIGHT <= (m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
+				m_tInfo.fX -= m_fSpeed;
+			}
+		}
+	}
+	else if (GetAsyncKeyState('W')) {
 		m_tInfo.fY -= m_fSpeed;
-		if (0 >= LONG(m_tInfo.fY - (m_tInfo.fCY * 0.5f))) {
+		if (GAME_WIN_TOP >= (m_tInfo.fY - (m_tInfo.fCY * 0.5f))) {
 			m_tInfo.fY += m_fSpeed;
 		}
 	}
-
-	if (GetAsyncKeyState('D'))
-	{
-		m_tInfo.fX += m_fSpeed;
-		if (WINCX <= LONG(m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
-			m_tInfo.fX -= m_fSpeed;
-		}
-	}
-
-	if (GetAsyncKeyState('S'))
-	{
+	else if (GetAsyncKeyState('S')) {
 		m_tInfo.fY += m_fSpeed;
-		if (WINCY - 100 <= LONG(m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
+		if (GAME_WIN_BOTTOM <= (m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
 			m_tInfo.fY -= m_fSpeed;
 		}
 	}
 
 	if (GetAsyncKeyState(WM_LBUTTONDOWN)) { //총알 여러개 방지
 		if (!bKeyPressed) {
-			m_BulletList->push_back(Create_Bullet(30));
+			m_BulletList->push_back(Create_Bullet(m_fAngle));
 			bKeyPressed = true;
 		}
 		else {

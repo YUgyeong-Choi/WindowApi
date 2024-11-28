@@ -38,6 +38,8 @@ void StageScene::Late_Update()
 
 void StageScene::Render(HDC _hDC)
 {
+
+	Rectangle(_hDC, GAME_WIN_LEFT, GAME_WIN_TOP, GAME_WIN_RIGHT, GAME_WIN_BOTTOM);
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& pObj : m_ObjList[i])

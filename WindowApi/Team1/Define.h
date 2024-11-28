@@ -2,6 +2,14 @@
 #define WINCX		800
 #define WINCY		600
 
+#define GAME_WINCX      600
+#define GAME_WINCY      550
+
+#define GAME_WIN_LEFT      (WINCX - GAME_WINCX) * 0.5f
+#define GAME_WIN_TOP      (WINCY - GAME_WINCY) * 0.5f
+#define GAME_WIN_RIGHT      (WINCX - GAME_WINCX) * 0.5f + GAME_WINCX
+#define GAME_WIN_BOTTOM      (WINCY - GAME_WINCY) * 0.5f + GAME_WINCY
+
 #define	PURE		= 0
 #define PI			3.141592f
 
