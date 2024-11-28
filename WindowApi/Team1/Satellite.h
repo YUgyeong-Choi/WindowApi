@@ -1,11 +1,10 @@
 #pragma once
 #include "Obj.h"
-class Bullet :public Obj
+class Satellite :public Obj
 {
 public:
-	Bullet();
-	Bullet(float _fAngle) { m_fAngle = _fAngle; }
-	~Bullet();
+	Satellite();
+	~Satellite();
 public:
 	virtual void Initialize() override;
 	virtual int Update() override;

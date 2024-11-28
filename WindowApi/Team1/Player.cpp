@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "Player.h"
+#include "Bullet.h"
 
-Player::Player() : bKeyPressed(false)
+Player::Player() : bKeyPressed(false), m_tPosin({}), m_BulletList(nullptr)
 {
 }
 
@@ -13,7 +14,7 @@ void Player::Initialize()
 {
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 30.f, 30.f };
 	m_fSpeed = 5.f;
-	m_fDistance = 100.f;
+	m_fDistance = 30.f;
 }
 
 int Player::Update()
@@ -128,7 +129,7 @@ void Player::Key_Input()
 		}
 	}
 
-	if (GetAsyncKeyState(WM_LBUTTONDOWN)) { //총알 여러개 방지
+	if (GetAsyncKeyState(VK_LBUTTON)) { //총알 여러개 방지
 		if (!bKeyPressed) {
 			m_BulletList->push_back(Create_Bullet(m_fAngle));
 			bKeyPressed = true;
@@ -165,5 +166,10 @@ void Player::Calc_Angle()
 
 Obj* Player::Create_Bullet(float radian)
 {
-	return nullptr;
+	Obj* pBullet = new Bullet(radian);
+
+	pBullet->Initialize();
+	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+
+	return pBullet;
 }

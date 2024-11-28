@@ -12,6 +12,7 @@
 
 #include <list>
 #include <algorithm>
+#include <ctime>
 
 #ifdef _DEBUG
 

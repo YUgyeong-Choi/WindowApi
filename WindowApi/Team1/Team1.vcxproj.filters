@@ -40,6 +40,12 @@
     <Filter Include="02_Object\Monster">
       <UniqueIdentifier>{6e0e0ffb-7c50-41e1-bb52-ca322cbeb17d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03_Collision">
+      <UniqueIdentifier>{c38705a7-60f1-4447-9c10-50f8b9c717a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Satellite">
+      <UniqueIdentifier>{4c0d5e8b-67ba-4509-875f-7abb9a428f03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -87,6 +93,12 @@
     <ClInclude Include="Monster.h">
       <Filter>02_Object\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>03_Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Satellite.h">
+      <Filter>02_Object\Satellite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
@@ -121,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>02_Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>03_Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Satellite.cpp">
+      <Filter>02_Object\Satellite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

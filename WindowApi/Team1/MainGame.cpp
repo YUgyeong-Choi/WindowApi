@@ -5,7 +5,7 @@
 #include "EndScene.h"
 #include "Player.h"
 
-MainGame::MainGame() :m_hDC(nullptr), m_pPlayer(nullptr), m_iScene(START)
+MainGame::MainGame() :m_hDC(nullptr), m_pPlayer(nullptr), m_iScene(NONE)
 {
 	ZeroMemory(m_SceneArray, sizeof(m_SceneArray));
 }
@@ -17,6 +17,8 @@ MainGame::~MainGame()
 void MainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
+	m_iScene = START;
+
 	if (!m_pPlayer) {
 		m_pPlayer = new Player;
 		m_pPlayer->Initialize();
@@ -37,6 +39,11 @@ int MainGame::Update()
 	if (result == OBJ_CLEAR) {
 		return OBJ_CLEAR;
 	}
+
+	if (result == OBJ_FINISH) {
+		return OBJ_FINISH;
+	}
+
 	return OBJ_NOEVENT;
 }
 
@@ -49,4 +56,12 @@ void MainGame::Render()
 {
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
 	m_SceneArray[m_iScene]->Render(m_hDC);
+}
+
+void MainGame::Release()
+{
+	for (auto& sceneObj : m_SceneArray) {
+		Safe_Delete<SceneObj*>(sceneObj);
+	}
+	Safe_Delete<Obj*>(m_pPlayer);
 }

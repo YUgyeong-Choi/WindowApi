@@ -13,6 +13,7 @@ public:
 	int Update();
 	void Late_Update();
 	void Render(); 
+	void Release();
 public:
 	void Load_Scene() { m_iScene++; }
 private:

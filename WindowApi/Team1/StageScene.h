@@ -13,5 +13,8 @@ public:
 	virtual void Release() override;
 protected:
 	void SpawnMonster();
+private:
+	ULONGLONG	m_dwTime;
+	bool bFinish;
 };
 

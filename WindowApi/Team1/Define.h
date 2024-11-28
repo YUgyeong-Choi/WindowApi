@@ -16,12 +16,13 @@
 #define OBJ_NOEVENT			0
 #define OBJ_DEAD			1
 #define OBJ_CLEAR			2
+#define OBJ_FINISH			3
 
 extern HWND		g_hWnd;
 
 enum SCENE { START, STAGE_ONE, END, NONE };
-enum DIR { LEFT, UP, RIGHT, DOWN, NODIR };
-enum OBJID { OBJ_PLAYER, OBJ_BULLET, OBJ_MONSTER, OBJ_END };
+enum DIR { LEFT, TOP, RIGHT, BOTTOM, NODIR };
+enum OBJID { OBJ_PLAYER, OBJ_BULLET, OBJ_MONSTER, OBJ_SATELLITE, OBJ_END };
 
 typedef struct tagInfo
 {
