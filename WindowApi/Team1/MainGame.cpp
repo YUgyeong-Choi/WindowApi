@@ -3,9 +3,11 @@
 #include "StartScene.h"
 #include "StageScene.h"
 #include "EndScene.h"
+#include "Player.h"
 
-MainGame::MainGame()
+MainGame::MainGame() :m_hDC(nullptr), m_pPlayer(nullptr), m_iScene(START)
 {
+	ZeroMemory(m_SceneArray, sizeof(m_SceneArray));
 }
 
 MainGame::~MainGame()
@@ -15,25 +17,36 @@ MainGame::~MainGame()
 void MainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
+	if (!m_pPlayer) {
+		m_pPlayer = new Player;
+		m_pPlayer->Initialize();
+	}
 
 	m_SceneArray[START] = new StartScene;
 	m_SceneArray[STAGE_ONE] = new StageScene;
 	m_SceneArray[END] = new EndScene;
 
 	for (auto& sceneObj : m_SceneArray) {
-		sceneObj->Initialize();
+		sceneObj->Initialize(m_pPlayer);
 	}
 }
 
-void MainGame::Update()
+int MainGame::Update()
 {
-	m_SceneArray[m_iScene]->Update();
+	int result = m_SceneArray[m_iScene]->Update();
+	if (result == OBJ_CLEAR) {
+		return OBJ_CLEAR;
+	}
+	return OBJ_NOEVENT;
 }
 
 void MainGame::Late_Update()
 {
+	m_SceneArray[m_iScene]->Late_Update();
 }
 
 void MainGame::Render()
 {
+	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
+	m_SceneArray[m_iScene]->Render(m_hDC);
 }

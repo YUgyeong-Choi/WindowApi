@@ -1,6 +1,7 @@
 #pragma once
 #include "Define.h"
 #include "SceneObj.h"
+#include "Obj.h"
 
 class MainGame
 {
@@ -9,12 +10,15 @@ public:
 	~MainGame();
 public:
 	void Initialize();
-	void Update();
+	int Update();
 	void Late_Update();
 	void Render(); 
+public:
+	void Load_Scene() { m_iScene++; }
 private:
 	HDC m_hDC;
 	SceneObj* m_SceneArray[SCENE::NONE];
-	SCENE m_iScene;
+	Obj* m_pPlayer;
+	int m_iScene;
 };
 

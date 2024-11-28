@@ -52,6 +52,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     ULONG64       dwTime = GetTickCount64();
 
+    bool bNext = false;
+
     while (true) {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
             if (WM_QUIT == msg.message)
@@ -64,10 +66,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             }
         }
         else {
-            if (dwTime + 10 < GetTickCount64()) {
-                mainGame.Update();
+            if (dwTime + 15 < GetTickCount64()) {
+                bNext = mainGame.Update();
                 mainGame.Late_Update();
                 mainGame.Render();
+
+                if (bNext) {
+                    mainGame.Load_Scene();
+                    bNext = false;
+                }
+
+                dwTime = GetTickCount64();
             }
         }
 

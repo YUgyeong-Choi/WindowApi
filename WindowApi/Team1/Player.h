@@ -9,15 +9,18 @@ public:
 	void        Set_Bullet(list<Obj*>* pBullet) { m_BulletList = pBullet; }
 
 public:
-	void Initialize() override;
-	void Update() override;
-	void Render(HDC _hdc) override;
-	void Release() override;
+	virtual void Initialize() override;
+	virtual int Update() override;
+	virtual void Late_Update() override;
+	virtual void Render(HDC _hdc) override;
+	virtual void Release() override;
 private:
 	void Key_Input();
+	void Calc_Angle();
 	Obj* Create_Bullet(float radian);
 private:
-	bool bKeyPressed[4];
+	bool bKeyPressed;
 	list<Obj*>* m_BulletList;
+	POINT m_tPosin;
 };
 

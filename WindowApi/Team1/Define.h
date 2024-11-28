@@ -6,11 +6,13 @@
 #define PI			3.141592f
 
 #define OBJ_NOEVENT			0
-#define OBJ_DEAD			1	
+#define OBJ_DEAD			1
+#define OBJ_CLEAR			2
 
 extern HWND		g_hWnd;
 
 enum SCENE { START, STAGE_ONE, END, NONE };
+enum DIR { LEFT, UP, RIGHT, DOWN, NODIR };
 enum OBJID { OBJ_PLAYER, OBJ_BULLET, OBJ_MONSTER, OBJ_END };
 
 typedef struct tagInfo

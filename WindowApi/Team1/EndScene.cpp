@@ -9,19 +9,20 @@ EndScene::~EndScene()
 {
 }
 
-void EndScene::Initialize()
+void EndScene::Initialize(Obj* _pPlayer)
 {
 }
 
-void EndScene::Update()
+int EndScene::Update()
 {
+	return OBJ_CLEAR;
 }
 
 void EndScene::Late_Update()
 {
 }
 
-void EndScene::Render()
+void EndScene::Render(HDC _hDC)
 {
 }
 

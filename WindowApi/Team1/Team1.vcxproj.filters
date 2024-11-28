@@ -34,6 +34,12 @@
     <Filter Include="02_Object\Player">
       <UniqueIdentifier>{c612bac8-447b-4830-b275-e891154fc32d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Object\Bullet">
+      <UniqueIdentifier>{53ad7369-3fa2-486c-847a-1106a5f420a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Monster">
+      <UniqueIdentifier>{6e0e0ffb-7c50-41e1-bb52-ca322cbeb17d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -66,14 +72,20 @@
     <ClInclude Include="StageScene.h">
       <Filter>01_Scenes\2_Stage</Filter>
     </ClInclude>
-    <ClInclude Include="EndScene.h">
-      <Filter>01_Scenes\3_End</Filter>
-    </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>02_Object</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>02_Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h">
+      <Filter>01_Scenes\3_End</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>02_Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>02_Object\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>02_Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>02_Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>02_Object\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

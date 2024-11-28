@@ -10,7 +10,8 @@ public:
 	INFO Get_Info() { return m_tInfo; }
 public:
 	virtual void Initialize() PURE;
-	virtual void Update() PURE;
+	virtual int Update() PURE;
+	virtual void Late_Update() PURE;
 	virtual void Render(HDC _hdc) PURE;
 	virtual void Release() PURE;
 public:
@@ -18,6 +19,11 @@ public:
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;
+
+	float		m_fAngle;
 	float		m_fSpeed;
+	float		m_fDistance;
+
+	bool		m_bDead;
 };
 
