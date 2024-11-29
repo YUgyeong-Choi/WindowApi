@@ -17,6 +17,7 @@ void Monster::Initialize()
 	m_fSpeed = 5.f;
 
 	m_iHp = 10;
+	m_iDamage = 1;
 
 	m_dir = rand() % 4;
 	int iXorY = 0;
@@ -24,24 +25,24 @@ void Monster::Initialize()
 	switch (m_dir)
 	{
 	case LEFT:
-		iXorY = rand() % GAME_WINCY + GAME_WIN_TOP;
-		m_tInfo.fX = GAME_WIN_LEFT + m_tInfo.fCX;
-		m_tInfo.fY = iXorY;
+		iXorY = rand() % int(GAME_WINCY + GAME_WIN_TOP);
+		m_tInfo.fX = int(GAME_WIN_LEFT) + m_tInfo.fCX;
+		m_tInfo.fY = (float)iXorY;
 		break;
 	case TOP:
-		iXorY = rand() % GAME_WINCX + GAME_WIN_LEFT;
-		m_tInfo.fY = GAME_WIN_TOP + m_tInfo.fCY;
-		m_tInfo.fX = iXorY;
+		iXorY = rand() % int(GAME_WINCX + GAME_WIN_LEFT);
+		m_tInfo.fY = int(GAME_WIN_TOP) + m_tInfo.fCY;
+		m_tInfo.fX = (float)iXorY;
 		break;
 	case RIGHT:
-		iXorY = rand() % GAME_WINCY + GAME_WIN_TOP;
-		m_tInfo.fX = GAME_WIN_RIGHT - m_tInfo.fCX;
-		m_tInfo.fY = iXorY;
+		iXorY = rand() % int(GAME_WINCY + GAME_WIN_TOP);
+		m_tInfo.fX = int(GAME_WIN_RIGHT) - m_tInfo.fCX;
+		m_tInfo.fY = (float)iXorY;
 		break;
 	case BOTTOM:
-		iXorY = rand() % GAME_WINCX + GAME_WIN_LEFT;
-		m_tInfo.fY = GAME_WIN_BOTTOM - m_tInfo.fCY;
-		m_tInfo.fX = iXorY;
+		iXorY = rand() % int(GAME_WINCX + GAME_WIN_LEFT);
+		m_tInfo.fY = int(GAME_WIN_BOTTOM) - m_tInfo.fCY;
+		m_tInfo.fX = (float)iXorY;
 		break;
 	case NODIR:
 		break;
@@ -55,6 +56,26 @@ int Monster::Update()
 	if (m_bDead) {
 		return OBJ_DEAD;
 	}
+
+	//m_fSpeed += 0.001f;
+
+	float   fWidth(0.f), fHeight(0.f), fDiagonal(0.f), fRadian(0.f);
+
+	fWidth = m_pTarget->Get_Info().fX - m_tInfo.fX;
+	fHeight = m_pTarget->Get_Info().fY - m_tInfo.fY;
+
+	fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
+
+	fRadian = acosf(fWidth / fDiagonal);
+
+	m_fAngle = fRadian * (180.f / PI);
+
+	if (m_pTarget->Get_Info().fY > m_tInfo.fY)
+		m_fAngle *= -1.f;
+
+	// degree to radian
+	m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f));
+	m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f));
 
 	Obj::Update_Rect();
 

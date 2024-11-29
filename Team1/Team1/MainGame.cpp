@@ -55,6 +55,7 @@ void MainGame::Late_Update()
 void MainGame::Render()
 {
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
+	Rectangle(m_hDC, int(GAME_WIN_LEFT), int(GAME_WIN_TOP), int(GAME_WIN_RIGHT), int(GAME_WIN_BOTTOM));
 	m_SceneArray[m_iScene]->Render(m_hDC);
 }
 

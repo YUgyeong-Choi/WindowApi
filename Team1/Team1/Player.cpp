@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Bullet.h"
 
-Player::Player() :  m_tPosin({}), m_BulletList(nullptr), m_iBulletLevel(BULLET_ONE)
+Player::Player() :  m_tPosin({}), m_BulletList(nullptr), m_iBulletLevel(BULLET_ONE), m_iFireRate(0), m_iTick(0), m_pShieldList(nullptr)
 {
 }
 
@@ -16,10 +16,11 @@ void Player::Initialize()
 	m_fSpeed = 5.f;
 	m_fDistance = 30.f;
 	m_iBulletLevel = BULLET_ONE;
-	m_iFireRate = 10;
+	m_iFireRate = 13;
 	m_iTick = 0;
 
 	m_iHp = 100;
+	m_iDamage = 10;
 }
 
 int Player::Update()
@@ -44,7 +45,7 @@ void Player::Late_Update()
 
 void Player::Render(HDC _hdc)
 {
-	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 153, 0));
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 0, 0));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, myBrush);
 	Rectangle(_hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	SelectObject(_hdc, oldBrush);
@@ -56,6 +57,14 @@ void Player::Render(HDC _hdc)
 
 void Player::Release()
 {
+}
+
+void Player::Set_SSpeed(int _iRate)
+{
+	m_fSpeed -= _iRate;
+	if (m_fSpeed < 0) {
+		m_fSpeed += _iRate;
+	}
 }
 
 void Player::Key_Input()
@@ -171,12 +180,13 @@ void Player::Calc_Angle()
 	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 }
 
-Obj* Player::Create_Bullet(float radian)
+Obj* Player::Create_Bullet(float _fAngle)
 {
-	Obj* pBullet = new Bullet(radian);
+	Obj* pBullet = new Bullet(_fAngle);
 
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+
 
 	return pBullet;
 }

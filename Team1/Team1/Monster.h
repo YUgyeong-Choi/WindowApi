@@ -4,7 +4,7 @@ class Monster :public Obj
 {
 public: 
 	Monster();
-	~Monster();
+	virtual ~Monster();
 public:
 	virtual void Initialize() override;
 	virtual int Update() override;

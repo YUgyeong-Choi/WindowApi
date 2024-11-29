@@ -4,7 +4,7 @@ class EndScene :public SceneObj
 {
 public:
 	EndScene();
-	~EndScene();
+	virtual ~EndScene();
 public:
 	virtual void Initialize(Obj* _pPlayer) override;
 	virtual int Update() override;

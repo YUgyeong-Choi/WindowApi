@@ -46,6 +46,21 @@
     <Filter Include="02_Object\Satellite">
       <UniqueIdentifier>{4c0d5e8b-67ba-4509-875f-7abb9a428f03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Object\Item">
+      <UniqueIdentifier>{b8bb1a09-4572-4beb-ad03-e464e6a0ea3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Item\BulletItem">
+      <UniqueIdentifier>{1bc5af89-657d-4652-b888-2a30c397ca32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Item\HealItem">
+      <UniqueIdentifier>{8127c88c-036c-45f8-80af-331174bc3606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Item\PSpeedItem">
+      <UniqueIdentifier>{2429387e-8506-4561-80ae-e94acef1e2e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Item\ShootSpeedItem">
+      <UniqueIdentifier>{a671cd5e-cebc-430c-b862-7e4d5da9f1cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -99,12 +114,24 @@
     <ClInclude Include="Satellite.h">
       <Filter>02_Object\Satellite</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>02_Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletItem.h">
+      <Filter>02_Object\Item\BulletItem</Filter>
+    </ClInclude>
+    <ClInclude Include="HealItem.h">
+      <Filter>02_Object\Item\HealItem</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootSpeedItem.h">
+      <Filter>02_Object\Item\ShootSpeedItem</Filter>
+    </ClInclude>
+    <ClInclude Include="PSpeedItem.h">
+      <Filter>02_Object\Item\PSpeedItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
@@ -128,9 +155,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>02_Object\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>02_Object\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>02_Object\Monster</Filter>
     </ClCompile>
@@ -139,6 +163,27 @@
     </ClCompile>
     <ClCompile Include="Satellite.cpp">
       <Filter>02_Object\Satellite</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>02_Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>02_Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletItem.cpp">
+      <Filter>02_Object\Item\BulletItem</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="HealItem.cpp">
+      <Filter>02_Object\Item\HealItem</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootSpeedItem.cpp">
+      <Filter>02_Object\Item\ShootSpeedItem</Filter>
+    </ClCompile>
+    <ClCompile Include="PSpeedItem.cpp">
+      <Filter>02_Object\Item\PSpeedItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

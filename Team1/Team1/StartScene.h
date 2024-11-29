@@ -4,7 +4,7 @@ class StartScene :public SceneObj
 {
 public:
 	StartScene();
-	~StartScene();
+	virtual ~StartScene();
 public:
 	virtual void Initialize(Obj* _pPlayer) override;
 	virtual int Update() override;

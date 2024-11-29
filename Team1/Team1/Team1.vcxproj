@@ -135,16 +135,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ShootSpeedItem.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletItem.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="EndScene.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="HealItem.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PSpeedItem.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Satellite.h" />
     <ClInclude Include="SceneObj.h" />
@@ -154,9 +159,13 @@
     <ClInclude Include="Team1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ShootSpeedItem.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletItem.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="EndScene.cpp" />
+    <ClCompile Include="HealItem.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Obj.cpp" />
@@ -167,6 +176,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PSpeedItem.cpp" />
     <ClCompile Include="Satellite.cpp" />
     <ClCompile Include="SceneObj.cpp" />
     <ClCompile Include="StageScene.cpp" />

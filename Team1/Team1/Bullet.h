@@ -5,7 +5,7 @@ class Bullet :public Obj
 public:
 	Bullet();
 	Bullet(float _fAngle) { m_fAngle = _fAngle; }
-	~Bullet();
+	virtual ~Bullet();
 public:
 	virtual void Initialize() override;
 	virtual int Update() override;

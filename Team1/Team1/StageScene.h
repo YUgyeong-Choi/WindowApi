@@ -4,7 +4,7 @@ class StageScene : public SceneObj
 {
 public:
 	StageScene();
-	~StageScene();
+	virtual ~StageScene();
 public:
 	virtual void Initialize(Obj* _pPlayer) override;
 	virtual int Update() override;
@@ -13,8 +13,12 @@ public:
 	virtual void Release() override; //플레이어 빼고 release해줌
 protected:
 	void SpawnMonster(); //만약에 스테이지 구분되면 virtual로
+	void SpawnItem(float _x, float _y); 
 private:
 	ULONGLONG	m_dwTime;
 	bool bFinish;
+
+	int m_iRate;
+	int m_iTick;
 };
 
