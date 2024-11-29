@@ -61,6 +61,12 @@
     <Filter Include="02_Object\Item\ShootSpeedItem">
       <UniqueIdentifier>{a671cd5e-cebc-430c-b862-7e4d5da9f1cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Object\Bullet\BulletOne">
+      <UniqueIdentifier>{300e350b-8a72-45b2-a745-3829845cf697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Bullet\BulletScrew">
+      <UniqueIdentifier>{4ac282e3-782b-4d74-8a09-b1d72461cd75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -129,6 +135,12 @@
     <ClInclude Include="PSpeedItem.h">
       <Filter>02_Object\Item\PSpeedItem</Filter>
     </ClInclude>
+    <ClInclude Include="BulletOne.h">
+      <Filter>02_Object\Bullet\BulletOne</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletScrew.h">
+      <Filter>02_Object\Bullet\BulletScrew</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
@@ -184,6 +196,12 @@
     </ClCompile>
     <ClCompile Include="PSpeedItem.cpp">
       <Filter>02_Object\Item\PSpeedItem</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletOne.cpp">
+      <Filter>02_Object\Bullet\BulletOne</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletScrew.cpp">
+      <Filter>02_Object\Bullet\BulletScrew</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

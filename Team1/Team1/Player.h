@@ -21,7 +21,6 @@ public:
 private:
 	void Key_Input();
 	void Calc_Angle();
-	Obj* Create_Bullet(float _fAngle);
 private:
 	list<Obj*>* m_BulletList;
 	list<Obj*>* m_pShieldList;

@@ -135,6 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BulletOne.h" />
+    <ClInclude Include="BulletScrew.h" />
     <ClInclude Include="ShootSpeedItem.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletItem.h" />
@@ -159,6 +161,8 @@
     <ClInclude Include="Team1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BulletOne.cpp" />
+    <ClCompile Include="BulletScrew.cpp" />
     <ClCompile Include="ShootSpeedItem.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletItem.cpp" />
