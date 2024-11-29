@@ -21,7 +21,7 @@ public:
 	virtual void Release() PURE;
 public:
 	void		Update_Rect();
-	void SetDead() { m_bDead = true; }
+	void Set_Dead() { m_bDead = true; }
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;
@@ -31,5 +31,8 @@ protected:
 	float		m_fDistance;
 
 	bool		m_bDead;
+	int			m_iHp;
+	int			m_iDamage;
+
 };
 

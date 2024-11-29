@@ -10,9 +10,9 @@ public:
 	virtual int Update() override;
 	virtual void Late_Update() override;
 	virtual void Render(HDC _hDC) override;
-	virtual void Release() override;
+	virtual void Release() override; //플레이어 빼고 release해줌
 protected:
-	void SpawnMonster();
+	void SpawnMonster(); //만약에 스테이지 구분되면 virtual로
 private:
 	ULONGLONG	m_dwTime;
 	bool bFinish;

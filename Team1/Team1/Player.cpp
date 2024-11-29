@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Bullet.h"
 
-Player::Player() : bKeyPressed(false), m_tPosin({}), m_BulletList(nullptr)
+Player::Player() :  m_tPosin({}), m_BulletList(nullptr), m_iBulletLevel(BULLET_ONE)
 {
 }
 
@@ -15,10 +15,19 @@ void Player::Initialize()
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 30.f, 30.f };
 	m_fSpeed = 5.f;
 	m_fDistance = 30.f;
+	m_iBulletLevel = BULLET_ONE;
+	m_iFireRate = 10;
+	m_iTick = 0;
+
+	m_iHp = 100;
 }
 
 int Player::Update()
 {
+	if (m_bDead) {
+		return OBJ_DEAD;
+	}
+	++m_iTick;
 	Key_Input();
 	Obj::Update_Rect();
 
@@ -28,6 +37,9 @@ int Player::Update()
 void Player::Late_Update()
 {
 	Calc_Angle();
+	if (m_iHp <= 0) {
+		m_bDead = true;
+	}
 }
 
 void Player::Render(HDC _hdc)
@@ -130,12 +142,9 @@ void Player::Key_Input()
 	}
 
 	if (GetAsyncKeyState(VK_LBUTTON)) { //총알 여러개 방지
-		if (!bKeyPressed) {
+		if (m_iTick >= m_iFireRate) {
 			m_BulletList->push_back(Create_Bullet(m_fAngle));
-			bKeyPressed = true;
-		}
-		else {
-			bKeyPressed = false;
+			m_iTick = 0;
 		}
 	}
 }
@@ -151,17 +160,15 @@ void Player::Calc_Angle()
 	float length = sqrtf(a * a + b * b);
 
 	float angleCos = a / length;
-	if (angleCos > 1.0f) angleCos = 1.0f;  
-	if (angleCos < -1.0f) angleCos = -1.0f;  
 
 	m_fAngle = acosf(angleCos) * (180.f / PI);
 
-	if (b < 0) {
+	if (b > 0) {
 		m_fAngle = 360.0f - m_fAngle; 
 	}
 
 	m_tPosin.x = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
-	m_tPosin.y = long(m_tInfo.fY + (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
+	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 }
 
 Obj* Player::Create_Bullet(float radian)

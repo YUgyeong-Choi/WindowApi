@@ -12,10 +12,11 @@ Monster::~Monster()
 
 void Monster::Initialize()
 {
-
 	m_tInfo.fCX = 20.f;
 	m_tInfo.fCY = 20.f;
 	m_fSpeed = 5.f;
+
+	m_iHp = 10;
 
 	m_dir = rand() % 4;
 	int iXorY = 0;
@@ -54,21 +55,7 @@ int Monster::Update()
 	if (m_bDead) {
 		return OBJ_DEAD;
 	}
-	switch (m_dir)
-	{
-	case LEFT:
-	case RIGHT:
-		m_tInfo.fX += m_fSpeed;
-		break;
-	case TOP:
-	case BOTTOM:
-		m_tInfo.fY += m_fSpeed;
-		break;
-	case NODIR:
-		break;
-	default:
-		break;
-	}
+
 	Obj::Update_Rect();
 
 	return OBJ_NOEVENT;
@@ -76,31 +63,8 @@ int Monster::Update()
 
 void Monster::Late_Update()
 {
-	switch (m_dir)
-	{
-	case LEFT:
-	case RIGHT:
-		if (GAME_WIN_RIGHT <= LONG(m_tInfo.fX + (m_tInfo.fCX * 0.5f))) {
-			m_fSpeed *= -1;
-		}
-		if (GAME_WIN_LEFT >= LONG(m_tInfo.fX - (m_tInfo.fCX * 0.5f))) {
-			m_fSpeed *= -1;
-		}
-		break;
-	case TOP:
-	case BOTTOM:
-		if (GAME_WIN_BOTTOM <= LONG(m_tInfo.fY + (m_tInfo.fCY * 0.5f))) {
-			m_fSpeed *= -1;
-		}
-
-		if (GAME_WIN_TOP >= LONG(m_tInfo.fY - (m_tInfo.fCY * 0.5f))) {
-			m_fSpeed *= -1;
-		}
-		break;
-	case NODIR:
-		break;
-	default:
-		break;
+	if (m_iHp <= 0) {
+		m_bDead = true;
 	}
 }
 

@@ -40,7 +40,7 @@ int MainGame::Update()
 		return OBJ_CLEAR;
 	}
 
-	if (result == OBJ_FINISH) {
+	if (result == OBJ_FINISH || result ==OBJ_DEAD) {
 		return OBJ_FINISH;
 	}
 

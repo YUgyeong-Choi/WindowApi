@@ -15,6 +15,7 @@ void Bullet::Initialize()
 	m_tInfo.fCX = 10.f;
 	m_tInfo.fCY = 10.f;
 	m_fSpeed = 10.f;
+	m_iHp = 1;
 }
 
 int Bullet::Update()
@@ -23,7 +24,7 @@ int Bullet::Update()
 		return OBJ_DEAD;
 	}
 	m_tInfo.fX = long(m_tInfo.fX + (m_fSpeed * cosf(m_fAngle * (PI / 180.f))));
-	m_tInfo.fY = long(m_tInfo.fY + (m_fSpeed * sinf(m_fAngle * (PI / 180.f))));
+	m_tInfo.fY = long(m_tInfo.fY - (m_fSpeed * sinf(m_fAngle * (PI / 180.f))));
 
 	Obj::Update_Rect();
 	return OBJ_NOEVENT;
@@ -32,6 +33,10 @@ int Bullet::Update()
 void Bullet::Late_Update()
 {
 	if (m_tRect.left <= GAME_WIN_LEFT || m_tRect.top <= GAME_WIN_TOP || m_tRect.right >= GAME_WIN_RIGHT || m_tRect.bottom >= GAME_WIN_BOTTOM) {
+		m_bDead = true;
+	}
+
+	if (m_iHp <= 0) {
 		m_bDead = true;
 	}
 }

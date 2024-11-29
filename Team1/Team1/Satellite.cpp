@@ -22,7 +22,7 @@ int Satellite::Update()
 {
 	m_fAngle += m_fSpeed;
 	m_tInfo.fX = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
-	m_tInfo.fY = long(m_tInfo.fY + (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
+	m_tInfo.fY = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 
 	Obj::Update_Rect();
 	return OBJ_NOEVENT;

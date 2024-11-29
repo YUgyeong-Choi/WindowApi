@@ -18,10 +18,6 @@ void StageScene::Initialize(Obj* _pPlayer)
 {
 	m_ObjList[OBJ_PLAYER].push_back(_pPlayer);
 	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Bullet(&m_ObjList[OBJ_BULLET]);
-
-	m_ObjList[OBJ_SATELLITE].push_back(new Satellite);
-	static_cast<Satellite*>(m_ObjList[OBJ_SATELLITE].front())->Initialize();
-	static_cast<Satellite*>(m_ObjList[OBJ_SATELLITE].front())->Set_Pos(m_ObjList[OBJ_PLAYER].front()->Get_Info().fX, m_ObjList[OBJ_PLAYER].front()->Get_Info().fY);
 	
 	m_dwTime = GetTickCount64();
 }
@@ -31,6 +27,7 @@ int StageScene::Update()
 	if (bFinish) {
 		return OBJ_CLEAR;
 	}
+
 	SpawnMonster();
 
 	for (size_t i = 0; i < OBJ_END; ++i) {
@@ -38,8 +35,13 @@ int StageScene::Update()
 			int result = (*iter)->Update();
 
 			if (OBJ_DEAD == result) {
-				Safe_Delete<Obj*>(*iter);
-				iter = m_ObjList[i].erase(iter);
+				if (static_cast<Player*>(*iter)) {
+					return OBJ_DEAD;
+				}
+				else {
+					Safe_Delete<Obj*>(*iter);
+					iter = m_ObjList[i].erase(iter);
+				}
 			}
 			else {
 				++iter;
@@ -57,7 +59,6 @@ void StageScene::Late_Update()
 			pObj->Late_Update();
 	}
 
-	static_cast<Satellite*>(m_ObjList[OBJ_SATELLITE].front())->Set_Pos(m_ObjList[OBJ_PLAYER].front()->Get_Info().fX, m_ObjList[OBJ_PLAYER].front()->Get_Info().fY);
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
 
 	if (m_ObjList[OBJ_MONSTER].size() == 0) {
@@ -84,7 +85,7 @@ void StageScene::Render(HDC _hDC)
 	TextOut(_hDC, 150, 50, szMonster, lstrlen(szMonster));
 }
 
-void StageScene::Release()
+void StageScene::Release() 
 {
 	for (size_t i = 1; i < OBJ_END; ++i) {
 		for_each(m_ObjList[i].begin(), m_ObjList[i].end(), Safe_Delete<Obj*>);

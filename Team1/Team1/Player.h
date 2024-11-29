@@ -19,8 +19,10 @@ private:
 	void Calc_Angle();
 	Obj* Create_Bullet(float radian);
 private:
-	bool bKeyPressed;
 	list<Obj*>* m_BulletList;
 	POINT m_tPosin;
+	int m_iBulletLevel;
+	int m_iFireRate; //총알 발사 속도
+	int m_iTick; 
 };
 
