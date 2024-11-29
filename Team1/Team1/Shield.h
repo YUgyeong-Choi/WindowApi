@@ -1,10 +1,10 @@
 #pragma once
 #include "Obj.h"
-class Satellite :public Obj
+class Shield :public Obj
 {
 public:
-	Satellite();
-	~Satellite();
+	Shield();
+	~Shield();
 public:
 	virtual void Initialize() override;
 	virtual int Update() override;

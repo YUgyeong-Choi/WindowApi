@@ -57,7 +57,7 @@ int Monster::Update()
 		return OBJ_DEAD;
 	}
 
-	//m_fSpeed += 0.001f;
+	//m_fSpeed += 0.0005f;
 
 	float   fWidth(0.f), fHeight(0.f), fDiagonal(0.f), fRadian(0.f);
 

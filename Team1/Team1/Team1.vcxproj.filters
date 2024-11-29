@@ -43,8 +43,11 @@
     <Filter Include="03_Collision">
       <UniqueIdentifier>{c38705a7-60f1-4447-9c10-50f8b9c717a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Object\Satellite">
-      <UniqueIdentifier>{4c0d5e8b-67ba-4509-875f-7abb9a428f03}</UniqueIdentifier>
+    <Filter Include="02_Object\Bullet\BulletOne">
+      <UniqueIdentifier>{300e350b-8a72-45b2-a745-3829845cf697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Bullet\BulletScrew">
+      <UniqueIdentifier>{4ac282e3-782b-4d74-8a09-b1d72461cd75}</UniqueIdentifier>
     </Filter>
     <Filter Include="02_Object\Item">
       <UniqueIdentifier>{b8bb1a09-4572-4beb-ad03-e464e6a0ea3a}</UniqueIdentifier>
@@ -61,11 +64,11 @@
     <Filter Include="02_Object\Item\ShootSpeedItem">
       <UniqueIdentifier>{a671cd5e-cebc-430c-b862-7e4d5da9f1cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Object\Bullet\BulletOne">
-      <UniqueIdentifier>{300e350b-8a72-45b2-a745-3829845cf697}</UniqueIdentifier>
+    <Filter Include="02_Object\Shield">
+      <UniqueIdentifier>{4c0d5e8b-67ba-4509-875f-7abb9a428f03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Object\Bullet\BulletScrew">
-      <UniqueIdentifier>{4ac282e3-782b-4d74-8a09-b1d72461cd75}</UniqueIdentifier>
+    <Filter Include="02_Object\Item\ShieldItem">
+      <UniqueIdentifier>{dd7facc9-9f17-4827-94dd-fe59a79eba66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,8 +120,8 @@
     <ClInclude Include="CollisionMgr.h">
       <Filter>03_Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Satellite.h">
-      <Filter>02_Object\Satellite</Filter>
+    <ClInclude Include="Shield.h">
+      <Filter>02_Object\Shield</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>02_Object\Item</Filter>
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="BulletScrew.h">
       <Filter>02_Object\Bullet\BulletScrew</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldItem.h">
+      <Filter>02_Object\Item\ShieldItem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -173,8 +179,8 @@
     <ClCompile Include="CollisionMgr.cpp">
       <Filter>03_Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Satellite.cpp">
-      <Filter>02_Object\Satellite</Filter>
+    <ClCompile Include="Shield.cpp">
+      <Filter>02_Object\Shield</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>02_Object\Item</Filter>
@@ -202,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="BulletScrew.cpp">
       <Filter>02_Object\Bullet\BulletScrew</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldItem.cpp">
+      <Filter>02_Object\Item\ShieldItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

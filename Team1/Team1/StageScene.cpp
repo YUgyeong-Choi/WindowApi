@@ -7,9 +7,10 @@
 #include "HealItem.h"
 #include "ShootSpeedItem.h"
 #include "PSpeedItem.h"
+#include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_dwTime(0), bFinish(false), m_iRate(0), m_iTick(0)
+StageScene::StageScene() : m_dwTime(0), bFinish(false)
 {
 }
 
@@ -25,12 +26,10 @@ void StageScene::Initialize(Obj* _pPlayer)
 	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Shield(&m_ObjList[OBJ_SHIELD]);
 	
 	m_dwTime = GetTickCount64();
-	m_iRate = 0;
 }
 
 int StageScene::Update()
 {
-	m_iTick++;
 	if (bFinish) {
 		return OBJ_CLEAR;
 	}
@@ -39,6 +38,7 @@ int StageScene::Update()
 
 	for (size_t i = 0; i < OBJ_END; ++i) {
 		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end();) {
+
 			int result = (*iter)->Update();
 
 			if (OBJ_DEAD == result) {
@@ -71,12 +71,10 @@ void StageScene::Late_Update()
 			pObj->Late_Update();
 	}
 
-	if (m_iTick >= m_iRate) {
-		CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]); //¸ó½ºÅÍ & ÃÑ¾Ë
-		CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //¸ó½ºÅÍ & ÇÃ·¹ÀÌ¾î
-		CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //¾ÆÀÌÅÛ & ÇÃ·¹ÀÌ¾î
-		m_iTick = 0;
-	}
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]); //¸ó½ºÅÍ & ÃÑ¾Ë
+	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //¸ó½ºÅÍ & ÇÃ·¹ÀÌ¾î
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //¸ó½ºÅÍ & ½¯µå
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //¾ÆÀÌÅÛ & ÇÃ·¹ÀÌ¾î
 
 	if (m_ObjList[OBJ_MONSTER].size() == 0) {
 		bFinish = true;
@@ -134,14 +132,17 @@ void StageScene::SpawnItem(float _x, float _y)
 		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% È®·ü 
 			m_ObjList[OBJ_ITEM].push_back(new BulletItem());
 		}
-		else if (15 <= iRandomItem && iRandomItem < 65) {  // 50% È®·ü 
+		else if (15 <= iRandomItem && iRandomItem < 55) {  // 40% È®·ü 
 			m_ObjList[OBJ_ITEM].push_back(new HealItem());
 		}
-		else if (65 <= iRandomItem && iRandomItem < 80) {  // 15% È®·ü 
+		else if (55 <= iRandomItem && iRandomItem < 70) {  // 15% È®·ü 
 			m_ObjList[OBJ_ITEM].push_back(new ShootSpeedItem());
 		}
-		else if (80 <= iRandomItem && iRandomItem < 100) {  // 20% È®·ü 
+		else if (70 <= iRandomItem && iRandomItem < 85) {  // 15% È®·ü 
 			m_ObjList[OBJ_ITEM].push_back(new PSpeedItem());
+		}
+		else if (85 <= iRandomItem && iRandomItem < 100) {// 15% È®·ü 
+			m_ObjList[OBJ_ITEM].push_back(new ShieldItem());
 		}
 
 		m_ObjList[OBJ_ITEM].back()->Set_Pos(_x, _y);

@@ -17,8 +17,5 @@ protected:
 private:
 	ULONGLONG	m_dwTime;
 	bool bFinish;
-
-	int m_iRate;
-	int m_iTick;
 };
 

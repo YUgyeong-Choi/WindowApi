@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="BulletOne.h" />
     <ClInclude Include="BulletScrew.h" />
+    <ClInclude Include="ShieldItem.h" />
     <ClInclude Include="ShootSpeedItem.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletItem.h" />
@@ -153,7 +154,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PSpeedItem.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Satellite.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="SceneObj.h" />
     <ClInclude Include="StageScene.h" />
     <ClInclude Include="StartScene.h" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="BulletOne.cpp" />
     <ClCompile Include="BulletScrew.cpp" />
+    <ClCompile Include="ShieldItem.cpp" />
     <ClCompile Include="ShootSpeedItem.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletItem.cpp" />
@@ -181,7 +183,7 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PSpeedItem.cpp" />
-    <ClCompile Include="Satellite.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="SceneObj.cpp" />
     <ClCompile Include="StageScene.cpp" />
     <ClCompile Include="StartScene.cpp" />

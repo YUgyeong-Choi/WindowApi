@@ -14,10 +14,11 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC _hdc) override;
 	virtual void Release() override;
-public:
+public: //아이템 관련 함수
 	void Upgrade_Bullet();
 	void Set_PSpeed(float _iSpeed) { m_fSpeed += _iSpeed; }
 	void Set_SSpeed(int _iRate);
+	void Add_Shield();
 private:
 	void Key_Input();
 	void Calc_Angle();

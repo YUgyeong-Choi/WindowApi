@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "BulletOne.h"
 #include "BulletScrew.h"
+#include "Shield.h"
 
 Player::Player() :  m_tPosin({}), m_BulletList(nullptr), m_iBulletLevel(BULLET_ONE), m_iFireRate(0), m_iTick(0), m_pShieldList(nullptr)
 {
@@ -16,7 +17,7 @@ void Player::Initialize()
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 30.f, 30.f };
 	m_fSpeed = 5.f;
 	m_fDistance = 30.f;
-	m_iBulletLevel = BULLET_SCREW;
+	m_iBulletLevel = BULLET_ONE;
 	m_iFireRate = 13;
 	m_iTick = 0;
 
@@ -74,6 +75,14 @@ void Player::Set_SSpeed(int _iRate)
 	if (m_fSpeed < 0) {
 		m_fSpeed += _iRate;
 	}
+}
+
+void Player::Add_Shield()
+{
+	m_pShieldList->push_back(new Shield());
+	m_pShieldList->back()->Initialize();
+	m_pShieldList->back()->Set_Pos(m_tInfo.fX, m_tInfo.fY);
+	m_pShieldList->back()->Set_Target(this);
 }
 
 void Player::Key_Input()
@@ -203,6 +212,7 @@ void Player::Key_Input()
 				pBullet = new BulletScrew(m_fAngle);
 				pBullet->Initialize();
 				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+				pBullet->Set_Target(this);
 				m_BulletList->push_back(pBullet);
 				break;
 			default:
