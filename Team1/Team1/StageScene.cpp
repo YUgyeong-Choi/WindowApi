@@ -65,11 +65,6 @@ int StageScene::Update()
 
 void StageScene::Late_Update()
 {
-	for (size_t i = 0; i < OBJ_END; ++i)
-	{
-		for (auto& pObj : m_ObjList[i])
-			pObj->Late_Update();
-	}
 
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]); //몬스터 & 총알
 	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
@@ -78,6 +73,12 @@ void StageScene::Late_Update()
 
 	if (m_ObjList[OBJ_MONSTER].size() == 0) {
 		bFinish = true;
+	}
+
+	for (size_t i = 0; i < OBJ_END; ++i)
+	{
+		for (auto& pObj : m_ObjList[i])
+			pObj->Late_Update();
 	}
 }
 
