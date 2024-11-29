@@ -15,7 +15,7 @@ public:
 	virtual void Render(HDC _hdc) override;
 	virtual void Release() override;
 public:
-	void Upgrade_Bullet() { ++m_iBulletLevel; }
+	void Upgrade_Bullet();
 	void Set_PSpeed(float _iSpeed) { m_fSpeed += _iSpeed; }
 	void Set_SSpeed(int _iRate);
 private:

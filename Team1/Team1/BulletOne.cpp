@@ -9,6 +9,15 @@ BulletOne::~BulletOne()
 {
 }
 
+void BulletOne::Initialize()
+{
+	m_tInfo.fCX = 10.f;
+	m_tInfo.fCY = 10.f;
+	m_fSpeed = 10.f;
+	m_iHp = 1;
+	m_iDamage = 10;
+}
+
 int BulletOne::Update()
 {
 	if (m_bDead) {

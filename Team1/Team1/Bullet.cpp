@@ -10,15 +10,6 @@ Bullet::~Bullet()
 	Release();
 }
 
-void Bullet::Initialize()
-{
-	m_tInfo.fCX = 10.f;
-	m_tInfo.fCY = 10.f;
-	m_fSpeed = 10.f;
-	m_iHp = 1;
-	m_iDamage = 10;
-}
-
 void Bullet::Late_Update()
 {
 	if (m_tRect.left <= GAME_WIN_LEFT || m_tRect.top <= GAME_WIN_TOP || m_tRect.right >= GAME_WIN_RIGHT || m_tRect.bottom >= GAME_WIN_BOTTOM) {

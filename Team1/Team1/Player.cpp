@@ -16,7 +16,7 @@ void Player::Initialize()
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 30.f, 30.f };
 	m_fSpeed = 5.f;
 	m_fDistance = 30.f;
-	m_iBulletLevel = BULLET_THREE;
+	m_iBulletLevel = BULLET_SCREW;
 	m_iFireRate = 13;
 	m_iTick = 0;
 
@@ -58,6 +58,14 @@ void Player::Render(HDC _hdc)
 
 void Player::Release()
 {
+}
+
+void Player::Upgrade_Bullet()
+{
+	++m_iBulletLevel;
+	if (m_iBulletLevel > BULLET_SCREW) {
+		--m_iBulletLevel;
+	}
 }
 
 void Player::Set_SSpeed(int _iRate)
@@ -192,10 +200,10 @@ void Player::Key_Input()
 				m_BulletList->push_back(pBullet);
 				break;
 			case BULLET_SCREW:
-				//pBullet = new BulletScrew(m_fAngle);
-				//pBullet->Initialize();
-				//pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				//m_BulletList->push_back(pBullet);
+				pBullet = new BulletScrew(m_fAngle);
+				pBullet->Initialize();
+				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+				m_BulletList->push_back(pBullet);
 				break;
 			default:
 				break;

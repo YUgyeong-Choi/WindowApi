@@ -7,6 +7,7 @@ public:
 	BulletOne(float _fAngle) { m_fAngle = _fAngle; }
 	virtual ~BulletOne();
 public:
+	virtual void Initialize() override;
 	virtual int Update() override;
 };
 
