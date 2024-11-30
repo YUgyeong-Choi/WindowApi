@@ -170,50 +170,22 @@ void Player::Key_Input()
 
 	if (GetAsyncKeyState(VK_LBUTTON)) { //총알 여러개 방지
 		if (m_iTick >= m_iFireRate) {
-			Obj* pBullet(nullptr);
 			switch (m_iBulletLevel)
 			{
 			case BULLET_ONE:
-				pBullet = new BulletOne(m_fAngle);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				m_BulletList->push_back(pBullet);
+				m_BulletList->push_back(Create_Bullet(0));
 				break;
 			case BULLET_TWO:
-				pBullet = new BulletOne(m_fAngle - 5.f);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				m_BulletList->push_back(pBullet);
-
-
-				pBullet = new BulletOne(m_fAngle +5.f);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				m_BulletList->push_back(pBullet);
+				m_BulletList->push_back(Create_Bullet(-5.f));
+				m_BulletList->push_back(Create_Bullet(5.f));
 				break;
 			case BULLET_THREE:
-				pBullet = new BulletOne(m_fAngle-10.f);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				m_BulletList->push_back(pBullet);
-
-				pBullet = new BulletOne(m_fAngle);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				m_BulletList->push_back(pBullet);
-
-
-				pBullet = new BulletOne(m_fAngle+10.f);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				m_BulletList->push_back(pBullet);
+				m_BulletList->push_back(Create_Bullet(-8.f));
+				m_BulletList->push_back(Create_Bullet(0));
+				m_BulletList->push_back(Create_Bullet(8.f));
 				break;
 			case BULLET_SCREW:
-				pBullet = new BulletScrew(m_fAngle);
-				pBullet->Initialize();
-				pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-				pBullet->Set_Target(this);
-				m_BulletList->push_back(pBullet);
+				m_BulletList->push_back(Create_BulletScrew());
 				break;
 			default:
 				break;
@@ -243,4 +215,23 @@ void Player::Calc_Angle()
 
 	m_tPosin.x = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
 	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
+}
+
+Obj* Player::Create_Bullet(float _fAngle)
+{
+	Obj* pBullet(nullptr);
+	pBullet = new BulletOne(m_fAngle + _fAngle);
+	pBullet->Initialize();
+	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+	return pBullet;
+}
+
+Obj* Player::Create_BulletScrew()
+{
+	Obj* pBullet(nullptr);
+	pBullet = new BulletScrew(m_fAngle);
+	pBullet->Initialize();
+	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+	pBullet->Set_Target(this);
+	return pBullet;
 }

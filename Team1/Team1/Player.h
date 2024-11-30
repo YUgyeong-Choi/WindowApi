@@ -22,6 +22,8 @@ public: //아이템 관련 함수
 private:
 	void Key_Input();
 	void Calc_Angle();
+	Obj* Create_Bullet(float _fAngle);
+	Obj* Create_BulletScrew();
 private:
 	list<Obj*>* m_BulletList;
 	list<Obj*>* m_pShieldList;

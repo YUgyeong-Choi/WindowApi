@@ -12,8 +12,8 @@ Item::~Item()
 
 void Item::Initialize()
 {
-	m_tInfo.fCX = 10.f;
-	m_tInfo.fCY = 10.f;
+	m_tInfo.fCX = 15.f;
+	m_tInfo.fCY = 15.f;
 	m_fSpeed = 0.f;
 	m_iHp = 1;
 	m_iDamage = 0;

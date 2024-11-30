@@ -4,7 +4,7 @@ class BulletScrew :public Bullet
 {
 public:
 	BulletScrew();
-	BulletScrew(float _fAngle) { m_fAngle = _fAngle; }
+	BulletScrew(float _fAngle);
 	virtual ~BulletScrew();
 public:
 	virtual void Initialize() override;

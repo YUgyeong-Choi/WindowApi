@@ -1,8 +1,13 @@
 #include "pch.h"
 #include "BulletScrew.h"
 
-BulletScrew::BulletScrew()
+BulletScrew::BulletScrew():m_bStart(false), m_fRotAngle(0),m_fRotSpeed(0), m_tCenter({})
 {
+}
+
+BulletScrew::BulletScrew(float _fAngle) :m_bStart(false), m_fRotAngle(0), m_fRotSpeed(0), m_tCenter({})
+{
+	m_fAngle = _fAngle;
 }
 
 BulletScrew::~BulletScrew()
@@ -39,8 +44,8 @@ int BulletScrew::Update()
 		m_bStart = false;
 	}
 
-	m_tCenter.x += float(m_fSpeed * cosf(m_fAngle * (PI / 180.f)));
-	m_tCenter.y -= float(m_fSpeed * sinf(m_fAngle * (PI / 180.f)));
+	m_tCenter.x += long(m_fSpeed * cosf(m_fAngle * (PI / 180.f)));
+	m_tCenter.y -= long(m_fSpeed * sinf(m_fAngle * (PI / 180.f)));
 
 	m_fRotAngle += m_fRotSpeed;
 
