@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Monster.h"
 
-Monster::Monster():m_dir(NODIR)
+Monster::Monster():m_iDir(NODIR)
 {
 }
 
@@ -19,10 +19,10 @@ void Monster::Initialize()
 	m_iHp = 10;
 	m_iDamage = 1;
 
-	m_dir = rand() % 4;
+	m_iDir = rand() % 4;
 	int iXorY = 0;
 
-	switch (m_dir)
+	switch (m_iDir)
 	{
 	case LEFT:
 		iXorY = rand() % int(GAME_WINCY + GAME_WIN_TOP);

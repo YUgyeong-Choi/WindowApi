@@ -6,7 +6,7 @@ public:
 	Player();
 	virtual ~Player();
 public:
-	void        Set_Bullet(list<Obj*>* pBullet) { m_BulletList = pBullet; }
+	void        Set_Bullet(list<Obj*>* pBullet) { m_pBulletList = pBullet; }
 	void        Set_Shield(list<Obj*>* pShield) { m_pShieldList = pShield; }
 public:
 	virtual void Initialize() override;
@@ -25,7 +25,7 @@ private:
 	Obj* Create_Bullet(float _fAngle);
 	Obj* Create_BulletScrew();
 private:
-	list<Obj*>* m_BulletList;
+	list<Obj*>* m_pBulletList;
 	list<Obj*>* m_pShieldList;
 	POINT m_tPosin;
 	int m_iBulletLevel;

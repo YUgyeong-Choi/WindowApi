@@ -12,6 +12,6 @@ public:
 	virtual void Render(HDC _hdc) override;
 	virtual void Release() override;
 private:
-	int m_dir;
+	int m_iDir;
 };
 

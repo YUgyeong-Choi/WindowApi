@@ -10,7 +10,7 @@
 #include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_dwTime(0), bFinish(false)
+StageScene::StageScene() : m_dwTime(0), m_bFinish(false)
 {
 }
 
@@ -30,7 +30,7 @@ void StageScene::Initialize(Obj* _pPlayer)
 
 int StageScene::Update()
 {
-	if (bFinish) {
+	if (m_bFinish) {
 		return OBJ_CLEAR;
 	}
 
@@ -72,7 +72,7 @@ void StageScene::Late_Update()
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //아이템 & 플레이어
 
 	if (m_ObjList[OBJ_MONSTER].size() == 0) {
-		bFinish = true;
+		m_bFinish = true;
 	}
 
 	for (size_t i = 0; i < OBJ_END; ++i)

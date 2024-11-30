@@ -16,6 +16,6 @@ protected:
 	void SpawnItem(float _x, float _y); 
 private:
 	ULONGLONG	m_dwTime;
-	bool bFinish;
+	bool m_bFinish;
 };
 

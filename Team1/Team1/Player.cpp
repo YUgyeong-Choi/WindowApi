@@ -4,7 +4,7 @@
 #include "BulletScrew.h"
 #include "Shield.h"
 
-Player::Player() :  m_tPosin({}), m_BulletList(nullptr), m_iBulletLevel(BULLET_ONE), m_iFireRate(0), m_iTick(0), m_pShieldList(nullptr)
+Player::Player() :  m_tPosin({}), m_pBulletList(nullptr), m_iBulletLevel(BULLET_ONE), m_iFireRate(0), m_iTick(0), m_pShieldList(nullptr)
 {
 }
 
@@ -173,19 +173,19 @@ void Player::Key_Input()
 			switch (m_iBulletLevel)
 			{
 			case BULLET_ONE:
-				m_BulletList->push_back(Create_Bullet(0));
+				m_pBulletList->push_back(Create_Bullet(0));
 				break;
 			case BULLET_TWO:
-				m_BulletList->push_back(Create_Bullet(-5.f));
-				m_BulletList->push_back(Create_Bullet(5.f));
+				m_pBulletList->push_back(Create_Bullet(-5.f));
+				m_pBulletList->push_back(Create_Bullet(5.f));
 				break;
 			case BULLET_THREE:
-				m_BulletList->push_back(Create_Bullet(-8.f));
-				m_BulletList->push_back(Create_Bullet(0));
-				m_BulletList->push_back(Create_Bullet(8.f));
+				m_pBulletList->push_back(Create_Bullet(-8.f));
+				m_pBulletList->push_back(Create_Bullet(0));
+				m_pBulletList->push_back(Create_Bullet(8.f));
 				break;
 			case BULLET_SCREW:
-				m_BulletList->push_back(Create_BulletScrew());
+				m_pBulletList->push_back(Create_BulletScrew());
 				break;
 			default:
 				break;
