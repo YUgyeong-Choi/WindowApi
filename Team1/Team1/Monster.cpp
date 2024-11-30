@@ -14,7 +14,7 @@ void Monster::Initialize()
 {
 	m_tInfo.fCX = 20.f;
 	m_tInfo.fCY = 20.f;
-	m_fSpeed = 5.f;
+	m_fSpeed = 2.f;
 
 	m_iHp = 10;
 	m_iDamage = 1;

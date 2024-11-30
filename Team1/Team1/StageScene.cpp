@@ -10,7 +10,7 @@
 #include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_dwTime(0), m_bFinish(false)
+StageScene::StageScene() : m_dwTime(0), m_bFinish(false), m_bStart(true)
 {
 }
 
@@ -26,12 +26,19 @@ void StageScene::Initialize(Obj* _pPlayer)
 	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Shield(&m_ObjList[OBJ_SHIELD]);
 	
 	m_dwTime = GetTickCount64();
+
 }
 
 int StageScene::Update()
 {
 	if (m_bFinish) {
 		return OBJ_CLEAR;
+	}
+	if (m_bStart)
+	{
+		m_dwStartTime =  GetTickCount64();
+		m_dwStartTime += 6000;
+		m_bStart = false;
 	}
 
 	SpawnMonster();
@@ -71,7 +78,7 @@ void StageScene::Late_Update()
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //몬스터 & 쉴드
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //아이템 & 플레이어
 
-	if (m_ObjList[OBJ_MONSTER].size() == 0) {
+	if ((m_dwStartTime - GetTickCount64()) / 1000 <= 0) {
 		m_bFinish = true;
 	}
 
@@ -104,9 +111,10 @@ void StageScene::Render(HDC _hDC)
 	wsprintf(szPlayerHp, L"PlayerHp: %d", m_ObjList[OBJ_PLAYER].front()->Get_Hp());
 	TextOut(_hDC, 250, 50, szPlayerHp, lstrlen(szPlayerHp));
 
-	TCHAR szITem[32];
-	wsprintf(szITem, L"Item: %d", (int)m_ObjList[OBJ_ITEM].size());
-	TextOut(_hDC, 350, 50, szITem, lstrlen(szITem));
+
+	TCHAR szTimer[32];
+	wsprintf(szTimer, L"Time: %d", int((m_dwStartTime - GetTickCount64()) / 1000));
+	TextOut(_hDC, 350, 50, szTimer, lstrlen(szTimer));
 }
 
 void StageScene::Release() 
