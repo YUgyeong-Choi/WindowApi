@@ -36,7 +36,7 @@ int Shield::Update()
 
 void Shield::Late_Update()
 {
-	if (m_iHp < 0) {
+	if (m_iHp <= 0) {
 		m_bDead = true;
 	}
 }

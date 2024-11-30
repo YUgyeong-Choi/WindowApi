@@ -206,11 +206,11 @@
     <ClCompile Include="BulletOne.cpp">
       <Filter>02_Object\Bullet\BulletOne</Filter>
     </ClCompile>
-    <ClCompile Include="BulletScrew.cpp">
-      <Filter>02_Object\Bullet\BulletScrew</Filter>
-    </ClCompile>
     <ClCompile Include="ShieldItem.cpp">
       <Filter>02_Object\Item\ShieldItem</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletScrew.cpp">
+      <Filter>02_Object\Bullet\BulletScrew</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

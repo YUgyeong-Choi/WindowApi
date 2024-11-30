@@ -12,9 +12,8 @@ BulletScrew::~BulletScrew()
 
 void BulletScrew::Initialize()
 {
-	m_tInfo.fCX = 20.f;
-	m_tInfo.fCY = 20.f;
-
+	m_tInfo.fCX = 10.f;
+	m_tInfo.fCY = 10.f;
 	m_fSpeed = 10.f;
 
 	m_fRotAngle = 0.f;
