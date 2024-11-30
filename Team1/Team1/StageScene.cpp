@@ -130,7 +130,7 @@ void StageScene::SpawnMonster()
 void StageScene::SpawnItem(float _x, float _y)
 {
 	int iRate = rand() % 100; 
-	int iRandomItem = rand() % 100;
+	int iRandomItem =  rand() % 100;
 	if (0 <= iRate && iRate < 10) {  // 10% È®·ü
 		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% È®·ü 
 			m_ObjList[OBJ_ITEM].push_back(new BulletItem());

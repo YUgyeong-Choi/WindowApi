@@ -12,6 +12,7 @@ MainGame::MainGame() :m_hDC(nullptr), m_pPlayer(nullptr), m_iScene(NONE)
 
 MainGame::~MainGame()
 {
+	Release();
 }
 
 void MainGame::Initialize()
