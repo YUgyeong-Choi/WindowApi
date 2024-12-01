@@ -73,14 +73,8 @@
     <Filter Include="01_Scenes\2_Stage\Stage1">
       <UniqueIdentifier>{5b74afe9-397e-41ec-87c2-084fcaafde22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01_Scenes\2_Stage\Stage2">
-      <UniqueIdentifier>{8dd253b4-a966-4e38-b6b1-f83701b07e1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Object\Monster\MonsterB1">
-      <UniqueIdentifier>{31db78d2-940e-4156-9acd-27da9f8ab176}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Object\Monster\MonsterB0">
-      <UniqueIdentifier>{c0e8d3d5-d569-4224-812a-15b3e08f4879}</UniqueIdentifier>
+    <Filter Include="02_Object\Monster\ShotSpawner">
+      <UniqueIdentifier>{88878d8c-1232-46ca-8ad1-935e6399dad8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -162,14 +156,8 @@
     <ClInclude Include="Stage1.h">
       <Filter>01_Scenes\2_Stage\Stage1</Filter>
     </ClInclude>
-    <ClInclude Include="Stage2.h">
-      <Filter>01_Scenes\2_Stage\Stage2</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterB1.h">
-      <Filter>02_Object\Monster\MonsterB1</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterB0.h">
-      <Filter>02_Object\Monster\MonsterB0</Filter>
+    <ClInclude Include="MonsterShoot.h">
+      <Filter>02_Object\Monster\ShotSpawner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,14 +227,8 @@
     <ClCompile Include="Stage1.cpp">
       <Filter>01_Scenes\2_Stage\Stage1</Filter>
     </ClCompile>
-    <ClCompile Include="Stage2.cpp">
-      <Filter>01_Scenes\2_Stage\Stage2</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterB1.cpp">
-      <Filter>02_Object\Monster\MonsterB1</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterB0.cpp">
-      <Filter>02_Object\Monster\MonsterB0</Filter>
+    <ClCompile Include="MonsterShoot.cpp">
+      <Filter>02_Object\Monster\ShotSpawner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,8 +243,5 @@
     <Image Include="Team1.ico">
       <Filter>리소스 파일</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

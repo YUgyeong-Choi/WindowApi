@@ -10,7 +10,7 @@
 #include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_ullTime(0), m_bFinish(false), m_bStart(true) , m_ullStartTime(0)
+StageScene::StageScene() : m_ulTime(0), m_bFinish(false), m_bStart(true), m_ulStartTime(0)
 {
 }
 
@@ -22,10 +22,10 @@ StageScene::~StageScene()
 void StageScene::Initialize(Obj* _pPlayer)
 {
 	m_ObjList[OBJ_PLAYER].push_back(_pPlayer);
-	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Bullet(&m_ObjList[OBJ_BULLET]);
+	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Bullet(&m_ObjList[OBJ_BULLET_PLAYER]);
 	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Shield(&m_ObjList[OBJ_SHIELD]);
 	
-	m_ullTime = GetTickCount64();
+	m_ulTime = GetTickCount64();
 
 }
 
@@ -36,8 +36,8 @@ int StageScene::Update()
 	}
 	if (m_bStart)
 	{
-		m_ullStartTime =  GetTickCount64();
-		m_ullStartTime += 30000;
+		m_ulStartTime =  GetTickCount64();
+		m_ulStartTime += 10000;
 		m_bStart = false;
 	}
 
@@ -67,20 +67,23 @@ int StageScene::Update()
 			}
 		}
 	}
+
 	return OBJ_NOEVENT;
 }
 
 void StageScene::Late_Update()
 {
 
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]); //몬스터 & 총알
 	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET_PLAYER]); //몬스터 & 총알
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //몬스터 & 쉴드
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //아이템 & 플레이어
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTERBULLET], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTERBULLET], m_ObjList[OBJ_SHIELD]); //몬스터총알 & 쉴드
 
-	if ((m_ullStartTime - GetTickCount64()) / 1000 <= 0) {
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BULLET_MONSTER]); // 플레이어 & 총알
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_BULLET_MONSTER]); // 실드 & 총알
+	
+
+	if ((m_ulStartTime - GetTickCount64()) / 1000 <= 0) {
 		m_bFinish = true;
 	}
 
@@ -89,6 +92,8 @@ void StageScene::Late_Update()
 		for (auto& pObj : m_ObjList[i])
 			pObj->Late_Update();
 	}
+
+	
 }
 
 void StageScene::Render(HDC _hDC)
@@ -102,21 +107,25 @@ void StageScene::Render(HDC _hDC)
 	}
 
 	TCHAR szBullet[32];
-	wsprintf(szBullet, L"Bullet: %d", (int)m_ObjList[OBJ_BULLET].size());
+	wsprintf(szBullet, L"Pbullet: %d", (int)m_ObjList[OBJ_BULLET_PLAYER].size());
 	TextOut(_hDC, 50, 50, szBullet, lstrlen(szBullet));
+
+	TCHAR szMBullet[32];
+	wsprintf(szMBullet, L"Mbullet: %d", (int)m_ObjList[OBJ_BULLET_MONSTER].size());
+	TextOut(_hDC, 150, 50, szMBullet, lstrlen(szMBullet));
 
 	TCHAR szMonster[32];
 	wsprintf(szMonster, L"Monster: %d", (int)m_ObjList[OBJ_MONSTER].size());
-	TextOut(_hDC, 150, 50, szMonster, lstrlen(szMonster));
+	TextOut(_hDC, 250, 50, szMonster, lstrlen(szMonster));
 
 	TCHAR szPlayerHp[32];
 	wsprintf(szPlayerHp, L"PlayerHp: %d", m_ObjList[OBJ_PLAYER].front()->Get_Hp());
-	TextOut(_hDC, 250, 50, szPlayerHp, lstrlen(szPlayerHp));
+	TextOut(_hDC, 350, 50, szPlayerHp, lstrlen(szPlayerHp));
 
 
 	TCHAR szTimer[32];
-	wsprintf(szTimer, L"Time: %d", int((m_ullStartTime - GetTickCount64()) / 1000));
-	TextOut(_hDC, 350, 50, szTimer, lstrlen(szTimer));
+	wsprintf(szTimer, L"Time: %d", int((m_ulStartTime - GetTickCount64()) / 1000));
+	TextOut(_hDC, 450, 50, szTimer, lstrlen(szTimer));
 }
 
 void StageScene::Release() 
@@ -127,16 +136,21 @@ void StageScene::Release()
 	}
 }
 
-
 void StageScene::SpawnMonster()
 {
+	if (m_ulTime + 700 < GetTickCount64()) {
+		m_ulTime = GetTickCount64();
+		m_ObjList[OBJ_MONSTER].push_back(new Monster());
+		m_ObjList[OBJ_MONSTER].back()->Initialize();
+		m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
+	}
 }
 
 void StageScene::SpawnItem(float _x, float _y)
 {
 	int iRate = rand() % 100; 
-	int iRandomItem = rand() % 100;
-	if (0 <= iRate && iRate < 30) {  // 10% 확률
+	int iRandomItem =  rand() % 100;
+	
 		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% 확률 
 			m_ObjList[OBJ_ITEM].push_back(new BulletItem());
 		}
@@ -156,5 +170,5 @@ void StageScene::SpawnItem(float _x, float _y)
 		m_ObjList[OBJ_ITEM].back()->Set_Pos(_x, _y);
 		m_ObjList[OBJ_ITEM].back()->Initialize();
 		m_ObjList[OBJ_ITEM].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
-	}
+	
 }

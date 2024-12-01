@@ -40,8 +40,6 @@ int Player::Update()
 void Player::Late_Update()
 {
 	Calc_Angle();
-	m_tPosin.x = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
-	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 	if (m_iHp <= 0) {
 		m_bDead = true;
 	}
@@ -65,11 +63,9 @@ void Player::Release()
 
 void Player::Upgrade_Bullet()
 {
-	++m_iBulletLevel;
-	if (m_iBulletLevel > BULLET_SCREWTHREE) {
-		--m_iBulletLevel;
-	}
-}
+	if(m_iBulletLevel < int(BULLET_SCREW_THREE))
+		++m_iBulletLevel;
+}	
 
 void Player::Set_SSpeed(int _iRate)
 {
@@ -175,27 +171,28 @@ void Player::Key_Input()
 			switch (m_iBulletLevel)
 			{
 			case BULLET_ONE:
-				m_pBulletList->push_back(Create_Bullet(0));
+				m_pBulletList->push_back(Create_Bullet(0.f));
 				break;
 			case BULLET_TWO:
 				m_pBulletList->push_back(Create_Bullet(-5.f));
 				m_pBulletList->push_back(Create_Bullet(5.f));
 				break;
-			case BULLET_SCREWTWO:
-				m_pBulletList->push_back(Create_BulletScrew(-5.f));
-				m_pBulletList->push_back(Create_BulletScrew(5.f));
-				break;
 			case BULLET_THREE:
 				m_pBulletList->push_back(Create_Bullet(-8.f));
-				m_pBulletList->push_back(Create_Bullet(0));
+				m_pBulletList->push_back(Create_Bullet(0.f));
 				m_pBulletList->push_back(Create_Bullet(8.f));
 				break;
-			case BULLET_SCREWTHREE:
-				m_pBulletList->push_back(Create_BulletScrew(-8.f));
-				m_pBulletList->push_back(Create_BulletScrew(0));
-				m_pBulletList->push_back(Create_BulletScrew(8.f));
+			case BULLET_SCREW_TWO:
+				m_pBulletList->push_back(Create_BulletScrew(5.f));
+				m_pBulletList->push_back(Create_BulletScrew(-5.f));
+				break;
+			case BULLET_SCREW_THREE:
+				m_pBulletList->push_back(Create_BulletScrew(5.f));
+				m_pBulletList->push_back(Create_BulletScrew(0.f));
+				m_pBulletList->push_back(Create_BulletScrew(-5.f));
 				break;
 			default:
+				
 				break;
 			}
 			m_iTick = 0;
@@ -220,22 +217,27 @@ void Player::Calc_Angle()
 	if (b > 0) {
 		m_fAngle = 360.0f - m_fAngle; 
 	}
+
+	m_tPosin.x = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
+	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 }
 
 Obj* Player::Create_Bullet(float _fAngle)
 {
 	Obj* pBullet(nullptr);
-	pBullet = new BulletOne(m_fAngle + _fAngle, m_iDamage, OBJ_PLAYER);
+	pBullet = new BulletOne(m_fAngle + _fAngle);
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+
 	return pBullet;
 }
 
 Obj* Player::Create_BulletScrew(float _fAngle)
 {
 	Obj* pBullet(nullptr);
-	pBullet = new BulletScrew(m_fAngle - _fAngle, m_iDamage, OBJ_PLAYER);
+	pBullet = new BulletScrew(m_fAngle + _fAngle);
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+	pBullet->Set_Damage(20);
 	return pBullet;
 }

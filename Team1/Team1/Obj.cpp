@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Obj.h"
 
-Obj::Obj() : m_fSpeed(0.f), m_bDead(false), m_fAngle(0.0f), m_fDistance(0), m_pTarget(nullptr), m_iHp(0), m_iDamage(0)
+Obj::Obj() : m_fSpeed(0.f), m_bDead(false), m_fAngle(0.0f), m_fDistance(0), m_pTarget(nullptr), m_iHp(0), m_iDamage(0), m_fAccel(0.f)
 {
 	ZeroMemory(&m_tInfo, sizeof(INFO));
 	ZeroMemory(&m_tRect, sizeof(RECT));

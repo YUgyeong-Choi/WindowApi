@@ -18,6 +18,7 @@ public:
 	void Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 	void Set_Target(Obj* pTarget) { m_pTarget = pTarget; }
 	void Set_Hp(int _iDamage);
+	void Set_Damage(int _iDamage) { m_iDamage = _iDamage; }
 public:
 	virtual void Initialize() PURE;
 	virtual int Update() PURE;
@@ -38,6 +39,7 @@ protected:
 	bool		m_bDead;
 	int			m_iHp;
 	int			m_iDamage;
-
+	
+	float		m_fAccel;
 };
 

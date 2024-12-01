@@ -9,12 +9,18 @@ StartScene::~StartScene()
 {
 }
 
+void StartScene::Initialize(Obj* _pPlayer)
+{
+}
 
 int StartScene::Update()
 {
 	return OBJ_CLEAR;
 }
 
+void StartScene::Late_Update()
+{
+}
 
 void StartScene::Render(HDC _hDC)
 {
@@ -27,4 +33,8 @@ void StartScene::Render(HDC _hDC)
 	SelectObject(_hDC, oldFont);
 	DeleteObject(newFont);
 	Sleep(1500);
+}
+
+void StartScene::Release()
+{
 }
