@@ -9,17 +9,9 @@ EndScene::~EndScene()
 {
 }
 
-void EndScene::Initialize(Obj* _pPlayer)
-{
-}
-
 int EndScene::Update()
 {
 	return OBJ_FINISH;
-}
-
-void EndScene::Late_Update()
-{
 }
 
 void EndScene::Render(HDC _hDC)
@@ -33,8 +25,4 @@ void EndScene::Render(HDC _hDC)
 	SelectObject(_hDC, oldFont);
 	DeleteObject(newFont);
 	Sleep(1500);
-}
-
-void EndScene::Release()
-{
 }

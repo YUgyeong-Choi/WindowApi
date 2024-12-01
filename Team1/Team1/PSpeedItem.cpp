@@ -20,5 +20,5 @@ void PSpeedItem::Render(HDC _hdc)
 
 void PSpeedItem::UseITem()
 {
-	static_cast<Player*>(m_pTarget)->Set_PSpeed(2);
+	static_cast<Player*>(m_pTarget)->Set_PSpeed(1);
 }

@@ -40,6 +40,8 @@ int Player::Update()
 void Player::Late_Update()
 {
 	Calc_Angle();
+	m_tPosin.x = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
+	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 	if (m_iHp <= 0) {
 		m_bDead = true;
 	}
@@ -71,9 +73,9 @@ void Player::Upgrade_Bullet()
 
 void Player::Set_SSpeed(int _iRate)
 {
-	m_fSpeed -= _iRate;
-	if (m_fSpeed < 0) {
-		m_fSpeed += _iRate;
+	m_iFireRate -= _iRate;
+	if (m_iFireRate < 0) {
+		m_iFireRate += _iRate;
 	}
 }
 
@@ -218,15 +220,12 @@ void Player::Calc_Angle()
 	if (b > 0) {
 		m_fAngle = 360.0f - m_fAngle; 
 	}
-
-	m_tPosin.x = long(m_tInfo.fX + (m_fDistance * cosf(m_fAngle * (PI / 180.f))));
-	m_tPosin.y = long(m_tInfo.fY - (m_fDistance * sinf(m_fAngle * (PI / 180.f))));
 }
 
 Obj* Player::Create_Bullet(float _fAngle)
 {
 	Obj* pBullet(nullptr);
-	pBullet = new BulletOne(m_fAngle + _fAngle);
+	pBullet = new BulletOne(m_fAngle + _fAngle, m_iDamage, OBJ_PLAYER);
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
 	return pBullet;
@@ -235,9 +234,8 @@ Obj* Player::Create_Bullet(float _fAngle)
 Obj* Player::Create_BulletScrew(float _fAngle)
 {
 	Obj* pBullet(nullptr);
-	pBullet = new BulletScrew(m_fAngle - _fAngle);
+	pBullet = new BulletScrew(m_fAngle - _fAngle, m_iDamage, OBJ_PLAYER);
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
-	pBullet->Set_Target(this);
 	return pBullet;
 }

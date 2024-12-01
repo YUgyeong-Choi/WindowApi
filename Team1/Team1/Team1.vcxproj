@@ -137,6 +137,8 @@
   <ItemGroup>
     <ClInclude Include="BulletOne.h" />
     <ClInclude Include="BulletScrew.h" />
+    <ClInclude Include="MonsterB0.h" />
+    <ClInclude Include="MonsterB1.h" />
     <ClInclude Include="ShieldItem.h" />
     <ClInclude Include="ShootSpeedItem.h" />
     <ClInclude Include="Bullet.h" />
@@ -166,6 +168,8 @@
   <ItemGroup>
     <ClCompile Include="BulletOne.cpp" />
     <ClCompile Include="BulletScrew.cpp" />
+    <ClCompile Include="MonsterB0.cpp" />
+    <ClCompile Include="MonsterB1.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
     <ClCompile Include="ShootSpeedItem.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -199,6 +203,9 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="Team1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

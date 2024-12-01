@@ -10,7 +10,7 @@
 #include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_dwTime(0), m_bFinish(false), m_bStart(true) , m_dwStartTime(0)
+StageScene::StageScene() : m_ullTime(0), m_bFinish(false), m_bStart(true) , m_ullStartTime(0)
 {
 }
 
@@ -25,7 +25,7 @@ void StageScene::Initialize(Obj* _pPlayer)
 	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Bullet(&m_ObjList[OBJ_BULLET]);
 	static_cast<Player*>(m_ObjList[OBJ_PLAYER].front())->Set_Shield(&m_ObjList[OBJ_SHIELD]);
 	
-	m_dwTime = GetTickCount64();
+	m_ullTime = GetTickCount64();
 
 }
 
@@ -36,8 +36,8 @@ int StageScene::Update()
 	}
 	if (m_bStart)
 	{
-		m_dwStartTime =  GetTickCount64();
-		m_dwStartTime += 60000;
+		m_ullStartTime =  GetTickCount64();
+		m_ullStartTime += 30000;
 		m_bStart = false;
 	}
 
@@ -77,8 +77,10 @@ void StageScene::Late_Update()
 	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //몬스터 & 쉴드
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //아이템 & 플레이어
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTERBULLET], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTERBULLET], m_ObjList[OBJ_SHIELD]); //몬스터총알 & 쉴드
 
-	if ((m_dwStartTime - GetTickCount64()) / 1000 <= 0) {
+	if ((m_ullStartTime - GetTickCount64()) / 1000 <= 0) {
 		m_bFinish = true;
 	}
 
@@ -113,7 +115,7 @@ void StageScene::Render(HDC _hDC)
 
 
 	TCHAR szTimer[32];
-	wsprintf(szTimer, L"Time: %d", int((m_dwStartTime - GetTickCount64()) / 1000));
+	wsprintf(szTimer, L"Time: %d", int((m_ullStartTime - GetTickCount64()) / 1000));
 	TextOut(_hDC, 350, 50, szTimer, lstrlen(szTimer));
 }
 
@@ -126,11 +128,15 @@ void StageScene::Release()
 }
 
 
+void StageScene::SpawnMonster()
+{
+}
+
 void StageScene::SpawnItem(float _x, float _y)
 {
 	int iRate = rand() % 100; 
 	int iRandomItem = rand() % 100;
-	if (0 <= iRate && iRate < 10) {  // 10% 확률
+	if (0 <= iRate && iRate < 30) {  // 10% 확률
 		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% 확률 
 			m_ObjList[OBJ_ITEM].push_back(new BulletItem());
 		}

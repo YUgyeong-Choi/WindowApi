@@ -5,10 +5,6 @@ BulletScrew::BulletScrew():m_bStart(false), m_fRotAngle(0),m_fRotSpeed(0), m_tCe
 {
 }
 
-BulletScrew::BulletScrew(float _fAngle) :m_bStart(false), m_fRotAngle(0), m_fRotSpeed(0), m_tCenter({})
-{
-	m_fAngle = _fAngle;
-}
 
 BulletScrew::~BulletScrew()
 {
@@ -28,7 +24,6 @@ void BulletScrew::Initialize()
 	m_bStart = true;
 
 	m_iHp = 1;
-	m_iDamage = 10;
 }
 
 int BulletScrew::Update()

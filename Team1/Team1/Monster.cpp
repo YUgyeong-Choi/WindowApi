@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "Monster.h"
+#include "BulletOne.h"
+#include "BulletScrew.h"
 
-Monster::Monster():m_iDir(NODIR)
+Monster::Monster():m_iDir(NODIR), m_iTick(0), m_iFireRate(0), m_pBulletList(nullptr), m_BulletDamage(0)
 {
 }
 
@@ -17,7 +19,10 @@ void Monster::Initialize()
 	m_fSpeed = 2.f;
 
 	m_iHp = 10;
-	m_iDamage = 1;
+	m_iDamage = 10;
+	m_BulletDamage = 1;
+
+	m_iFireRate = 20;
 
 	m_iDir = rand() % 4;
 	int iXorY = 0;
@@ -53,32 +58,6 @@ void Monster::Initialize()
 
 int Monster::Update()
 {
-	if (m_bDead) {
-		return OBJ_DEAD;
-	}
-
-	//m_fSpeed += 0.0005f;
-
-	float   fWidth(0.f), fHeight(0.f), fDiagonal(0.f), fRadian(0.f);
-
-	fWidth = m_pTarget->Get_Info().fX - m_tInfo.fX;
-	fHeight = m_pTarget->Get_Info().fY - m_tInfo.fY;
-
-	fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
-
-	fRadian = acosf(fWidth / fDiagonal);
-
-	m_fAngle = fRadian * (180.f / PI);
-
-	if (m_pTarget->Get_Info().fY > m_tInfo.fY)
-		m_fAngle *= -1.f;
-
-	// degree to radian
-	m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f));
-	m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f));
-
-	Obj::Update_Rect();
-
 	return OBJ_NOEVENT;
 }
 
@@ -99,5 +78,45 @@ void Monster::Render(HDC _hdc)
 }
 
 void Monster::Release()
+{
+}
+
+void Monster::Calc_Angle()
+{
+	float   fWidth(0.f), fHeight(0.f), fDiagonal(0.f), fRadian(0.f);
+
+	fWidth = m_pTarget->Get_Info().fX - m_tInfo.fX;
+	fHeight = m_pTarget->Get_Info().fY - m_tInfo.fY;
+
+	fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
+
+	fRadian = acosf(fWidth / fDiagonal);
+
+	m_fAngle = fRadian * (180.f / PI);
+
+	if (m_pTarget->Get_Info().fY > m_tInfo.fY)
+		m_fAngle *= -1.f;
+}
+
+
+Obj* Monster::Create_Bullet(float _fAngle)
+{
+	Obj* pBullet(nullptr);
+	pBullet = new BulletOne(m_fAngle + _fAngle, m_BulletDamage, OBJ_MONSTER);
+	pBullet->Initialize();
+	pBullet->Set_Pos(float(m_tInfo.fX), float(m_tInfo.fY));
+	return pBullet;
+}
+
+Obj* Monster::Create_BulletScrew(float _fAngle)
+{
+	Obj* pBullet(nullptr);
+	pBullet = new BulletScrew(m_fAngle - _fAngle, m_BulletDamage, OBJ_MONSTER);
+	pBullet->Initialize();
+	pBullet->Set_Pos(float(m_tInfo.fX), float(m_tInfo.fY));
+	return pBullet;
+}
+
+void Monster::Shoot_Bullet()
 {
 }
