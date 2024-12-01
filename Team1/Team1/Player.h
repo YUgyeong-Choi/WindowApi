@@ -23,7 +23,7 @@ private:
 	void Key_Input();
 	void Calc_Angle();
 	Obj* Create_Bullet(float _fAngle);
-	Obj* Create_BulletScrew();
+	Obj* Create_BulletScrew(float _fAngle);
 private:
 	list<Obj*>* m_pBulletList;
 	list<Obj*>* m_pShieldList;

@@ -73,6 +73,9 @@
     <Filter Include="01_Scenes\2_Stage\Stage1">
       <UniqueIdentifier>{5b74afe9-397e-41ec-87c2-084fcaafde22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Scenes\2_Stage\Stage2">
+      <UniqueIdentifier>{8dd253b4-a966-4e38-b6b1-f83701b07e1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -153,6 +156,9 @@
     <ClInclude Include="Stage1.h">
       <Filter>01_Scenes\2_Stage\Stage1</Filter>
     </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>01_Scenes\2_Stage\Stage2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
@@ -220,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="Stage1.cpp">
       <Filter>01_Scenes\2_Stage\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>01_Scenes\2_Stage\Stage2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -64,7 +64,7 @@ void Player::Release()
 void Player::Upgrade_Bullet()
 {
 	++m_iBulletLevel;
-	if (m_iBulletLevel > BULLET_SCREW) {
+	if (m_iBulletLevel > BULLET_SCREWTHREE) {
 		--m_iBulletLevel;
 	}
 }
@@ -179,13 +179,19 @@ void Player::Key_Input()
 				m_pBulletList->push_back(Create_Bullet(-5.f));
 				m_pBulletList->push_back(Create_Bullet(5.f));
 				break;
+			case BULLET_SCREWTWO:
+				m_pBulletList->push_back(Create_BulletScrew(-5.f));
+				m_pBulletList->push_back(Create_BulletScrew(5.f));
+				break;
 			case BULLET_THREE:
 				m_pBulletList->push_back(Create_Bullet(-8.f));
 				m_pBulletList->push_back(Create_Bullet(0));
 				m_pBulletList->push_back(Create_Bullet(8.f));
 				break;
-			case BULLET_SCREW:
-				m_pBulletList->push_back(Create_BulletScrew());
+			case BULLET_SCREWTHREE:
+				m_pBulletList->push_back(Create_BulletScrew(-8.f));
+				m_pBulletList->push_back(Create_BulletScrew(0));
+				m_pBulletList->push_back(Create_BulletScrew(8.f));
 				break;
 			default:
 				break;
@@ -226,10 +232,10 @@ Obj* Player::Create_Bullet(float _fAngle)
 	return pBullet;
 }
 
-Obj* Player::Create_BulletScrew()
+Obj* Player::Create_BulletScrew(float _fAngle)
 {
 	Obj* pBullet(nullptr);
-	pBullet = new BulletScrew(m_fAngle);
+	pBullet = new BulletScrew(m_fAngle - _fAngle);
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
 	pBullet->Set_Target(this);

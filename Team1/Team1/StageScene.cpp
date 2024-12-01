@@ -10,7 +10,7 @@
 #include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_dwTime(0), m_bFinish(false), m_bStart(true)
+StageScene::StageScene() : m_dwTime(0), m_bFinish(false), m_bStart(true) , m_dwStartTime(0)
 {
 }
 
@@ -37,7 +37,7 @@ int StageScene::Update()
 	if (m_bStart)
 	{
 		m_dwStartTime =  GetTickCount64();
-		m_dwStartTime += 6000;
+		m_dwStartTime += 60000;
 		m_bStart = false;
 	}
 
@@ -125,20 +125,11 @@ void StageScene::Release()
 	}
 }
 
-void StageScene::SpawnMonster()
-{
-	if (m_dwTime + 700 < GetTickCount64()) {
-		m_dwTime = GetTickCount64();
-		m_ObjList[OBJ_MONSTER].push_back(new Monster());
-		m_ObjList[OBJ_MONSTER].back()->Initialize();
-		m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
-	}
-}
 
 void StageScene::SpawnItem(float _x, float _y)
 {
 	int iRate = rand() % 100; 
-	int iRandomItem =  rand() % 100;
+	int iRandomItem = rand() % 100;
 	if (0 <= iRate && iRate < 10) {  // 10% È®·ü
 		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% È®·ü 
 			m_ObjList[OBJ_ITEM].push_back(new BulletItem());
