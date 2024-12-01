@@ -70,6 +70,9 @@
     <Filter Include="02_Object\Item\ShieldItem">
       <UniqueIdentifier>{dd7facc9-9f17-4827-94dd-fe59a79eba66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Scenes\2_Stage\Stage1">
+      <UniqueIdentifier>{5b74afe9-397e-41ec-87c2-084fcaafde22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -147,6 +150,9 @@
     <ClInclude Include="ShieldItem.h">
       <Filter>02_Object\Item\ShieldItem</Filter>
     </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>01_Scenes\2_Stage\Stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
@@ -211,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="BulletScrew.cpp">
       <Filter>02_Object\Bullet\BulletScrew</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>01_Scenes\2_Stage\Stage1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -12,10 +12,12 @@ public:
 	virtual void Render(HDC _hDC) override;
 	virtual void Release() override; //플레이어 빼고 release해줌
 protected:
-	void SpawnMonster(); //만약에 스테이지 구분되면 virtual로
+	virtual void SpawnMonster(); //만약에 스테이지 구분되면 virtual로
 	void SpawnItem(float _x, float _y); 
-private:
+protected:
 	ULONGLONG	m_dwTime;
-	bool m_bFinish;
+	ULONGLONG	m_dwStartTime;
+	bool		m_bFinish;
+	bool		m_bStart;
 };
 

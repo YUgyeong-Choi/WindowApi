@@ -25,6 +25,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
@@ -54,8 +56,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     srand((unsigned int)time(NULL));
 
-    bool bNext = false;
-    bool bGameEnd = false;
 
     while (true) {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
@@ -69,14 +69,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             }
         }
         else {
-            if (dwTime + 15 < GetTickCount64()) {
+            if (dwTime + 10 < GetTickCount64()) {
                 int iNum = mainGame.Update();
                 mainGame.Late_Update();
                 mainGame.Render();
 
                 if (iNum == OBJ_CLEAR) {
                     mainGame.Load_Scene();
-                    bNext = false;
                 }
 
                 if (iNum == OBJ_FINISH) {

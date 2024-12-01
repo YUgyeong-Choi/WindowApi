@@ -15,7 +15,7 @@ public:
 	void Render(); 
 	void Release();
 public:
-	void Load_Scene() { m_iScene++; }
+	void Load_Scene() { m_iScene++; m_SceneArray[m_iScene]->Initialize(m_pPlayer);}
 private:
 	HDC m_hDC;
 	SceneObj* m_SceneArray[SCENE::NONE];
