@@ -1,12 +1,14 @@
 #pragma once
 #include "StageScene.h"
-class Stage1 :public StageScene
+class Stage2 : public StageScene
 {
 public:
-	Stage1();
-	virtual ~Stage1();
+	Stage2();
+	virtual ~Stage2();
+	
 public:
 	virtual void SpawnMonster();
 	virtual int	 Update();
+	
 };
 

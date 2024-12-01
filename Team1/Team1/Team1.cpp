@@ -78,7 +78,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                     mainGame.Load_Scene();
                 }
 
-                if (iNum == OBJ_FINISH) {
+                if (iNum == OBJ_FINISH || iNum == OBJ_DEAD) {
                     mainGame.Release();
                     mainGame.Initialize();
                 }

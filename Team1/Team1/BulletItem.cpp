@@ -12,7 +12,7 @@ BulletItem::~BulletItem()
 
 void BulletItem::Render(HDC _hdc)
 {
-	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(111, 79, 40));
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(111, 79, 40)); //°¥»ö
 	HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, myBrush);
 	Ellipse(_hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	SelectObject(_hdc, oldBrush);

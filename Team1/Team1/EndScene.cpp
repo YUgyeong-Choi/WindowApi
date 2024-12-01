@@ -32,7 +32,7 @@ void EndScene::Render(HDC _hDC)
 	TextOut(_hDC, WINCX / 2 - 150, WINCY / 2 - 100, szEndText, lstrlen(szEndText));
 	SelectObject(_hDC, oldFont);
 	DeleteObject(newFont);
-	Sleep(1500);
+	Sleep(3000);
 }
 
 void EndScene::Release()

@@ -1,4 +1,4 @@
-#include "pch.h"
+Ôªø#include "pch.h"
 #include "StageScene.h"
 #include "Player.h"
 #include "Monster.h"
@@ -10,7 +10,7 @@
 #include "ShieldItem.h"
 #include "CollisionMgr.h"
 
-StageScene::StageScene() : m_ulTime(0), m_bFinish(false), m_bStart(true), m_ulStartTime(0)
+StageScene::StageScene() : m_ulTime(0), m_bFinish(false), m_bStart(true), m_ulStartTime(0), m_IsNext(false)
 {
 }
 
@@ -31,56 +31,19 @@ void StageScene::Initialize(Obj* _pPlayer)
 
 int StageScene::Update()
 {
-	if (m_bFinish) {
-		return OBJ_CLEAR;
-	}
-	if (m_bStart)
-	{
-		m_ulStartTime =  GetTickCount64();
-		m_ulStartTime += 10000;
-		m_bStart = false;
-	}
-
-	SpawnMonster();
-
-	for (size_t i = 0; i < OBJ_END; ++i) {
-		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end();) {
-
-			int result = (*iter)->Update();
-
-			if (OBJ_DEAD == result) {
-				if (dynamic_cast<Player*>(*iter)) {
-					return OBJ_DEAD;
-				}
-				else if (dynamic_cast<Monster*>(*iter)) {
-					SpawnItem((*iter)->Get_Info().fX, (*iter)->Get_Info().fY);
-					Safe_Delete<Obj*>(*iter);
-					iter = m_ObjList[i].erase(iter);
-				}
-				else {
-					Safe_Delete<Obj*>(*iter);
-					iter = m_ObjList[i].erase(iter);
-				}
-			}
-			else {
-				++iter;
-			}
-		}
-	}
-
 	return OBJ_NOEVENT;
 }
 
 void StageScene::Late_Update()
 {
 
-	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //∏ÛΩ∫≈Õ & «√∑π¿ÃæÓ
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET_PLAYER]); //∏ÛΩ∫≈Õ & √—æÀ
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //∏ÛΩ∫≈Õ & ΩØµÂ
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //æ∆¿Ã≈€ & «√∑π¿ÃæÓ
+	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //Î™¨Ïä§ÌÑ∞ & ÌîåÎ†àÏù¥Ïñ¥
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET_PLAYER]); //Î™¨Ïä§ÌÑ∞ & Ï¥ùÏïå
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //Î™¨Ïä§ÌÑ∞ & Ïâ¥Îìú
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //ÏïÑÏù¥ÌÖú & ÌîåÎ†àÏù¥Ïñ¥
 
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BULLET_MONSTER]); // «√∑π¿ÃæÓ & √—æÀ
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_BULLET_MONSTER]); // Ω«µÂ & √—æÀ
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BULLET_MONSTER]); // ÌîåÎ†àÏù¥Ïñ¥ & Ï¥ùÏïå
+	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_BULLET_MONSTER]); // Ïã§Îìú & Ï¥ùÏïå
 	
 
 	if ((m_ulStartTime - GetTickCount64()) / 1000 <= 0) {
@@ -98,34 +61,71 @@ void StageScene::Late_Update()
 
 void StageScene::Render(HDC _hDC)
 {
-	Rectangle(_hDC, int(GAME_WIN_LEFT), int(GAME_WIN_TOP), int(GAME_WIN_RIGHT), int(GAME_WIN_BOTTOM));
-
-	for (size_t i = 0; i < OBJ_END; ++i)
+	if (m_bFinish) 
 	{
-		for (auto& pObj : m_ObjList[i])
-			pObj->Render(_hDC);
+		Rectangle(_hDC, 0, 0, WINCX, WINCY);
+		HFONT newFont = CreateFont(50, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
+		HFONT oldFont = (HFONT)SelectObject(_hDC, newFont);
+		TCHAR szTitleText[32];
+		wsprintf(szTitleText, L"‚òª‚òª‚òª Clear ‚òª‚òª‚òª");
+		TextOut(_hDC, WINCX / 2 - 200, WINCY / 2 - 150, szTitleText, lstrlen(szTitleText));
+		SelectObject(_hDC, oldFont);
+		DeleteObject(newFont);
+
+		newFont = CreateFont(25, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
+		oldFont = (HFONT)SelectObject(_hDC, newFont);
+		TCHAR szStartText[32];
+		wsprintf(szStartText, L"Space: Load Next");
+		TextOut(_hDC, WINCX / 2 - 100, WINCY / 2 + 170, szStartText, lstrlen(szStartText));
+		SelectObject(_hDC, oldFont);
+		DeleteObject(newFont);
 	}
+	else {
+		Rectangle(_hDC, int(GAME_WIN_LEFT), int(GAME_WIN_TOP), int(GAME_WIN_RIGHT), int(GAME_WIN_BOTTOM));
 
-	TCHAR szBullet[32];
-	wsprintf(szBullet, L"Pbullet: %d", (int)m_ObjList[OBJ_BULLET_PLAYER].size());
-	TextOut(_hDC, 50, 50, szBullet, lstrlen(szBullet));
+		for (size_t i = 0; i < OBJ_END; ++i)
+		{
+			for (auto& pObj : m_ObjList[i])
+				pObj->Render(_hDC);
+		}
+		SetBkMode(_hDC, TRANSPARENT);
 
-	TCHAR szMBullet[32];
-	wsprintf(szMBullet, L"Mbullet: %d", (int)m_ObjList[OBJ_BULLET_MONSTER].size());
-	TextOut(_hDC, 150, 50, szMBullet, lstrlen(szMBullet));
+		HFONT hFont = CreateFont(28, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, L"Arial");
+		SetTextColor(_hDC, RGB(255, 255, 255));
+		HFONT oldFont = (HFONT)SelectObject(_hDC, hFont);
 
-	TCHAR szMonster[32];
-	wsprintf(szMonster, L"Monster: %d", (int)m_ObjList[OBJ_MONSTER].size());
-	TextOut(_hDC, 250, 50, szMonster, lstrlen(szMonster));
+		TCHAR szTimer[32];
+		wsprintf(szTimer, L"Time: %d", int((m_ulStartTime - GetTickCount64()) / 1000));
+		TextOut(_hDC, 620, 50, szTimer, lstrlen(szTimer));
 
-	TCHAR szPlayerHp[32];
-	wsprintf(szPlayerHp, L"PlayerHp: %d", m_ObjList[OBJ_PLAYER].front()->Get_Hp());
-	TextOut(_hDC, 350, 50, szPlayerHp, lstrlen(szPlayerHp));
+		SelectObject(_hDC, oldFont);
+		DeleteObject(hFont); 
 
+		Rectangle(_hDC, 620, 100, 720, 130);
+		HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(220, 0, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(_hDC, myBrush);
+		Rectangle(_hDC, 620, 100, 620 + m_ObjList[OBJ_PLAYER].front()->Get_Hp(), 130);
+		SelectObject(_hDC, oldBrush);
+		DeleteObject(myBrush);
 
-	TCHAR szTimer[32];
-	wsprintf(szTimer, L"Time: %d", int((m_ulStartTime - GetTickCount64()) / 1000));
-	TextOut(_hDC, 450, 50, szTimer, lstrlen(szTimer));
+		oldFont = (HFONT)SelectObject(_hDC, hFont);
+		TCHAR szBullet[32];
+		wsprintf(szBullet, L"Pbullet: %d", (int)m_ObjList[OBJ_BULLET_PLAYER].size());
+		TextOut(_hDC, 620, 180, szBullet, lstrlen(szBullet));
+
+		TCHAR szMBullet[32];
+		wsprintf(szMBullet, L"Mbullet: %d", (int)m_ObjList[OBJ_BULLET_MONSTER].size());
+		TextOut(_hDC, 620, 230, szMBullet, lstrlen(szMBullet));
+
+		TCHAR szMonster[32];
+		wsprintf(szMonster, L"Monster: %d", (int)m_ObjList[OBJ_MONSTER].size());
+		TextOut(_hDC, 620, 280, szMonster, lstrlen(szMonster));
+
+		SelectObject(_hDC, oldFont);
+		DeleteObject(hFont);
+
+		SetTextColor(_hDC, RGB(0, 0, 0));
+	}
 }
 
 void StageScene::Release() 
@@ -136,14 +136,13 @@ void StageScene::Release()
 	}
 }
 
+void StageScene::End_Scene()
+{
+}
+
 void StageScene::SpawnMonster()
 {
-	if (m_ulTime + 700 < GetTickCount64()) {
-		m_ulTime = GetTickCount64();
-		m_ObjList[OBJ_MONSTER].push_back(new Monster());
-		m_ObjList[OBJ_MONSTER].back()->Initialize();
-		m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
-	}
+
 }
 
 void StageScene::SpawnItem(float _x, float _y)
@@ -151,19 +150,19 @@ void StageScene::SpawnItem(float _x, float _y)
 	int iRate = rand() % 100; 
 	int iRandomItem =  rand() % 100;
 	
-		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% »Æ∑¸ 
+		if (0 <= iRandomItem && iRandomItem < 15) {  // 15% ÌôïÎ•† 
 			m_ObjList[OBJ_ITEM].push_back(new BulletItem());
 		}
-		else if (15 <= iRandomItem && iRandomItem < 55) {  // 40% »Æ∑¸ 
+		else if (15 <= iRandomItem && iRandomItem < 55) {  // 40% ÌôïÎ•† 
 			m_ObjList[OBJ_ITEM].push_back(new HealItem());
 		}
-		else if (55 <= iRandomItem && iRandomItem < 70) {  // 15% »Æ∑¸ 
+		else if (55 <= iRandomItem && iRandomItem < 70) {  // 15% ÌôïÎ•† 
 			m_ObjList[OBJ_ITEM].push_back(new ShootSpeedItem());
 		}
-		else if (70 <= iRandomItem && iRandomItem < 85) {  // 15% »Æ∑¸ 
+		else if (70 <= iRandomItem && iRandomItem < 85) {  // 15% ÌôïÎ•† 
 			m_ObjList[OBJ_ITEM].push_back(new PSpeedItem());
 		}
-		else if (85 <= iRandomItem && iRandomItem < 100) {// 15% »Æ∑¸ 
+		else if (85 <= iRandomItem && iRandomItem < 100) {// 15% ÌôïÎ•† 
 			m_ObjList[OBJ_ITEM].push_back(new ShieldItem());
 		}
 

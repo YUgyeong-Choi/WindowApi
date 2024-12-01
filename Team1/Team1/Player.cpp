@@ -15,7 +15,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 30.f, 30.f };
-	m_fSpeed = 5.f;
+	m_fSpeed = 3.f;
 	m_fDistance = 30.f;
 	m_iBulletLevel = BULLET_ONE;
 	m_iFireRate = 13;
