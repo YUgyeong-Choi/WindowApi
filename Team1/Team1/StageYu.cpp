@@ -1,31 +1,25 @@
 #include "pch.h"
-#include "Stage2.h"
-#include "Monster.h"
-#include "MonsterShoot.h"
+#include "StageYu.h"
+#include "MonsterYu.h"
 #include "Player.h"
 
-Stage2::Stage2()
+StageYu::StageYu()
 {
 }
 
-Stage2::~Stage2()
+StageYu::~StageYu()
 {
 }
 
-void Stage2::SpawnMonster()
+void StageYu::SpawnMonster()
 {
-	if (m_ulTime + 700 < GetTickCount64()) {
-		m_ulTime = GetTickCount64();
-		m_ObjList[OBJ_MONSTER].push_back(new MonsterShoot());
-		m_ObjList[OBJ_MONSTER].back()->Initialize();
-		m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
-		static_cast<MonsterShoot*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
-
-	}
-	
+	m_ObjList[OBJ_MONSTER].push_back(new MonsterYu());
+	m_ObjList[OBJ_MONSTER].back()->Initialize();
+	m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
+	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
 }
 
-int Stage2::Update()
+int StageYu::Update()
 {
 	if (GetAsyncKeyState(VK_SPACE)) {
 		if (m_bFinish)
@@ -41,11 +35,11 @@ int Stage2::Update()
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
-		m_ulStartTime += 10000;
+		m_ulStartTime += 50000;
 		m_bStart = false;
-	}
 
-	SpawnMonster();
+		SpawnMonster();
+	}
 
 	for (size_t i = 0; i < OBJ_END; ++i) {
 		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end();) {
@@ -71,5 +65,6 @@ int Stage2::Update()
 			}
 		}
 	}
+
 	return OBJ_NOEVENT;
 }

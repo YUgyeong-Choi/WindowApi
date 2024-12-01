@@ -30,21 +30,21 @@ void MonsterShoot::Initialize()
 		m_tInfo.fX = int(GAME_WIN_LEFT) + m_tInfo.fCX;
 		m_tInfo.fY = (float)iXorY;
 		break;
-	/*case TOP:
+	case TOP:
 		iXorY = rand() % int(GAME_WINCX + GAME_WIN_LEFT);
 		m_tInfo.fY = int(GAME_WIN_TOP) + m_tInfo.fCY;
 		m_tInfo.fX = (float)iXorY;
-		break;*/
+		break;
 	case RIGHT:
 		iXorY = rand() % int(GAME_WINCY + GAME_WIN_TOP);
 		m_tInfo.fX = int(GAME_WIN_RIGHT) - m_tInfo.fCX;
 		m_tInfo.fY = (float)iXorY;
 		break;
-	/*case BOTTOM:
+	case BOTTOM:
 		iXorY = rand() % int(GAME_WINCX + GAME_WIN_LEFT);
 		m_tInfo.fY = int(GAME_WIN_BOTTOM) - m_tInfo.fCY;
 		m_tInfo.fX = (float)iXorY;
-		break;*/
+		break;
 	case NODIR:
 		break;
 	default:
@@ -98,12 +98,7 @@ void MonsterShoot::Late_Update()
 			Shoot();
 			m_ulTime = GetTickCount64();
 		}
-		
-
 	}
-		
-			
-			
 }
 
 void MonsterShoot::Render(HDC _hdc)
@@ -132,5 +127,4 @@ void MonsterShoot::Shoot()
 	m_pBulletList->push_back(Create_Bullet());
 	m_pBulletList->back()->Set_Angle(m_fAngle);
 	m_pBulletList->back()->Set_Pos(m_tInfo.fX , m_tInfo.fY);
-	
 }

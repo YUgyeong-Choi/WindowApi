@@ -3,6 +3,7 @@
 #include "StartScene.h"
 #include "StageScene.h"
 #include "Stage2.h"
+#include "StageYu.h"
 #include "EndScene.h"
 #include "Player.h"
 #include "Stage1.h"
@@ -30,6 +31,7 @@ void MainGame::Initialize()
 	m_SceneArray[START] = new StartScene;
 	m_SceneArray[STAGE_ONE] = new Stage1;
 	m_SceneArray[STAGE_TWO] = new Stage2;
+	m_SceneArray[STAGE_YU] = new StageYu;
 	m_SceneArray[END] = new EndScene;
 
 	m_SceneArray[START]->Initialize(m_pPlayer);

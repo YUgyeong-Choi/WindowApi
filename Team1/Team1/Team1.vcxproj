@@ -138,6 +138,7 @@
     <ClInclude Include="BulletOne.h" />
     <ClInclude Include="BulletScrew.h" />
     <ClInclude Include="MonsterShoot.h" />
+    <ClInclude Include="MonsterYu.h" />
     <ClInclude Include="ShieldItem.h" />
     <ClInclude Include="ShootSpeedItem.h" />
     <ClInclude Include="Bullet.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Stage1.h" />
     <ClInclude Include="Stage2.h" />
     <ClInclude Include="StageScene.h" />
+    <ClInclude Include="StageYu.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Team1.h" />
@@ -168,6 +170,7 @@
     <ClCompile Include="BulletOne.cpp" />
     <ClCompile Include="BulletScrew.cpp" />
     <ClCompile Include="MonsterShoot.cpp" />
+    <ClCompile Include="MonsterYu.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
     <ClCompile Include="ShootSpeedItem.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -192,6 +195,7 @@
     <ClCompile Include="Stage1.cpp" />
     <ClCompile Include="Stage2.cpp" />
     <ClCompile Include="StageScene.cpp" />
+    <ClCompile Include="StageYu.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Team1.cpp" />
   </ItemGroup>

@@ -79,6 +79,12 @@
     <Filter Include="01_Scenes\2_Stage\Stage1">
       <UniqueIdentifier>{87304eac-1c1e-49c7-9318-66e30bedc57f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Object\Monster\ShotSpawner\MonsterYu">
+      <UniqueIdentifier>{a4bb2401-e3ee-470e-8bb3-7eac24345137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes\2_Stage\StageYu">
+      <UniqueIdentifier>{e8ab3d8b-0b5c-4be6-b849-1aba41c79ba4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -165,6 +171,12 @@
     <ClInclude Include="Stage1.h">
       <Filter>01_Scenes\2_Stage\Stage1</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterYu.h">
+      <Filter>02_Object\Monster\ShotSpawner\MonsterYu</Filter>
+    </ClInclude>
+    <ClInclude Include="StageYu.h">
+      <Filter>01_Scenes\2_Stage\StageYu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
@@ -238,6 +250,12 @@
     </ClCompile>
     <ClCompile Include="Stage1.cpp">
       <Filter>01_Scenes\2_Stage\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterYu.cpp">
+      <Filter>02_Object\Monster\ShotSpawner\MonsterYu</Filter>
+    </ClCompile>
+    <ClCompile Include="StageYu.cpp">
+      <Filter>01_Scenes\2_Stage\StageYu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

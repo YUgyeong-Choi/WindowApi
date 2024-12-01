@@ -5,7 +5,7 @@ class MonsterShoot : public Monster
 {
 public:
 	MonsterShoot();
-	~MonsterShoot();
+	virtual ~MonsterShoot();
 
 public:
 	virtual void Initialize() override;
@@ -13,13 +13,11 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC _hdc) override;
 	virtual void Release() override;
-
-private:
-	list<Obj*>* m_pBulletList;
-
 public:
-	Obj* Create_Bullet();
-	void        Set_Bullet(list<Obj*>* pBullet) { m_pBulletList = pBullet; }
-	void		Shoot();
+	virtual Obj* Create_Bullet();
+	virtual void        Set_Bullet(list<Obj*>* pBullet) { m_pBulletList = pBullet; }
+	virtual void		Shoot();
+protected:
+	list<Obj*>* m_pBulletList;
 };
 
