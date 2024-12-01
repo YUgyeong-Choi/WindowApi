@@ -17,6 +17,7 @@ void StageYu::SpawnMonster()
 	m_ObjList[OBJ_MONSTER].back()->Initialize();
 	m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
 	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
+	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Monster(&m_ObjList[OBJ_MONSTER]);
 }
 
 int StageYu::Update()
@@ -35,7 +36,7 @@ int StageYu::Update()
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
-		m_ulStartTime += 50000;
+		m_ulStartTime += 100000;
 		m_bStart = false;
 
 		SpawnMonster();
