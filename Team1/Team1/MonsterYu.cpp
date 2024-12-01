@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MonsterYu.h"
 
-MonsterYu::MonsterYu() :m_iPatternCycle(0), m_iPattern(0), m_iShootRate(0)
+MonsterYu::MonsterYu() :m_iPatternCycle(0), m_iPattern(0), m_iShootRate(0), m_pMonsterList(nullptr)
 {
 }
 
@@ -19,7 +19,7 @@ void MonsterYu::Initialize()
 	m_fSpeed = 60.f;
 
 	m_iHp = 1000;
-	m_iDamage = 10;
+	m_iDamage = 1;
 
 	m_iShootRate = 800;
 	m_iPatternCycle = 0;
@@ -64,7 +64,7 @@ void MonsterYu::Late_Update()
 				m_iPatternCycle = -1;
 			}
 			if (m_tInfo.fX == 300 && m_tInfo.fY == 550) {
-				m_iPatternCycle == 0;
+				m_iPatternCycle = 0;
 			}
 			else {
 				Pattern3();
@@ -74,8 +74,8 @@ void MonsterYu::Late_Update()
 			if (m_iPatternCycle == 0) {
 				m_iPatternCycle = -1;
 			}
-			if (m_tInfo.fX == 300 && m_tInfo.fY == 300) {
-				m_iPatternCycle == 0;
+			if (m_tInfo.fX == 300 && m_tInfo.fY == 50) {
+				m_iPatternCycle = 0;
 			}
 			else {
 				Pattern4();
@@ -87,6 +87,9 @@ void MonsterYu::Late_Update()
 
 		if (m_iPatternCycle == 0) {
 			m_iPattern++;
+			if (m_iPattern == 4) {
+				m_iPattern = 0;
+			}
 		}
 		m_ulTime = GetTickCount64();
 	}
@@ -130,9 +133,6 @@ float MonsterYu::Cal_Angle(float _x, float _y)
 	if (_y > m_tInfo.fY)
 		_fAngle *= -1.f;
 
-	// degree to radian
-	//m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f));
-	//m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f));
 	return _fAngle;
 }
 
@@ -187,12 +187,12 @@ void MonsterYu::Pattern4()
 {
 	m_fSpeed = 20.f;
 	m_iShootRate = 800;
-	float _fAngle = Cal_Angle(300, 300);
+	float _fAngle = Cal_Angle(300, 50);
 	m_tInfo.fX += m_fSpeed * cosf(_fAngle * (PI / 180.f));
 	m_tInfo.fY -= m_fSpeed * sinf(_fAngle * (PI / 180.f));
-	if ((290 <= m_tInfo.fX && m_tInfo.fX <= 310) && (290 <= m_tInfo.fY && m_tInfo.fY <= 310)) {
-		m_tInfo.fX = 300;
-		m_tInfo.fY = 300;
+	if ((290 <= m_tInfo.fX && m_tInfo.fX <= 310) && (40 <= m_tInfo.fY && m_tInfo.fY <= 60)) {
+		m_tInfo.fX = 300.f;
+		m_tInfo.fY = 50;
 	}
 
 	for (int i = 0; i < 18; ++i) {
