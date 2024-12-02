@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Monster.h"
+#include "BulletScrew.h"
 
 Monster::Monster():m_iDir(NODIR), m_ulTime(GetTickCount64())
 {
@@ -100,4 +101,13 @@ void Monster::Render(HDC _hdc)
 
 void Monster::Release()
 {
+}
+
+Obj* Monster::Create_Screw_Bullet(float _fAngle)
+{
+	Obj* pBullet(nullptr);
+	pBullet = new BulletScrew(m_fAngle + _fAngle);
+	pBullet->Initialize();
+	
+	return pBullet;
 }

@@ -15,5 +15,8 @@ public:
 protected:
 	int m_iDir;
 	ULONGLONG m_ulTime;
+
+public:
+	Obj* Create_Screw_Bullet(float _fAngle);
 };
 

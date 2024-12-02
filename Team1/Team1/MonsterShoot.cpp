@@ -128,3 +128,5 @@ void MonsterShoot::Shoot()
 	m_pBulletList->back()->Set_Angle(m_fAngle);
 	m_pBulletList->back()->Set_Pos(m_tInfo.fX , m_tInfo.fY);
 }
+
+

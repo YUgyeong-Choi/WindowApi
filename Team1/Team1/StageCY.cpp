@@ -1,27 +1,11 @@
 #include "pch.h"
-#include "StageYu.h"
-#include "MonsterYu.h"
+#include "StageCY.h"
+#include "BossCY.h"
 #include "Player.h"
 #include "CollisionMgr.h"
 
-StageYu::StageYu()
-{
-}
- 
-StageYu::~StageYu()
-{
-}
 
-void StageYu::SpawnMonster()
-{
-	m_ObjList[OBJ_MONSTER].push_back(new MonsterYu());
-	m_ObjList[OBJ_MONSTER].back()->Initialize();
-	m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
-	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
-	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Monster(&m_ObjList[OBJ_MONSTER]);
-}
-
-int StageYu::Update()
+int StageCY::Update()
 {
 	if (GetAsyncKeyState(VK_SPACE)) {
 		if (m_bFinish)
@@ -33,14 +17,15 @@ int StageYu::Update()
 	if (m_IsNext) {
 		return OBJ_CLEAR;
 	}
-
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
 		m_ulStartTime += 10000;
 		m_bStart = false;
-
-		SpawnMonster();
+		m_ObjList[OBJ_MONSTER].push_back(new BossCY());
+		m_ObjList[OBJ_MONSTER].back()->Initialize();
+		m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
+		static_cast<BossCY*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
 	}
 
 	for (size_t i = 0; i < OBJ_END; ++i) {
@@ -67,13 +52,10 @@ int StageYu::Update()
 			}
 		}
 	}
-
 	return OBJ_NOEVENT;
 }
 
-
-
-void StageYu::Late_Update()
+void StageCY::Late_Update()
 {
 
 	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
@@ -88,7 +70,7 @@ void StageYu::Late_Update()
 		m_bFinish = true;
 	}
 
-	if (m_ObjList[OBJ_MONSTER].size() == 0) {
+	if (m_ObjList[OBJ_MONSTER].empty()) {
 		m_bFinish = true;
 	}
 
@@ -97,6 +79,4 @@ void StageYu::Late_Update()
 		for (auto& pObj : m_ObjList[i])
 			pObj->Late_Update();
 	}
-
-
 }

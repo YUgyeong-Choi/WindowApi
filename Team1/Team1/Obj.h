@@ -19,7 +19,8 @@ public:
 	void Set_Target(Obj* pTarget) { m_pTarget = pTarget; }
 	virtual void Set_Hp(int _iDamage);
 	void Set_Damage(int _iDamage) { m_iDamage = _iDamage; }
-public:
+	void Set_Accel(float _fAccel) { m_fAccel = _fAccel; }
+public: 
 	virtual void Initialize() PURE;
 	virtual int Update() PURE;
 	virtual void Late_Update() PURE;
