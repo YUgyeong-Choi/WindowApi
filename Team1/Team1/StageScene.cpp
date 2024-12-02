@@ -108,7 +108,7 @@ void StageScene::Render(HDC _hDC)
 		Rectangle(_hDC, 620, 130, 720, 160);
 		HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(220, 0, 0));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(_hDC, myBrush);
-		Rectangle(_hDC, 620, 130, 620 + m_ObjList[OBJ_PLAYER].front()->Get_Hp(), 160);
+		Rectangle(_hDC, 620, 130, 620 + m_ObjList[OBJ_PLAYER].front()->Get_Hp() * 0.1f, 160);
 		SelectObject(_hDC, oldBrush);
 		DeleteObject(myBrush);
 

@@ -41,7 +41,7 @@ int StageHero::Update()
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
-		m_ulStartTime += 10000;
+		m_ulStartTime += 20000;
 		m_bStart = false;
 	}
 

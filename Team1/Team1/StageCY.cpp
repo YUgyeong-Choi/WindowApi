@@ -20,7 +20,7 @@ int StageCY::Update()
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
-		m_ulStartTime += 10000;
+		m_ulStartTime += 30000;
 		m_bStart = false;
 		m_ObjList[OBJ_MONSTER].push_back(new BossCY());
 		m_ObjList[OBJ_MONSTER].back()->Initialize();

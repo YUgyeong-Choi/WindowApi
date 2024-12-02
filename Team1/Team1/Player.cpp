@@ -21,8 +21,9 @@ void Player::Initialize()
 	m_iFireRate = 13;
 	m_iTick = 0;
 
-	m_iHp = 100;
+	m_iHp = 1000;
 	m_iDamage = 10;
+	m_bShiftDown = false;
 }
 
 int Player::Update()
@@ -198,6 +199,23 @@ void Player::Key_Input()
 			m_iTick = 0;
 		}
 	}
+
+	if (GetAsyncKeyState(VK_LSHIFT))
+	{
+		if (m_bShiftDown == false)
+		{
+			m_fSpeed *= 0.5f;
+			m_bShiftDown = true;
+		}
+	}
+	else
+	{
+		if (m_bShiftDown == true)
+		{
+			m_fSpeed *= 2.f;
+			m_bShiftDown = false;
+		}
+	}
 }
 
 void Player::Calc_Angle()
@@ -228,6 +246,7 @@ Obj* Player::Create_Bullet(float _fAngle)
 	pBullet = new BulletOne(m_fAngle + _fAngle);
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
+	static_cast<Bullet*>(pBullet)->Set_Type(BM_PLAYER);
 
 	return pBullet;
 }
@@ -239,5 +258,7 @@ Obj* Player::Create_BulletScrew(float _fAngle)
 	pBullet->Initialize();
 	pBullet->Set_Pos(float(m_tPosin.x), float(m_tPosin.y));
 	pBullet->Set_Damage(20);
+	static_cast<Bullet*>(pBullet)->Set_Type(BM_PLAYER);
+
 	return pBullet;
 }
