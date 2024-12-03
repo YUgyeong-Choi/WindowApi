@@ -85,6 +85,24 @@
     <Filter Include="01_Scenes\2_Stage\StageYu">
       <UniqueIdentifier>{e8ab3d8b-0b5c-4be6-b849-1aba41c79ba4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Scenes\2_Stage\StageHero">
+      <UniqueIdentifier>{45baa015-cc79-4022-8b8a-bad8e8cb066f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Monster\ShotSpawner\BossHero">
+      <UniqueIdentifier>{c1c74e3d-ae29-45b5-ac5d-112de24971d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes\2_Stage\StageKim">
+      <UniqueIdentifier>{7c1a95ea-42a9-44f2-ae01-7b053d5c6bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Monster\ShotSpawner\KBossMonster">
+      <UniqueIdentifier>{3741a8f7-5d60-4339-9766-583134c6bde4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Scenes\2_Stage\StageCY">
+      <UniqueIdentifier>{d656bce8-46cc-4968-a2d5-371deab3216b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Object\Monster\ShotSpawner\BossCY">
+      <UniqueIdentifier>{b68a0708-6054-4451-bf6c-01e9dd1fa011}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -177,6 +195,24 @@
     <ClInclude Include="StageYu.h">
       <Filter>01_Scenes\2_Stage\StageYu</Filter>
     </ClInclude>
+    <ClInclude Include="StageHero.h">
+      <Filter>01_Scenes\2_Stage\StageHero</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHero.h">
+      <Filter>02_Object\Monster\ShotSpawner\BossHero</Filter>
+    </ClInclude>
+    <ClInclude Include="StageKim.h">
+      <Filter>01_Scenes\2_Stage\StageKim</Filter>
+    </ClInclude>
+    <ClInclude Include="KBossMonster.h">
+      <Filter>02_Object\Monster\ShotSpawner\KBossMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="StageCY.h">
+      <Filter>01_Scenes\2_Stage\StageCY</Filter>
+    </ClInclude>
+    <ClInclude Include="BossCY.h">
+      <Filter>02_Object\Monster\ShotSpawner\BossCY</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team1.cpp">
@@ -256,6 +292,24 @@
     </ClCompile>
     <ClCompile Include="StageYu.cpp">
       <Filter>01_Scenes\2_Stage\StageYu</Filter>
+    </ClCompile>
+    <ClCompile Include="StageHero.cpp">
+      <Filter>01_Scenes\2_Stage\StageHero</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHero.cpp">
+      <Filter>02_Object\Monster\ShotSpawner\BossHero</Filter>
+    </ClCompile>
+    <ClCompile Include="StageKim.cpp">
+      <Filter>01_Scenes\2_Stage\StageKim</Filter>
+    </ClCompile>
+    <ClCompile Include="KBossMonster.cpp">
+      <Filter>02_Object\Monster\ShotSpawner\KBossMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="StageCY.cpp">
+      <Filter>01_Scenes\2_Stage\StageCY</Filter>
+    </ClCompile>
+    <ClCompile Include="BossCY.cpp">
+      <Filter>02_Object\Monster\ShotSpawner\BossCY</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -41,7 +41,7 @@ int Stage2::Update()
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
-		m_ulStartTime += 40000;
+		m_ulStartTime += 30000;
 		m_bStart = false;
 	}
 

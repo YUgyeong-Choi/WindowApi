@@ -44,7 +44,6 @@ void StageScene::Late_Update()
 
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BULLET_MONSTER]); // 플레이어 & 총알
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_BULLET_MONSTER]); // 실드 & 총알
-	
 
 	if ((m_ulStartTime - GetTickCount64()) / 1000 <= 0) {
 		m_bFinish = true;
@@ -98,13 +97,18 @@ void StageScene::Render(HDC _hDC)
 		wsprintf(szTimer, L"Time: %d", int((m_ulStartTime - GetTickCount64()) / 1000));
 		TextOut(_hDC, 620, 50, szTimer, lstrlen(szTimer));
 
-		SelectObject(_hDC, oldFont);
-		DeleteObject(hFont); 
 
-		Rectangle(_hDC, 620, 100, 720, 130);
+		SelectObject(_hDC, oldFont);
+		DeleteObject(hFont);
+
+		TCHAR szPlayerHp[32];
+		wsprintf(szPlayerHp, L"PlayerHp" );
+		TextOut(_hDC, 620, 110, szPlayerHp, lstrlen(szPlayerHp));
+
+		Rectangle(_hDC, 620, 130, 720, 160);
 		HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(220, 0, 0));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(_hDC, myBrush);
-		Rectangle(_hDC, 620, 100, 620 + m_ObjList[OBJ_PLAYER].front()->Get_Hp(), 130);
+		Rectangle(_hDC, 620, 130, 620 + m_ObjList[OBJ_PLAYER].front()->Get_Hp() * 0.1f, 160);
 		SelectObject(_hDC, oldBrush);
 		DeleteObject(myBrush);
 
@@ -113,13 +117,13 @@ void StageScene::Render(HDC _hDC)
 		wsprintf(szBullet, L"Pbullet: %d", (int)m_ObjList[OBJ_BULLET_PLAYER].size());
 		TextOut(_hDC, 620, 180, szBullet, lstrlen(szBullet));
 
-		TCHAR szMBullet[32];
-		wsprintf(szMBullet, L"Mbullet: %d", (int)m_ObjList[OBJ_BULLET_MONSTER].size());
-		TextOut(_hDC, 620, 230, szMBullet, lstrlen(szMBullet));
-
 		TCHAR szMonster[32];
 		wsprintf(szMonster, L"Monster: %d", (int)m_ObjList[OBJ_MONSTER].size());
-		TextOut(_hDC, 620, 280, szMonster, lstrlen(szMonster));
+		TextOut(_hDC, 620, 230, szMonster, lstrlen(szMonster));
+
+		TCHAR szMBullet[32];
+		wsprintf(szMBullet, L"Mbullet: %d", (int)m_ObjList[OBJ_BULLET_MONSTER].size());
+		TextOut(_hDC, 620, 280, szMBullet, lstrlen(szMBullet));
 
 		SelectObject(_hDC, oldFont);
 		DeleteObject(hFont);

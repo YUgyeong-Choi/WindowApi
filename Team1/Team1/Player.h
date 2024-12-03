@@ -30,6 +30,7 @@ private:
 	POINT m_tPosin;
 	int m_iBulletLevel;
 	int m_iFireRate; //총알 발사 속도
-	int m_iTick; 
+	int m_iTick;
+	bool m_bShiftDown;
 };
 

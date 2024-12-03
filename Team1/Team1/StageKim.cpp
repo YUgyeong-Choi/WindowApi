@@ -1,27 +1,32 @@
 #include "pch.h"
-#include "StageYu.h"
-#include "MonsterYu.h"
+#include "StageKim.h"
+#include "KBossMonster.h"
 #include "Player.h"
 #include "CollisionMgr.h"
 
-StageYu::StageYu()
-{
-}
- 
-StageYu::~StageYu()
+
+
+StageKim::StageKim()
 {
 }
 
-void StageYu::SpawnMonster()
+StageKim::~StageKim()
 {
-	m_ObjList[OBJ_MONSTER].push_back(new MonsterYu());
+}
+
+void StageKim::Initialize()
+{
+}
+
+void StageKim::SpawnMonster()
+{
+	m_ObjList[OBJ_MONSTER].push_back(new KBossMonster());
 	m_ObjList[OBJ_MONSTER].back()->Initialize();
 	m_ObjList[OBJ_MONSTER].back()->Set_Target(m_ObjList[OBJ_PLAYER].front());
-	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
-	static_cast<MonsterYu*>(m_ObjList[OBJ_MONSTER].back())->Set_Monster(&m_ObjList[OBJ_MONSTER]);
+	static_cast<KBossMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_Bullet(&m_ObjList[OBJ_BULLET_MONSTER]);
 }
 
-int StageYu::Update()
+int StageKim::Update()
 {
 	if (GetAsyncKeyState(VK_SPACE)) {
 		if (m_bFinish)
@@ -34,14 +39,25 @@ int StageYu::Update()
 		return OBJ_CLEAR;
 	}
 
+
 	if (m_bStart)
 	{
 		m_ulStartTime = GetTickCount64();
-		m_ulStartTime += 60000;
-		m_bStart = false;
-
+		m_ulStartTime += 20000;
 		SpawnMonster();
+
+		// 2개
+		/*auto iter = m_ObjList[OBJ_MONSTER].begin();
+		(*iter)->Set_Pos((*iter)->Get_Info().fX - 100, (*iter)->Get_Info().fY);
+		SpawnMonster();
+		++iter;
+		(*iter)->Set_Pos((*iter)->Get_Info().fX + 100, (*iter)->Get_Info().fY);*/
+
+
+		m_bStart = false;
 	}
+
+	
 
 	for (size_t i = 0; i < OBJ_END; ++i) {
 		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end();) {
@@ -68,21 +84,20 @@ int StageYu::Update()
 		}
 	}
 
+	
 	return OBJ_NOEVENT;
 }
 
-
-
-void StageYu::Late_Update()
+void StageKim::Late_Update()
 {
-
+	// 아이템 충돌 제외
 	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]); //몬스터 & 플레이어
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET_PLAYER]); //몬스터 & 총알
+	CollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET_PLAYER]); //몬스터 & 총알
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_MONSTER]); //몬스터 & 쉴드
-	CollisionMgr::Collision_Circle(m_ObjList[OBJ_ITEM], m_ObjList[OBJ_PLAYER]); //아이템 & 플레이어
 
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BULLET_MONSTER]); // 플레이어 & 총알
 	CollisionMgr::Collision_Circle(m_ObjList[OBJ_SHIELD], m_ObjList[OBJ_BULLET_MONSTER]); // 실드 & 총알
+
 
 	if ((m_ulStartTime - GetTickCount64()) / 1000 <= 0) {
 		m_bFinish = true;
@@ -98,5 +113,5 @@ void StageYu::Late_Update()
 			pObj->Late_Update();
 	}
 
-
+	
 }

@@ -118,6 +118,7 @@ Obj* MonsterShoot::Create_Bullet()
 {
 	Obj* pBullet = new BulletOne();
 	pBullet->Initialize();
+	static_cast<Bullet*>(pBullet)->Set_Type(BM_MONSTER);
 	
 	return pBullet;
 }
@@ -128,3 +129,5 @@ void MonsterShoot::Shoot()
 	m_pBulletList->back()->Set_Angle(m_fAngle);
 	m_pBulletList->back()->Set_Pos(m_tInfo.fX , m_tInfo.fY);
 }
+
+

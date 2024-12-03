@@ -14,8 +14,8 @@ Obj::~Obj()
 void Obj::Set_Hp(int _iDamage)
 {
 	m_iHp += _iDamage;
-	if (m_iHp > 100) {
-		m_iHp = 100;
+	if (m_iHp > 1000) {
+		m_iHp = 1000;
 	}
 }
 
