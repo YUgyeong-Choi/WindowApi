@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CPlayer.h"
 
-Player::Player() :m_tInfo({}), m_tRect({}), m_fSpeed(0), m_tGround({}), m_Angle(0), checkEnd()
+Player::Player() :m_tInfo({}), m_tRect({}), m_fSpeed(0), m_tGround({}), m_Angle(0), m_bCheckEnd(), m_bCheckOut(false)
 {
 }
 
@@ -44,14 +44,25 @@ void Player::Key_Input()
 {
 	if (GetAsyncKeyState('A')) {
 		m_tInfo.fX -= m_fSpeed;
-		m_tInfo.fY = m_Angle * (m_tInfo.fX - m_tGround.right) + m_tGround.bottom;
-		End_LeftLine();
+		if (m_bCheckOut) {
+			m_tInfo.fY += 3.f;
+		}
+		else {
+			m_tInfo.fY = m_Angle * (m_tInfo.fX - m_tGround.right) + m_tGround.bottom;
+			End_LeftLine();
+		}
+		
 	}
 
 	if (GetAsyncKeyState('D')) {
 		m_tInfo.fX += m_fSpeed;
-		m_tInfo.fY = m_Angle * (m_tInfo.fX - m_tGround.right) + m_tGround.bottom;
-		End_RightLine();
+		if (m_bCheckOut) {
+			m_tInfo.fY += 3.f;
+		}
+		else {
+			m_tInfo.fY = m_Angle * (m_tInfo.fX - m_tGround.right) + m_tGround.bottom;
+			End_RightLine();
+		}	
 	}
 }
 
@@ -83,19 +94,19 @@ void Player::Cal_Angle(int _dir)
 void Player::End_LeftLine()
 {
 	if (m_tGround.left == m_tInfo.fX && m_tGround.top == m_tInfo.fY) {
-		checkEnd[LEFT] = true;
+		m_bCheckEnd[LEFT] = true;
 	}
 	else {
-		checkEnd[LEFT] = false;
+		m_bCheckEnd[LEFT] = false;
 	}
 }
 
 void Player::End_RightLine()
 {
 	if (m_tGround.right == m_tInfo.fX && m_tGround.bottom == m_tInfo.fY) {
-		checkEnd[RIGHT] = true;
+		m_bCheckEnd[RIGHT] = true;
 	}
 	else {
-		checkEnd[RIGHT] = false;
+		m_bCheckEnd[RIGHT] = false;
 	}
 }

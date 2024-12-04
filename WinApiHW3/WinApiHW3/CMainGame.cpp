@@ -35,14 +35,25 @@ void MainGame::Update()
 	
 	bool checkEnd[DIR_END] = { static_cast<Player*>(m_pPlayer)->Get_End()[LEFT], static_cast<Player*>(m_pPlayer)->Get_End()[RIGHT] };
 	if (checkEnd[LEFT] == true) {
+
 		m_iWhatLine--;
-		static_cast<Player*>(m_pPlayer)->Set_Line(static_cast<Ground*>(m_pVecGround[m_iWhatLine])->Get_Line());
-		static_cast<Player*>(m_pPlayer)->Cal_Angle(LEFT);
+		if (m_iWhatLine <= -1) {
+			static_cast<Player*>(m_pPlayer)->Set_Out();
+		}
+		else {
+			static_cast<Player*>(m_pPlayer)->Set_Line(static_cast<Ground*>(m_pVecGround[m_iWhatLine])->Get_Line());
+			static_cast<Player*>(m_pPlayer)->Cal_Angle(LEFT);
+		}
 	}
 	else if (checkEnd[RIGHT] == true) {
 		m_iWhatLine++;
-		static_cast<Player*>(m_pPlayer)->Set_Line(static_cast<Ground*>(m_pVecGround[m_iWhatLine])->Get_Line());
-		static_cast<Player*>(m_pPlayer)->Cal_Angle(RIGHT);
+		if (m_iWhatLine >= m_pVecGround.size()) {
+			static_cast<Player*>(m_pPlayer)->Set_Out();
+		}
+		else {
+			static_cast<Player*>(m_pPlayer)->Set_Line(static_cast<Ground*>(m_pVecGround[m_iWhatLine])->Get_Line());
+			static_cast<Player*>(m_pPlayer)->Cal_Angle(RIGHT);
+		}
 	}
 }
 

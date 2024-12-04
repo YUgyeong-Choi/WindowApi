@@ -15,7 +15,8 @@ public:
 	INFO Get_Info() { return m_tInfo; }
 	void Set_Line(RECT _line) { m_tGround = _line; }
 	void Cal_Angle(int _dir);
-	bool* Get_End() { return checkEnd; }
+	bool* Get_End() { return m_bCheckEnd; }
+	void Set_Out() { m_bCheckOut = true; }
 private:
 	void		Key_Input();
 	void		Update_Rect();
@@ -28,7 +29,7 @@ private:
 
 	RECT m_tGround;
 	float m_Angle; //±â¿ï±â
-
-	bool checkEnd[DIR_END];
+	bool m_bCheckEnd[DIR_END];
+	bool m_bCheckOut;
 };
 
