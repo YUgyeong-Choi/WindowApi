@@ -2,6 +2,7 @@
 #include "CMainGame.h"
 #include "CObjectManager.h"
 #include "CAbstractFactory.h"
+#include "CLineManager.h"
 
 CMainGame::CMainGame(): m_hDC(nullptr)
 {
@@ -15,6 +16,7 @@ CMainGame::~CMainGame()
 void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
+	CLineManager::Get_Instance()->Initialize();
 	CObjectManager::Get_Instance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
 }
 
@@ -31,6 +33,7 @@ void CMainGame::Late_Update()
 void CMainGame::Render()
 {
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
+	CLineManager::Get_Instance()->Render(m_hDC);
 	CObjectManager::Get_Instance()->Render(m_hDC);
 }
 

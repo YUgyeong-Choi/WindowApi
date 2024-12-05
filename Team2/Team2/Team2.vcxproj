@@ -136,6 +136,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractFactory.h" />
+    <ClInclude Include="CLine.h" />
+    <ClInclude Include="CLineManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CCollisionManager.h" />
@@ -152,6 +154,8 @@
     <ClInclude Include="Team2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CLine.cpp" />
+    <ClCompile Include="CLineManager.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CCollisionManager.cpp" />

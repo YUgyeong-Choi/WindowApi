@@ -43,6 +43,12 @@
     <Filter Include="02_Managers\ScrollManager">
       <UniqueIdentifier>{75a3ffbc-b65c-4938-8d1c-2e19177bc483}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Managers\LineManager">
+      <UniqueIdentifier>{2971587f-0dee-4ee8-9053-cbe35d7baa77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Managers\LineManager\Line">
+      <UniqueIdentifier>{fd7e3f51-b929-4217-bf9c-8f1435c98638}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -90,6 +96,12 @@
     <ClInclude Include="CObjectManager.h">
       <Filter>02_Managers\ObjectManager</Filter>
     </ClInclude>
+    <ClInclude Include="CLineManager.h">
+      <Filter>02_Managers\LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>02_Managers\LineManager\Line</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team2.cpp">
@@ -121,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="CObjectManager.cpp">
       <Filter>02_Managers\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineManager.cpp">
+      <Filter>02_Managers\LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>02_Managers\LineManager\Line</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
