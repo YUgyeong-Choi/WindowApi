@@ -1,5 +1,6 @@
 #pragma once
 #include "CObject.h"
+#include "CPlayer.h"
 
 template<typename T>
 class CAbstractFactory
