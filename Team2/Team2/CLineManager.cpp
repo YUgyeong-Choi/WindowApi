@@ -17,10 +17,14 @@ CLineManager::~CLineManager()
 
 void CLineManager::Initialize()
 {
-	LINEPOINT tLeftLinePoint = { 100, 500 };
-	LINEPOINT tRightLinePoint = { 800, 500 };
+	LINEPOINT tLeftLinePoint = { 100, 300 };
+	LINEPOINT tRightLinePoint = { 600, 300 };
 	LINE	tLine = { tLeftLinePoint, tRightLinePoint };
+	LINEPOINT tLeftLinePoint2 = { 600, 300 };
+	LINEPOINT tRightLinePoint2 = { 800, 500 };
+	LINE	tLine2 = { tLeftLinePoint2, tRightLinePoint2 };
 	m_Linelist.push_back(new CLine(tLine));
+	m_Linelist.push_back(new CLine(tLine2));
 }
 
 void CLineManager::Render(HDC hDC)

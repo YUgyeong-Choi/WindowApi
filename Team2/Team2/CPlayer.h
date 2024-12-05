@@ -13,8 +13,12 @@ public:
 	virtual void		Render(HDC _hDC) override;
 	virtual void		Release() override;
 private:
-	void Key_Input(); //플레이어 조작
-	void Jumping(); // 점프 관련 
+	//플레이어 조작
+	void Key_Input(); 
+	// 점프 관련
+	void Jumping();  
+	//플레이어 카메라 (화면)
+	void Offset(); 
 private:
 	bool                m_bJump;
 	float               m_fJumpPower;

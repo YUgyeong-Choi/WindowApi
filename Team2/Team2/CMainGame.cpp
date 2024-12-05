@@ -3,6 +3,8 @@
 #include "CObjectManager.h"
 #include "CAbstractFactory.h"
 #include "CLineManager.h"
+#include "CScrollManager.h"
+#include "CKeyManager.h"
 
 CMainGame::CMainGame(): m_hDC(nullptr)
 {
@@ -28,6 +30,7 @@ void CMainGame::Update()
 void CMainGame::Late_Update()
 {
 	CObjectManager::Get_Instance()->Late_Update();
+	CKeyManager::Get_Instance()->Update();
 }
 
 void CMainGame::Render()
@@ -39,6 +42,9 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
+	CScrollManager::Destroy_Instance();
+	CKeyManager::Destroy_Instance();
+	CLineManager::Destroy_Instance();
 	CObjectManager::DestroyInstance();
 	ReleaseDC(g_hWnd, m_hDC);
 }
