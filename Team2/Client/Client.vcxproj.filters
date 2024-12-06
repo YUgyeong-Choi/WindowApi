@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01. Object">
+      <UniqueIdentifier>{2cd35629-9fb5-4d58-acea-55037ae0b6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. MainGame">
+      <UniqueIdentifier>{a1cb9d91-ffc0-4897-8f91-21e1eb0aa009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\00. Player">
+      <UniqueIdentifier>{0ba81fb0-570b-4ad1-b699-13b3bc426a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design">
+      <UniqueIdentifier>{dc849f26-cad9-4b8c-91fd-1e897b133432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\00. AbstractFactory">
+      <UniqueIdentifier>{0069b8af-89c3-4015-8f52-5fb8b12caea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\01. CollisionManager">
+      <UniqueIdentifier>{e81fe736-1ae6-44cb-ad60-4d8f491b0c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\02. ObjectManager">
+      <UniqueIdentifier>{c717b608-da78-4d71-9d9a-33f00a14a90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\03. LineManager">
+      <UniqueIdentifier>{65755eb0-38e2-4a88-abb4-745d65c6818c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Line">
+      <UniqueIdentifier>{84b6186b-9e63-484b-baa0-88df64fe2f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\01. Monster">
+      <UniqueIdentifier>{ced078b0-58f1-421d-923b-06f81135c950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\01. Monster\00. Boss">
+      <UniqueIdentifier>{fcb42e8d-3baa-40dc-bb2b-58e493dd5acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\04. KeyManager">
+      <UniqueIdentifier>{49fec1bf-8ebd-409b-9e64-34bad2261d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\05. MouseManager">
+      <UniqueIdentifier>{fa74dc8f-e5ea-491b-b029-671990548c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\06. ScrollManager">
+      <UniqueIdentifier>{dab74121-5602-4aa3-8a58-24252d4d1319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\07. SpawnManager">
+      <UniqueIdentifier>{b49f933b-738a-40be-a6c5-1a142563ddbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\08. SceneManager">
+      <UniqueIdentifier>{a6c51e71-6f37-4ff0-898d-839aecf90e19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\02. Projectile">
+      <UniqueIdentifier>{c679f40d-5a85-46fa-afad-e8715a7a4109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\03. Item">
+      <UniqueIdentifier>{2070fccf-516b-424a-ae6e-057915cd7e78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainGame.h">
+      <Filter>00. MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>01. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>01. Object\00. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CAbstractFactory.h">
+      <Filter>99. Design\00. AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>99. Design\01. CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectManager.h">
+      <Filter>99. Design\02. ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineManager.h">
+      <Filter>99. Design\03. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>02. Line</Filter>
+    </ClInclude>
+    <ClInclude Include="CWall.h">
+      <Filter>02. Line</Filter>
+    </ClInclude>
+    <ClInclude Include="CFloor.h">
+      <Filter>02. Line</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>01. Object\01. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyManager.h">
+      <Filter>99. Design\04. KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CMouseManager.h">
+      <Filter>99. Design\05. MouseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollManager.h">
+      <Filter>99. Design\06. ScrollManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpawnManager.h">
+      <Filter>99. Design\07. SpawnManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>99. Design\08. SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectile.h">
+      <Filter>01. Object\02. Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>01. Object\03. Item</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Client.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainGame.cpp">
+      <Filter>00. MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>01. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>01. Object\00. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>99. Design\01. CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjectManager.cpp">
+      <Filter>99. Design\02. ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineManager.cpp">
+      <Filter>99. Design\03. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CWall.cpp">
+      <Filter>02. Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>02. Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CFloor.cpp">
+      <Filter>02. Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>01. Object\01. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyManager.cpp">
+      <Filter>99. Design\04. KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMouseManager.cpp">
+      <Filter>99. Design\05. MouseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollManager.cpp">
+      <Filter>99. Design\06. ScrollManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpawnManager.cpp">
+      <Filter>99. Design\07. SpawnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>99. Design\08. SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectile.cpp">
+      <Filter>01. Object\02. Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>01. Object\03. Item</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Client.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
