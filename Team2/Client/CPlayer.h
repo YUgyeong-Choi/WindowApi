@@ -17,8 +17,13 @@ public:
 	void KeyInput();
 
 	void ScrollOffset();
+
+	void SetStatus(PLAYERSTATUS _status) { m_bPlayerStatus = _status; }
+	PLAYERSTATUS GetStatus(PLAYERSTATUS _status) { return m_bPlayerStatus; }
+
 protected:
 private:
-
+	PLAYERSTATUS	m_bPlayerStatus;
+	bool m_bIsGround;
 };
 

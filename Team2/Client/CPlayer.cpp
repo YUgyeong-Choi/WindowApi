@@ -4,7 +4,7 @@
 #include "CCollisionManager.h"
 #include "CScrollManager.h"
 
-CPlayer::CPlayer()
+CPlayer::CPlayer(): m_bPlayerStatus(PS_END), m_bIsGround(false)
 {
 }
 
@@ -30,7 +30,7 @@ void CPlayer::LateUpdate()
 
 void CPlayer::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect, {0, 0});
+	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	if (g_bDevmode) Hitbox(hDC, m_tRect);
 }
 
@@ -40,7 +40,21 @@ void CPlayer::Release()
 
 void CPlayer::OnCollision(CObject* _op)
 {
-
+	if (_op->GetOID() == OBJ_ITEM) {
+		
+		if (m_tInfo.fY > _op->GetINFO().fY) {
+			_op->SetIsDead(true);
+		}
+	}
+	else if (_op->GetOID() == OBJ_RECT) {
+		if (m_tInfo.fY < _op->GetINFO().fY) {
+			m_tInfo.fY = _op->GetINFO().fY + _op->GetINFO().fCY * 0.5f;
+			m_bIsGround = true;
+		}
+		else {
+			_op->SetIsDead(true);
+		}
+	}
 }
 
 void CPlayer::OnDead()
@@ -49,26 +63,32 @@ void CPlayer::OnDead()
 
 void CPlayer::Jump()
 {
-	float	fY(0.f);
+	if (!m_bIsGround) {
+		float	fY(0.f);
 
-	bool	bLineCol = CCollisionManager::CollisionLine(m_tInfo.fX, &fY);
+		bool	bLineCol = CCollisionManager::CollisionLine(m_tInfo.fX, &fY);
 
-	if (m_bIsJumping)
-	{
-		m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
-		m_fTime += 0.2f;
-
-		if (bLineCol && (fY < m_tInfo.fY))
+		if (GetActionStatus() == AS_JUMP)
 		{
-			m_bIsJumping = false;
-			m_fTime = 0.f;
-			m_tInfo.fY = fY;
+			m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
+			m_fTime += 0.2f;
+
+			if (bLineCol && (fY < m_tInfo.fY))
+			{
+				SetActionStatus(AS_END);
+				m_fTime = 0.f;
+				m_tInfo.fY = fY;
+			}
+		}
+		else if (bLineCol)
+		{
+			if (fY > m_tInfo.fY)
+				m_tInfo.fY += m_fSpeed;
+			else
+				m_tInfo.fY = fY;
 		}
 	}
-	else if (bLineCol)
-	{
-		m_tInfo.fY = fY;
-	}
+
 }
 
 void CPlayer::KeyInput()
@@ -87,7 +107,7 @@ void CPlayer::KeyInput()
 
 	if (CKeyManager::GetInstance()->KeyDown(VK_SPACE))
 	{
-		m_bIsJumping = true;
+		SetActionStatus(AS_JUMP);
 	}
 }
 

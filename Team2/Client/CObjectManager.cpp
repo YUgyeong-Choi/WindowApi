@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CObjectManager.h"
+#include "CCollisionManager.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;
 
@@ -14,6 +15,7 @@ void CObjectManager::Add_Object(OBJID eID, CObject* pObj)
 		return;
 
 	m_ObjectList[eID].push_back(pObj);
+	m_ObjectList[eID].back()->SetOID(eID);
 }
 
 int CObjectManager::Update()
@@ -39,11 +41,13 @@ int CObjectManager::Update()
 
 void CObjectManager::LateUpdate()
 {
+
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& pObj : m_ObjectList[i])
 			pObj->LateUpdate();
 	}
+
 }
 
 void CObjectManager::Render(HDC hDC)

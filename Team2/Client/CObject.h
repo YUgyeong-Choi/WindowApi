@@ -27,12 +27,6 @@ public:
 	bool GetIsDead() { return m_bIsDead; }
 	void SetIsDead(bool _b) { m_bIsDead = _b; }
 
-	bool GetIsActive() { return m_bIsActive; }
-	void SetIsActive(bool _b) { m_bIsActive = _b; }
-
-	bool GetIsJumping() { return m_bIsJumping; }
-	void SetIsJumping(bool _b) { m_bIsJumping = _b; }
-
 	Vector<float> GetDirection() { return m_tDir; }
 	void SetDirection(Vector<float>& _d) { m_tDir = _d; }
 	void SetDirection(float _fx, float _fy) { m_tDir = { _fx, _fy }; }
@@ -40,14 +34,17 @@ public:
 	void SetLevel(int _l) { m_iLevel = _l; }
 	int GetLevel() { return m_iLevel; }
 
+	void SetActionStatus(ACTIONSTATUS _actionStatus) { m_bActionStatus = _actionStatus; }
+	ACTIONSTATUS GetActionStatus() { return m_bActionStatus; }
+
+	void SetOID(OBJID _oid) { m_eOID = _oid; }
+	OBJID GetOID() { return m_eOID; }
+
 protected:
+	ACTIONSTATUS    m_bActionStatus;
 	INFO			m_tInfo;
 	RECT			m_tRect;
 	bool			m_bIsDead;
-	bool			m_bIsActive;
-	bool			m_bIsJumping;
-	bool			m_bIsDonwJumping;
-	bool			m_bIsFalling;
 	int				m_iLevel;
 	int				m_iHp;
 	float			m_fSpeed;

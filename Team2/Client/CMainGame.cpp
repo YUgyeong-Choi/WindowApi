@@ -17,8 +17,6 @@ void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
 
-	CLineManager::GetInstance()->Initialize();
-
 	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
 }
 
@@ -53,8 +51,6 @@ void CMainGame::Render()
 
 	//Background
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
-	//LineManager
-	CLineManager::GetInstance()->Render(m_hDC);
 	//ObjectManager
 	CObjectManager::GetInstance()->Render(m_hDC);
 
