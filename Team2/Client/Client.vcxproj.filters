@@ -67,6 +67,15 @@
     <Filter Include="01. Object\03. Item">
       <UniqueIdentifier>{2070fccf-516b-424a-ae6e-057915cd7e78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="99. Design\09.RectangleManager">
+      <UniqueIdentifier>{e95575c6-128d-44b8-a4e7-7c389fe6c8e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Map">
+      <UniqueIdentifier>{879c65a2-f97f-4842-941b-2cac22d16d57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04.Rectangle">
+      <UniqueIdentifier>{35d63336-3429-4327-b227-b0ddc531de17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -141,6 +150,12 @@
     <ClInclude Include="CItem.h">
       <Filter>01. Object\03. Item</Filter>
     </ClInclude>
+    <ClInclude Include="CRectangleManager.h">
+      <Filter>99. Design\09.RectangleManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CRectangle.h">
+      <Filter>01. Object\04.Rectangle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -199,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="CItem.cpp">
       <Filter>01. Object\03. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CRectangleManager.cpp">
+      <Filter>99. Design\09.RectangleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CRectangle.cpp">
+      <Filter>01. Object\04.Rectangle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

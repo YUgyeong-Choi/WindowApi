@@ -40,6 +40,8 @@ public:
 	void SetOID(OBJID _oid) { m_eOID = _oid; }
 	OBJID GetOID() { return m_eOID; }
 
+	void SetTIme() { m_fTime += 5.f; }
+
 protected:
 	ACTIONSTATUS    m_bActionStatus;
 	INFO			m_tInfo;

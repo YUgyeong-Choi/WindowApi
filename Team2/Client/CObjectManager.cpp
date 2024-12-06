@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CObjectManager.h"
 #include "CCollisionManager.h"
+#include "CRectangleManager.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;
 
@@ -41,6 +42,9 @@ int CObjectManager::Update()
 
 void CObjectManager::LateUpdate()
 {
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], CRectangleManager::GetInstance()->GetList()[RECT_NONE]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], CRectangleManager::GetInstance()->GetList()[RECT_ITEM]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], CRectangleManager::GetInstance()->GetList()[RECT_NONE]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{

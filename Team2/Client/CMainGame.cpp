@@ -5,6 +5,7 @@
 #include "CPlayer.h"
 #include "CLineManager.h"
 #include "CKeyManager.h"
+#include "CRectangleManager.h"
 
 bool g_bDevmode = false;
 
@@ -18,12 +19,14 @@ void CMainGame::Initialize()
 	m_hDC = GetDC(g_hWnd);
 
 	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
+	CRectangleManager::GetInstance()->Initialize();
 }
 
 void CMainGame::Update()
 {
 	KeyInput();
 	CObjectManager::GetInstance()->Update();
+	CRectangleManager::GetInstance()->Update();
 }
 
 void CMainGame::LateUpdate()
@@ -53,6 +56,7 @@ void CMainGame::Render()
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
 	//ObjectManager
 	CObjectManager::GetInstance()->Render(m_hDC);
+	CRectangleManager::GetInstance()->Render(m_hDC);
 
 	if(g_bDevmode) TextOut(m_hDC, 0, 0, L"DevMode", lstrlenW(L"DevMode"));
 }

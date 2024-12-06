@@ -4,26 +4,32 @@
 #include "CCollisionManager.h"
 #include "CScrollManager.h"
 
-CPlayer::CPlayer(): m_bPlayerStatus(PS_END), m_bIsGround(false)
+CPlayer::CPlayer(): m_bPlayerStatus(PS_END)
 {
 }
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { WINCX * 0.5f, WINCY * 0.5f, 100.f, 100.f };
+	m_tInfo = { 100, 100, 30.f, 30.f };
 	m_fSpeed = 10.f;
 	m_fJumpPower = 20.f;
+	m_bActionStatus = AS_FALL;
 }
 
 int CPlayer::Update()
 {
-	KeyInput();
+	if (m_bActionStatus == AS_FALL) {
+		m_tInfo.fY += 3.f;
+	}
+
+
 	__super::UpdateRect();
 	return OBJ_NOEVENT;
 }
 
 void CPlayer::LateUpdate()
 {
+	KeyInput();
 	Jump();
 	ScrollOffset();
 }
@@ -40,21 +46,6 @@ void CPlayer::Release()
 
 void CPlayer::OnCollision(CObject* _op)
 {
-	if (_op->GetOID() == OBJ_ITEM) {
-		
-		if (m_tInfo.fY > _op->GetINFO().fY) {
-			_op->SetIsDead(true);
-		}
-	}
-	else if (_op->GetOID() == OBJ_RECT) {
-		if (m_tInfo.fY < _op->GetINFO().fY) {
-			m_tInfo.fY = _op->GetINFO().fY + _op->GetINFO().fCY * 0.5f;
-			m_bIsGround = true;
-		}
-		else {
-			_op->SetIsDead(true);
-		}
-	}
 }
 
 void CPlayer::OnDead()
@@ -63,32 +54,16 @@ void CPlayer::OnDead()
 
 void CPlayer::Jump()
 {
-	if (!m_bIsGround) {
-		float	fY(0.f);
-
-		bool	bLineCol = CCollisionManager::CollisionLine(m_tInfo.fX, &fY);
-
-		if (GetActionStatus() == AS_JUMP)
-		{
-			m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
-			m_fTime += 0.2f;
-
-			if (bLineCol && (fY < m_tInfo.fY))
-			{
-				SetActionStatus(AS_END);
-				m_fTime = 0.f;
-				m_tInfo.fY = fY;
-			}
-		}
-		else if (bLineCol)
-		{
-			if (fY > m_tInfo.fY)
-				m_tInfo.fY += m_fSpeed;
-			else
-				m_tInfo.fY = fY;
-		}
+	if (m_bActionStatus == AS_JUMP)
+	{
+		m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
+		m_fTime += 0.2f;
 	}
 
+	if (m_bActionStatus == AS_STOP) {
+		m_fTime = 0.f;
+	}
+	
 }
 
 void CPlayer::KeyInput()
@@ -98,16 +73,21 @@ void CPlayer::KeyInput()
 	if (CKeyManager::GetInstance()->KeyPressing(VK_LEFT))
 	{
 		m_tInfo.fX -= m_fSpeed;
+		SetActionStatus(AS_FALL);
+
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT))
+	if (CKeyManager::GetInstance()->KeyPressing(VK_RIGHT))
 	{
 		m_tInfo.fX += m_fSpeed;
+		SetActionStatus(AS_FALL);
 	}
 
 	if (CKeyManager::GetInstance()->KeyDown(VK_SPACE))
 	{
-		SetActionStatus(AS_JUMP);
+		if (m_bActionStatus == AS_STOP) {
+			SetActionStatus(AS_JUMP);
+		}
 	}
 }
 

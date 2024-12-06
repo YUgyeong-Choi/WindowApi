@@ -150,6 +150,8 @@
     <ClInclude Include="CObjectManager.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CProjectile.h" />
+    <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="CRectangleManager.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CScrollManager.h" />
     <ClInclude Include="CSpawnManager.h" />
@@ -175,6 +177,8 @@
     <ClCompile Include="CObjectManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CProjectile.cpp" />
+    <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CRectangleManager.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CScrollManager.cpp" />
     <ClCompile Include="CSpawnManager.cpp" />

@@ -8,16 +8,30 @@ CItem::CItem()
 
 void CItem::Initialize()
 {
-	m_tInfo = { 300.f, 500.f, 60.f, 60.f };
-	m_fSpeed = 10.f;
+	m_tInfo.fCX = 30.f;
+	m_tInfo.fCY = 30.f;
+	m_fSpeed = 5.f;
 	m_fJumpPower = 20.f;
+	m_bActionStatus = AS_FALL;
 }
 
 int CItem::Update()
 {
+	if (m_bActionStatus == AS_FALL) {
+		m_tInfo.fY += 3.f;
+	}
+
 	if (m_bIsDead) {
 		return OBJ_DEAD;
 	}
+
+	if (m_bActionStatus == AS_STOP) {
+		m_tInfo.fX += m_fSpeed;
+		if (m_tInfo.fX > 300 || m_tInfo.fX < 100) {
+			m_fSpeed *= -1;
+		}
+	}
+
 	__super::UpdateRect();
 	return OBJ_NOEVENT;
 }
@@ -28,7 +42,11 @@ void CItem::LateUpdate()
 
 void CItem::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(200, 103, 163));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
+	Ellipse(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	SelectObject(hDC, oldBrush);
+	DeleteObject(myBrush);
 	if (g_bDevmode) Hitbox(hDC, m_tRect);
 }
 

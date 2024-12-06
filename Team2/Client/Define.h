@@ -68,6 +68,11 @@ static BOOL Ellipse(HDC hDC, RECT tRect)
 	return Ellipse(hDC, tRect.left, tRect.top, tRect.right, tRect.bottom);
 }
 
+static BOOL Ellipse(HDC hDC, RECT tRect, Vector<float> offset = { 0, 0 })
+{
+	return Ellipse(hDC, tRect.left + offset.GetX(), tRect.top + offset.GetY(), tRect.right + offset.GetX(), tRect.bottom + offset.GetY());
+}
+
 static BOOL Hitbox(HDC hDC, RECT tRect)
 {
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
