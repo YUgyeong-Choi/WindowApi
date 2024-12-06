@@ -49,6 +49,9 @@
     <Filter Include="02_Managers\LineManager\Line">
       <UniqueIdentifier>{fd7e3f51-b929-4217-bf9c-8f1435c98638}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Object\Item">
+      <UniqueIdentifier>{4a8cd95f-611e-469f-8daa-2989eeb32415}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -102,6 +105,9 @@
     <ClInclude Include="CLine.h">
       <Filter>02_Managers\LineManager\Line</Filter>
     </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>01_Object\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Team2.cpp">
@@ -139,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="CLine.cpp">
       <Filter>02_Managers\LineManager\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>01_Object\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
