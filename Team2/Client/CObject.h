@@ -40,7 +40,7 @@ public:
 	void SetOID(OBJID _oid) { m_eOID = _oid; }
 	OBJID GetOID() { return m_eOID; }
 
-	void SetTIme() { m_fTime += 5.f; }
+	void SetFallSpeed(float _fallSpeed) { m_fFallSpeed = _fallSpeed; }
 
 protected:
 	ACTIONSTATUS    m_bActionStatus;
@@ -53,6 +53,7 @@ protected:
 	float			m_fAngle;
 	float			m_fJumpPower;
 	float			m_fTime;
+	float			m_fFallSpeed;
 	ULONG64			m_ullTime;
 	Vector<float>	m_tDir;
 	OBJID			m_eOID;

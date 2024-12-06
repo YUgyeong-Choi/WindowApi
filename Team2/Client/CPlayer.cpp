@@ -11,15 +11,16 @@ CPlayer::CPlayer(): m_bPlayerStatus(PS_END)
 void CPlayer::Initialize()
 {
 	m_tInfo = { 100, 100, 30.f, 30.f };
-	m_fSpeed = 10.f;
+	m_fSpeed = 5.f;
 	m_fJumpPower = 20.f;
 	m_bActionStatus = AS_FALL;
+	m_fFallSpeed = 30.f;
 }
 
 int CPlayer::Update()
 {
 	if (m_bActionStatus == AS_FALL) {
-		m_tInfo.fY += 3.f;
+		m_tInfo.fY += m_fFallSpeed;
 	}
 
 
@@ -58,6 +59,10 @@ void CPlayer::Jump()
 	{
 		m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
 		m_fTime += 0.2f;
+		if (m_tInfo.fY > 500) { //높은 곳에서 뛰어내리면 fY값이 네모의 fY값에 없어서 충돌 처리가 안되서 그거 방지
+			m_tInfo.fY += (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
+			SetActionStatus(AS_FALL);
+		}
 	}
 
 	if (m_bActionStatus == AS_STOP) {
@@ -73,14 +78,17 @@ void CPlayer::KeyInput()
 	if (CKeyManager::GetInstance()->KeyPressing(VK_LEFT))
 	{
 		m_tInfo.fX -= m_fSpeed;
-		SetActionStatus(AS_FALL);
-
+		if (m_bActionStatus != AS_JUMP) {
+			SetActionStatus(AS_FALL);
+		}
 	}
 
 	if (CKeyManager::GetInstance()->KeyPressing(VK_RIGHT))
 	{
 		m_tInfo.fX += m_fSpeed;
-		SetActionStatus(AS_FALL);
+		if (m_bActionStatus != AS_JUMP) {
+			SetActionStatus(AS_FALL);
+		}
 	}
 
 	if (CKeyManager::GetInstance()->KeyDown(VK_SPACE))

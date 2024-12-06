@@ -63,6 +63,7 @@ void CRectangle::OnCollision(CObject* _op)
 	if (_op->GetOID() == OBJ_PLAYER || _op->GetOID() == OBJ_ITEM) {
 		if (_op->GetINFO().fY < m_tInfo.fY) {
 			_op->SetActionStatus(AS_STOP);
+			_op->SetFallSpeed(3.f);
 			_op->SetPos(_op->GetINFO().fX, (m_tInfo.fY - m_tInfo.fCY * 0.5f  - _op->GetINFO().fCY * 0.5f));
 		}
 	}
@@ -70,11 +71,12 @@ void CRectangle::OnCollision(CObject* _op)
 
 
 	if (m_RectType == RECT_ITEM) {
-		if (_op->GetINFO().fY > m_tInfo.fY) {
+		if (_op->GetINFO().fY > m_tInfo.fY + m_tInfo.fCY*0.5f) {
 			SetIsDead(true);
-			_op->SetTIme();
+			_op->SetActionStatus(AS_FALL);
+			_op->SetFallSpeed(50.f);
 			CObjectManager::GetInstance()->Add_Object(OBJ_ITEM, CAbstractFactory<CItem>::Create());
-			CObjectManager::GetInstance()->GetLastItem()->SetPos(m_tInfo.fX, m_tInfo.fY);
+			CObjectManager::GetInstance()->GetLastItem()->SetPos(m_tInfo.fX, m_tInfo.fY-30.f);
 		}
 	}
 

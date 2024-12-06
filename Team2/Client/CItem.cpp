@@ -13,12 +13,13 @@ void CItem::Initialize()
 	m_fSpeed = 5.f;
 	m_fJumpPower = 20.f;
 	m_bActionStatus = AS_FALL;
+	m_fFallSpeed = 5.f;
 }
 
 int CItem::Update()
 {
 	if (m_bActionStatus == AS_FALL) {
-		m_tInfo.fY += 3.f;
+		m_tInfo.fY += m_fFallSpeed;
 	}
 
 	if (m_bIsDead) {
