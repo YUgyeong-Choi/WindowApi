@@ -10,7 +10,7 @@ void CItem::Initialize()
 {
 	m_tInfo.fCX = 30.f;
 	m_tInfo.fCY = 30.f;
-	m_fSpeed = 5.f;
+	m_fSpeed = -3.f;
 	m_fJumpPower = 20.f;
 	m_bActionStatus = AS_FALL;
 	m_fFallSpeed = 5.f;
@@ -31,6 +31,7 @@ int CItem::Update()
 		if (m_tInfo.fX > 300 || m_tInfo.fX < 100) {
 			m_fSpeed *= -1;
 		}
+		SetActionStatus(AS_FALL);
 	}
 
 	__super::UpdateRect();

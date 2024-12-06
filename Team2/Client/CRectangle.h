@@ -15,6 +15,7 @@ public:
 	virtual void Release();
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
+	void ChangeRectType(RECTANGLETYPE _RectType) { m_RectType = _RectType; }
 private:
 	RECTANGLETYPE m_RectType;
 };

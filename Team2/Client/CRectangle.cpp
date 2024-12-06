@@ -49,6 +49,13 @@ void CRectangle::Render(HDC hDC)
 		SelectObject(hDC, oldBrush);
 		DeleteObject(myBrush);
 	}
+	else if (m_RectType == RECT_RANDOM) {
+		HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 220, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
+		Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+		SelectObject(hDC, oldBrush);
+		DeleteObject(myBrush);
+	}
 	else {
 		Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	}
@@ -60,7 +67,7 @@ void CRectangle::Render(HDC hDC)
 
 void CRectangle::OnCollision(CObject* _op)
 {
-	if (_op->GetOID() == OBJ_PLAYER || _op->GetOID() == OBJ_ITEM) {
+	if (_op->GetOID() == OBJ_PLAYER) {
 		if (_op->GetINFO().fY < m_tInfo.fY) {
 			_op->SetActionStatus(AS_STOP);
 			_op->SetFallSpeed(3.f);
@@ -68,16 +75,32 @@ void CRectangle::OnCollision(CObject* _op)
 		}
 	}
 
-
+	if (_op->GetOID() == OBJ_ITEM) {
+		if (_op->GetINFO().fY < m_tInfo.fY) {
+			_op->SetActionStatus(AS_STOP);
+			_op->SetFallSpeed(3.f);
+		}
+	}
 
 	if (m_RectType == RECT_ITEM) {
 		if (_op->GetINFO().fY > m_tInfo.fY + m_tInfo.fCY*0.5f) {
 			SetIsDead(true);
-			_op->SetActionStatus(AS_FALL);
-			_op->SetFallSpeed(50.f);
 			CObjectManager::GetInstance()->Add_Object(OBJ_ITEM, CAbstractFactory<CItem>::Create());
-			CObjectManager::GetInstance()->GetLastItem()->SetPos(m_tInfo.fX, m_tInfo.fY-30.f);
+			CObjectManager::GetInstance()->GetLastItem()->SetPos(m_tInfo.fX, m_tInfo.fY-55.f);
 		}
+	}
+
+	if (m_RectType == RECT_RANDOM) {
+		if (_op->GetINFO().fY > m_tInfo.fY + m_tInfo.fCY * 0.5f) {
+			CObjectManager::GetInstance()->Add_Object(OBJ_ITEM, CAbstractFactory<CItem>::Create());
+			CObjectManager::GetInstance()->GetLastItem()->SetPos(m_tInfo.fX, m_tInfo.fY - 55.f);
+			ChangeRectType(RECT_NONE);
+		}
+	}
+
+	if (_op->GetINFO().fY > m_tInfo.fY + m_tInfo.fCY * 0.5f) {
+		_op->SetActionStatus(AS_FALL);
+		_op->SetFallSpeed(50.f);
 	}
 
 }
