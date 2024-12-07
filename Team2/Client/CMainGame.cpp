@@ -26,7 +26,6 @@ void CMainGame::Update()
 {
 	KeyInput();
 	CObjectManager::GetInstance()->Update();
-	CRectangleManager::GetInstance()->Update();
 }
 
 void CMainGame::LateUpdate()
@@ -56,7 +55,6 @@ void CMainGame::Render()
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
 	//ObjectManager
 	CObjectManager::GetInstance()->Render(m_hDC);
-	CRectangleManager::GetInstance()->Render(m_hDC);
 
 	if(g_bDevmode) TextOut(m_hDC, 0, 0, L"DevMode", lstrlenW(L"DevMode"));
 }

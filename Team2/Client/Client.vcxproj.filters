@@ -70,11 +70,23 @@
     <Filter Include="99. Design\09.RectangleManager">
       <UniqueIdentifier>{e95575c6-128d-44b8-a4e7-7c389fe6c8e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Map">
-      <UniqueIdentifier>{879c65a2-f97f-4842-941b-2cac22d16d57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Object\04.Rectangle">
       <UniqueIdentifier>{35d63336-3429-4327-b227-b0ddc531de17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04.Rectangle\ItemBlock">
+      <UniqueIdentifier>{a9ae357c-9083-4026-8917-e259ba3e49b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04.Rectangle\NormalBlock">
+      <UniqueIdentifier>{50a45886-a5ee-41a8-86f0-070b24deb789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04.Rectangle\SecretBlock">
+      <UniqueIdentifier>{bad38f4d-5a82-46df-ad9d-5442ca7afdbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04.Rectangle\BreakBlock">
+      <UniqueIdentifier>{9a23be54-390c-4d6a-9be7-147c127fa6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04.Rectangle\WallBlock">
+      <UniqueIdentifier>{97c03095-15f5-4efd-80ae-5fd4a06892fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,8 +165,23 @@
     <ClInclude Include="CRectangleManager.h">
       <Filter>99. Design\09.RectangleManager</Filter>
     </ClInclude>
-    <ClInclude Include="CRectangle.h">
+    <ClInclude Include="CBlock.h">
       <Filter>01. Object\04.Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="CNormalBlock.h">
+      <Filter>01. Object\04.Rectangle\NormalBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="CSecretBlock.h">
+      <Filter>01. Object\04.Rectangle\SecretBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="CBreakBlock.h">
+      <Filter>01. Object\04.Rectangle\BreakBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemBlock.h">
+      <Filter>01. Object\04.Rectangle\ItemBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="CWallBlock.h">
+      <Filter>01. Object\04.Rectangle\WallBlock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,8 +245,23 @@
     <ClCompile Include="CRectangleManager.cpp">
       <Filter>99. Design\09.RectangleManager</Filter>
     </ClCompile>
-    <ClCompile Include="CRectangle.cpp">
+    <ClCompile Include="CBlock.cpp">
       <Filter>01. Object\04.Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="CNormalBlock.cpp">
+      <Filter>01. Object\04.Rectangle\NormalBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="CSecretBlock.cpp">
+      <Filter>01. Object\04.Rectangle\SecretBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="CBreakBlock.cpp">
+      <Filter>01. Object\04.Rectangle\BreakBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemBlock.cpp">
+      <Filter>01. Object\04.Rectangle\ItemBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="CWallBlock.cpp">
+      <Filter>01. Object\04.Rectangle\WallBlock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

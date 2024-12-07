@@ -1,12 +1,11 @@
 #pragma once
 #include "CObject.h"
 #include "Define.h"
-class CRectangle : public CObject
+class CBlock : public CObject
 {
 public:
-	CRectangle();
-	CRectangle(float _fX, float _fY, RECTANGLETYPE _type);
-	virtual ~CRectangle() { Release(); }
+	CBlock();
+	virtual ~CBlock() { Release(); }
 
 	virtual void Initialize();
 	virtual int  Update();
@@ -15,8 +14,7 @@ public:
 	virtual void Release();
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
-	void ChangeRectType(RECTANGLETYPE _RectType) { m_RectType = _RectType; }
-private:
+protected:
 	RECTANGLETYPE m_RectType;
 };
 

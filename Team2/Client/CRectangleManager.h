@@ -8,11 +8,6 @@ public:
 	void	Render(HDC hDC);
 	void	Release();
 
-	list<CObject*>* GetList()
-	{
-		return m_RectList;
-	}
-
 	static CRectangleManager* GetInstance()
 	{
 		if (nullptr == m_pInstance)
@@ -30,6 +25,5 @@ private:
 	CRectangleManager();
 	~CRectangleManager() { Release(); }
 	static CRectangleManager* m_pInstance;
-	list<CObject*> m_RectList[RECT_END];
 };
 

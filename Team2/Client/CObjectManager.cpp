@@ -42,12 +42,8 @@ int CObjectManager::Update()
 
 void CObjectManager::LateUpdate()
 {
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], CRectangleManager::GetInstance()->GetList()[RECT_NONE]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], CRectangleManager::GetInstance()->GetList()[RECT_ITEM]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], CRectangleManager::GetInstance()->GetList()[RECT_RANDOM]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], CRectangleManager::GetInstance()->GetList()[RECT_NONE]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], CRectangleManager::GetInstance()->GetList()[RECT_ITEM]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], CRectangleManager::GetInstance()->GetList()[RECT_RANDOM]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_RECT]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_RECT]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{

@@ -46,7 +46,7 @@ void CItem::Render(HDC hDC)
 {
 	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(200, 103, 163));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
-	Ellipse(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	SelectObject(hDC, oldBrush);
 	DeleteObject(myBrush);
 	if (g_bDevmode) Hitbox(hDC, m_tRect);

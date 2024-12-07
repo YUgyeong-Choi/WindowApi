@@ -10,11 +10,11 @@ CPlayer::CPlayer(): m_bPlayerStatus(PS_END)
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 100, 100, 30.f, 30.f };
+	m_tInfo = { 100, 10, 30.f, 30.f };
 	m_fSpeed = 5.f;
 	m_fJumpPower = 20.f;
 	m_bActionStatus = AS_FALL;
-	m_fFallSpeed = 30.f;
+	m_fFallSpeed = 10.f;
 }
 
 int CPlayer::Update()

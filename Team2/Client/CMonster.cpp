@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "CMonster.h"
 
+CMonster::CMonster() : m_bActive(false)
+{
+}
+
 void CMonster::Initialize()
 {
 }
