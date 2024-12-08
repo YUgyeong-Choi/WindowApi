@@ -3,7 +3,7 @@
 class CItem : public CObject
 {
 public:
-	CItem() :m_eItemType(ITEM_END) {};
+	CItem() {};
 	virtual ~CItem() { Release(); }
 	virtual void Initialize() override;
 	virtual int  Update() override;
@@ -12,12 +12,18 @@ public:
 	virtual void Release() override;
 	ITEMTYPE GetItemType() { return m_eItemType; }
 	void SetItemType(ITEMTYPE _it) { m_eItemType = _it; }
-
 protected:
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
 
+	virtual void Move();
+	bool CheckOnGround();
 
-protected:
+
+	
+private:
 	ITEMTYPE m_eItemType;
+	float	m_fVelocityX;
+	float	m_fVelocityY;
 };
+

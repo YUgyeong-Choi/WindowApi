@@ -1,11 +1,11 @@
-﻿// Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// Editor.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "Define.h"
 #include "Editor.h"
-#include "CMainGame.h"
+#include "../Client/Define.h"
+#include "CMainEditor.h"
 
 #define MAX_LOADSTRING 100
 
@@ -23,9 +23,9 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-    _In_opt_ HINSTANCE hPrevInstance,
-    _In_ LPWSTR    lpCmdLine,
-    _In_ int       nCmdShow)
+                     _In_opt_ HINSTANCE hPrevInstance,
+                     _In_ LPWSTR    lpCmdLine,
+                     _In_ int       nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -38,7 +38,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance(hInstance, nCmdShow))
+    if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
     }
@@ -46,11 +46,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EDITOR));
 
     MSG msg;
+
     msg.message = WM_NULL;
 
-    CMainGame       MainGame;
-    MainGame.Initialize();
-
+    CMainEditor       MainEditor;
+    MainEditor.Initialize();
 
     ULONG64       ullTime = GetTickCount64();
 
@@ -82,15 +82,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             if (ullTime + 10 < GetTickCount64())
             {
-                MainGame.Update();
-                MainGame.LateUpdate();
-                MainGame.Render();
+                MainEditor.Update();
+                MainEditor.Late_Update();
+                MainEditor.Render();
 
                 ullTime = GetTickCount64();
             }
         }
     }
-    return (int)msg.wParam;
+
+    return (int) msg.wParam;
 }
 
 
@@ -106,17 +107,17 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.style = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc = WndProc;
-    wcex.cbClsExtra = 0;
-    wcex.cbWndExtra = 0;
-    wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDC_EDITOR));
-    wcex.hCursor = LoadCursor(nullptr, IDC_CROSS);
-    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = NULL; //MAKEINTRESOURCEW(IDC_CLIENT);
-    wcex.lpszClassName = szWindowClass;
-    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.style          = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc    = WndProc;
+    wcex.cbClsExtra     = 0;
+    wcex.cbWndExtra     = 0;
+    wcex.hInstance      = hInstance;
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_EDITOR));
+    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
+    wcex.lpszMenuName   = NULL; // MAKEINTRESOURCEW(IDC_EDITOR);
+    wcex.lpszClassName  = szWindowClass;
+    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
 }
@@ -133,30 +134,30 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-    RECT rcWindow{ 0, 0, WINCX, WINCY };
+   RECT rcWindow{ 0, 0, WINCX, WINCY };
 
-    // rc = rc + 기본 창 스타일을 고려한 크기 + 메뉴 바 크기 고려 여부
-    AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, FALSE);
+   // rc = rc + 기본 창 스타일을 고려한 크기 + 메뉴 바 크기 고려 여부
+   AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, FALSE);
 
-    LONG lWidth = rcWindow.right - rcWindow.left;
-    LONG lHeight = rcWindow.bottom - rcWindow.top;
+   LONG lWidth = rcWindow.right - rcWindow.left;
+   LONG lHeight = rcWindow.bottom - rcWindow.top;
 
-    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, lWidth, lHeight, nullptr, nullptr, hInstance, nullptr);
+   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+      CW_USEDEFAULT, 0, lWidth, lHeight, nullptr, nullptr, hInstance, nullptr);
 
-    if (!hWnd)
-    {
-        return FALSE;
-    }
+   if (!hWnd)
+   {
+      return FALSE;
+   }
 
-    g_hWnd = hWnd;
+   g_hWnd = hWnd;
 
-    ShowWindow(hWnd, nCmdShow);
-    UpdateWindow(hWnd);
+   ShowWindow(hWnd, nCmdShow);
+   UpdateWindow(hWnd);
 
-    return TRUE;
+   return TRUE;
 }
 
 //
@@ -173,32 +174,37 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-        /*case WM_SYSCOMMAND:
-            if ((wParam & 0xFFF0) == SC_KEYMENU) break;
-            break;*/
-    case WM_COMMAND:
-    {
-        int wmId = LOWORD(wParam);
-        // 메뉴 선택을 구문 분석합니다:
-        switch (wmId)
-        {
-        case IDM_ABOUT:
-            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-            break;
-        case IDM_EXIT:
-            DestroyWindow(hWnd);
-            break;
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
-        }
-    }
-    break;
     case WM_KEYDOWN:
         switch (wParam)
         {
         case VK_ESCAPE:
             PostQuitMessage(0);
             break;
+        }
+        break;
+    case WM_COMMAND:
+        {
+            int wmId = LOWORD(wParam);
+            // 메뉴 선택을 구문 분석합니다:
+            switch (wmId)
+            {
+            case IDM_ABOUT:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
+            case IDM_EXIT:
+                DestroyWindow(hWnd);
+                break;
+            default:
+                return DefWindowProc(hWnd, message, wParam, lParam);
+            }
+        }
+        break;
+    case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hWnd, &ps);
+            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:

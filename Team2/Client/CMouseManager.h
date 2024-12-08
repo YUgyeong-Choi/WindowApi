@@ -1,5 +1,6 @@
 #pragma once
 #include "Define.h"
+#include "CMouse.h"
 class CMouseManager
 {
 public:

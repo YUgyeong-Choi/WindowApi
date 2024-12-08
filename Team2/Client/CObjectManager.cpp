@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "CObjectManager.h"
-#include "CCollisionManager.h"
+#include "../Client/CObjectManager.h"
+#include "../Client/CCollisionManager.h"
+#include "../Client/CLineManager.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;
 
@@ -15,7 +16,27 @@ void CObjectManager::Add_Object(OBJID eID, CObject* pObj)
 		return;
 
 	m_ObjectList[eID].push_back(pObj);
-	m_ObjectList[eID].back()->SetOBJID(eID);
+}
+
+void CObjectManager::FixedUpdate()
+{
+	for (size_t i = 0; i < OBJ_END; ++i)
+	{
+		for (auto& pObj : m_ObjectList[i])
+			pObj->FixedUpdate();
+	}
+	CCollisionManager::CollisionLine(m_ObjectList[OBJ_PLAYER].front(), CLineManager::GetInstance()->GetList()[LINE_NONE]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_NONE]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_BOX]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BOX]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_NONE]);
+	/*CCollisionManager::CollisionTestRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
+	CCollisionManager::CollisionTestRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_MONSTER]);
+	CCollisionManager::CollisionTestRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BOX]);
+	CCollisionManager::CollisionTestRect(m_ObjectList[OBJ_MONSTER], m_ObjectList[OBJ_BOX]);
+	CCollisionManager::CollisionTestRect(m_ObjectList[OBJ_MONSTER], m_ObjectList[OBJ_NONE]);
+	CCollisionManager::CollisionTestRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_NONE]);*/
 }
 
 int CObjectManager::Update()
@@ -34,22 +55,22 @@ int CObjectManager::Update()
 			}
 			else
 				++iter;
-		} 
+		}
 	}
+	//
 	return 0;
 }
 
 void CObjectManager::LateUpdate()
 {
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_BLOCK]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BLOCK]);
-
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& pObj : m_ObjectList[i])
 			pObj->LateUpdate();
 	}
+
+	///CCollisionManager::CollisionLine(m_ObjectList[OBJ_PLAYER], CLineManager::GetInstance()->GetList()[LINE_NONE]);
+	
 }
 
 void CObjectManager::Render(HDC hDC)
