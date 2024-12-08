@@ -157,6 +157,9 @@
     <Filter Include="04. Scene\StageDH">
       <UniqueIdentifier>{484ec2da-28bd-4fd7-afd6-66b265c2e192}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\01. Monster\각자 한거\MonsterYK">
+      <UniqueIdentifier>{cf441d01-b3b5-4a17-9507-46969e0efd3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -309,6 +312,9 @@
     <ClInclude Include="CStageMH.h">
       <Filter>04. Scene\StageMH</Filter>
     </ClInclude>
+    <ClInclude Include="CMonsterYK1.h">
+      <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -445,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="CStageMH.cpp">
       <Filter>04. Scene\StageMH</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterYK1.cpp">
+      <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

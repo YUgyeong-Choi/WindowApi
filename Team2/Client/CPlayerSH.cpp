@@ -18,7 +18,6 @@ void CPlayerSH::Initialize()
 	m_tInfo = { 100, 200, 35.f, 35.f };
 	m_fSpeed = 10.f;
 	m_fJumpPower = 30.f;
-	m_fFallSpeed = 5.f;
 	m_eOID = OBJ_PLAYER;
 	m_eAction = AS_FALL;
 	m_eStatus = PS_SMALL;
@@ -33,7 +32,6 @@ int CPlayerSH::Update()
 
 	if (AS_FALL == GetActionStatus())
 	{
-		m_tInfo.fY += m_fFallSpeed;
 	}
 
 	__super::UpdateRect();

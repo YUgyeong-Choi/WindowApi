@@ -15,16 +15,22 @@ public:
 	virtual void OnDead();
 	void Jump();
 	void KeyInput();
-
 	void ScrollOffset();
 
-	void SetStatus(PLAYERSTATUS _status) { m_bPlayerStatus = _status; }
-	PLAYERSTATUS GetStatus(PLAYERSTATUS _status) { return m_bPlayerStatus; }
+	void SetStatus(PLAYERSTATUS _status) { m_ePlayerStatus = _status; }
+	PLAYERSTATUS GetStatus(PLAYERSTATUS _status) { return m_ePlayerStatus; }
 
 
 protected:
 private:
-	PLAYERSTATUS	m_bPlayerStatus;
+	void OnMushroom();
+	void OnFlower();
+	void Fire();
+private:
+	PLAYERSTATUS	m_ePlayerStatus;
 	float friction;
+	int m_iAnimationTime;
+	int m_iFireRate; //총알 발사 속도
+	int m_iTick;
 };
 

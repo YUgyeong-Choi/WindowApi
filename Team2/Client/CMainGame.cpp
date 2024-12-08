@@ -24,20 +24,21 @@ CMainGame::CMainGame() : m_ullTime(GetTickCount64()), m_iFPS(0), m_hDC(nullptr)
 void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);	
-
-	//CLineManager::GetInstance()->Initialize();
-
-	//CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayerDH>::Create());	
-
-	// TODO :: 맵 임의 생성.
-	/*CObjectManager::GetInstance()->Add_Object(OBJ_BLOCK, CAbstractFactory<CBlockHard>::Create(500, 350));
-	CObjectManager::GetInstance()->Add_Object(OBJ_BLOCK, CAbstractFactory<CBlockItem>::Create(550, 350));*/
-
-	//Load();
-
-	//CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"BackBuffer/BackBuffer.bmp", L"Back");
-	//CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Map/1-1.bmp", L"Ground");
 	CSceneManager::GetInstance()->Initialize();
+
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"BackBuffer/BackBuffer.bmp", L"Back");
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Map/Back.bmp", L"Ground");
+
+	//Register bitmap image files for render Mario
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Player/SmallMario/SmallMarioLeft.bmp", L"SmallMarioLeft");
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Player/SmallMario/SmallMarioRight.bmp", L"SmallMarioRight");
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Player/BigMario/BigMarioLeft.bmp", L"BigMarioLeft");
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Player/BigMario/BigMarioRight.bmp", L"BigMarioRight");
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Player/FireMario/FireMarioLeft.bmp", L"FireMarioLeft");
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Player/FireMario/FireMarioRight.bmp", L"FireMarioRight");
+
+	//Register bitmap image files for render Item
+	CBitmapManager::GetInstance()->InsertBitmap(RESORUCEPATH L"Item/Item.bmp", L"Items");
 }
 
 void CMainGame::Update()
@@ -117,55 +118,4 @@ void CMainGame::KeyInput()
 	{
 		g_bDevmode = !g_bDevmode;
 	}
-}
-
-void CMainGame::Load()
-{
-	HANDLE		hFile = CreateFile(L"../Data/Box.dat", // 파일 경로와 이름을 명시
-		GENERIC_READ,		// 파일 접근 모드(GENERIC_READ)
-		NULL,				// 공유 방식, 파일이 열려있는 상태에서 다른 프로세스가 오픈 할 때 허용할 것인가
-		NULL,				// 보안 속성, NULL인 경우 기본 보안 상태
-		OPEN_EXISTING,		// 생성 방식(CREATE_ALWAYS : 파일어 없으면 생성, 있으면 덮어 쓰기, OPEN_EXISTING : 파일 있을 경우에만 열기)
-		FILE_ATTRIBUTE_NORMAL, // 파일 속성, 아무런 속성이 없는 일반 파일의 형식으로 생성
-		NULL);				// 생성될 파일의 속성을 제공할 템플릿 파일(안쓰니 NULL)
-
-	if (hFile == INVALID_HANDLE_VALUE)
-	{
-		MessageBox(g_hWnd, _T("Load File"), L"Fail", MB_OK);
-		return;
-	}
-
-	DWORD	dwByte(0);
-	CBlock	cBlock;
-
-	int i = 0;
-	while (true)
-	{
-		ReadFile(hFile, &cBlock, sizeof(CBlock), &dwByte, nullptr);
-
-		if (0 == dwByte)
-			break;
-
-		CObject* obj = nullptr;
-
-		if (cBlock.GetBlockType() == BLOCKTYPE::BLOCK_HARD)
-		{
-			obj = CAbstractFactory<CBlockHard>::Create(cBlock.GetINFO().fX, cBlock.GetINFO().fY);
-		}
-		else if (cBlock.GetBlockType() == BLOCKTYPE::BLOCK_ITEM)
-		{
-			obj = CAbstractFactory<CBlockItem>::Create(cBlock.GetINFO().fX, cBlock.GetINFO().fY);
-		}
-
-		if (obj == nullptr)
-		{
-			continue;
-		}
-
-		CObjectManager::GetInstance()->Add_Object(OBJ_BLOCK, obj);
-	}
-
-	CloseHandle(hFile);
-
-	MessageBox(g_hWnd, _T("Load 완료"), L"성공", MB_OK);
 }

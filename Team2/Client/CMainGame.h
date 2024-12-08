@@ -13,7 +13,6 @@ public:
 	void		Render();
 	void		Release();
 	void		KeyInput();
-	void		Load();
 private:
 	HDC			m_hDC;
 

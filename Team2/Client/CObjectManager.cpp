@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CObjectManager.h"
 #include "CCollisionManager.h"
+#include "CPlayerYK.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;
 
@@ -29,6 +30,11 @@ int CObjectManager::Update()
 
 			if (OBJ_DEAD == iResult)
 			{
+				if (dynamic_cast<CPlayerYK*>(*iter)) {
+					if ((*iter)->GetIsDead()) {
+						return OBJ_DEAD;
+					}
+				}
 				Safe_Delete<CObject*>(*iter);
 				iter = m_ObjectList[i].erase(iter);
 			}
@@ -42,6 +48,10 @@ int CObjectManager::Update()
 void CObjectManager::LateUpdate()
 {
 	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_BLOCK]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BLOCK]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_MONSTER], m_ObjectList[OBJ_BLOCK]);
+	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_MONSTER]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{

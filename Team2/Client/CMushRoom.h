@@ -6,6 +6,7 @@ class CMushRoom : public CItem
 public:
 	CMushRoom();
 	~CMushRoom();
+	virtual void Initialize();
 	virtual int  Update() override;
 	virtual void LateUpdate() override;
 	virtual void Render(HDC hDC) override;
@@ -13,8 +14,7 @@ public:
 
 	void Move();
 	bool CheckOnGround();
-
 private:
-	float	m_fVelocityX;
-	float	m_fVelocityY;
+	int m_iAiDir;
+
 };

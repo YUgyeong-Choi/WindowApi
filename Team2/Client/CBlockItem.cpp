@@ -73,8 +73,8 @@ void CBlockItem::OnCollision(CObject* _op)
         {
             if (m_bContain)
             {
-                CreateMushRoom();
-                //CreateFlower();
+                //CreateMushRoom();
+                CreateFlower();
                 m_bContain = false;
             }
 
@@ -84,35 +84,6 @@ void CBlockItem::OnCollision(CObject* _op)
     {
         // 몬스터 박스 충돌 뭔가 하고 싶으면 넣으면 될듯?
     }
-
-	// 둘 중에 하나 골라서 하세요
-	// 
-	//if (_op->GetOBJID() == OBJ_PLAYER) {
-	//	if (_op->GetINFO().fY < m_tInfo.fY) {
-	//		_op->SetActionStatus(AS_STOP);
-	//		_op->SetFallSpeed(3.f);
-	//		_op->SetPos(_op->GetINFO().fX, (m_tInfo.fY - m_tInfo.fCY * 0.5f - _op->GetINFO().fCY * 0.5f));
-	//	}
-	//}
-
-	//if (_op->GetOBJID() == OBJ_ITEM) {
-	//	if (_op->GetINFO().fY < m_tInfo.fY) {
-	//		_op->SetActionStatus(AS_STOP);
-	//		_op->SetFallSpeed(3.f);
-	//	}
-	//}
-
-
-	//if (_op->GetINFO().fY > m_tInfo.fY + m_tInfo.fCY * 0.5f) {
-	//	_op->SetActionStatus(AS_FALL);
-	//	_op->SetFallSpeed(50.f);
-	//	if (m_bContain) {
-	//		CObjectManager::GetInstance()->Add_Object(OBJ_ITEM, CAbstractFactory<CFlower>::Create(this->GetINFO().fX, this->GetINFO().fY - 150));
-	//		m_bContain = false;
-	//	}
-	//}
-
-	
 }
 
 

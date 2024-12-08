@@ -33,6 +33,8 @@ int CStartScene::Update()
 	{
 		return OBJ_YK;
 	}
+
+	return OBJ_NOEVENT;
 }
 
 void CStartScene::Render(HDC hDC)

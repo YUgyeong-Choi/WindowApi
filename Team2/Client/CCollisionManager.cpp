@@ -114,12 +114,24 @@ void CCollisionManager::CollisionRectEx2(list<CObject*> _Dst, list<CObject*> _Sr
 					// 좌 충돌
 					if (Dst->GetINFO().fX < Src->GetINFO().fX)
 					{
-						Dst->SetPos(Dst->GetINFO().fX - fX - 10.f, Dst->GetINFO().fY);
+						Dst->SetPos(Dst->GetINFO().fX - fX - Dst->GetSpeed(), Dst->GetINFO().fY);
+						if (Dst->GetOBJID() == OBJ_ITEM && Src->GetOBJID() == OBJ_BLOCK) {
+							Dst->OnCollision(Src);
+						}
+						if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_MONSTER) {
+							Dst->OnCollision(Src);
+						}
 					}
 					// 우 충돌
 					else
 					{
-						Dst->SetPos(Dst->GetINFO().fX + fX + 10.f, Dst->GetINFO().fY);
+						Dst->SetPos(Dst->GetINFO().fX + fX + Dst->GetSpeed(), Dst->GetINFO().fY);
+						if (Dst->GetOBJID() == OBJ_ITEM && Src->GetOBJID() == OBJ_BLOCK) {
+							Dst->OnCollision(Src);
+						}
+						if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_MONSTER) {
+							Dst->OnCollision(Src);
+						}
 					}
 				}
 				// 상 하 충돌
@@ -128,8 +140,11 @@ void CCollisionManager::CollisionRectEx2(list<CObject*> _Dst, list<CObject*> _Sr
 					// 상 충돌
 					if (Dst->GetINFO().fY < Src->GetINFO().fY)
 					{
-						Dst->SetPos(Dst->GetINFO().fX, Dst->GetINFO().fY - fY - 10.f);
+						Dst->SetPos(Dst->GetINFO().fX, Dst->GetINFO().fY - fY - Dst->GetSpeed());
 						Dst->SetIsGround(true);
+						if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_MONSTER) {
+							Src->OnCollision(Dst);
+						}
 					}
 					// 하 충돌
 					else
@@ -138,8 +153,11 @@ void CCollisionManager::CollisionRectEx2(list<CObject*> _Dst, list<CObject*> _Sr
 						{
 							Src->OnCollision(Dst);
 						}
-						Dst->SetPos(Dst->GetINFO().fX, Dst->GetINFO().fY + fY + 10.f);
+						Dst->SetPos(Dst->GetINFO().fX, Dst->GetINFO().fY + fY + Dst->GetSpeed());
 						Dst->SetIsGround(false);
+						if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_MONSTER) {
+							Dst->OnCollision(Src);
+						}
 					}
 				}
 			}

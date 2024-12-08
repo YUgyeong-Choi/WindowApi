@@ -43,10 +43,11 @@ public:
 	void SetTargetObject(CObject* _pObject) { m_pTarget = _pObject; }
 	CObject* GetTargetObject() { return m_pTarget; }
 
-	void SetFallSpeed(float _fallSpeed) { m_fFallSpeed = _fallSpeed; }
 	void SetTime(float _fTime) { m_fTime += _fTime; }
 
 	void	SetIsGround(bool _b) { m_bIsGround = _b; }
+
+	float GetSpeed() { return m_fSpeed; }
 
 	// 나와 대상의 좌표 간의 각도 반환 (디그리로 반환).
 	// -180 ~ 180도 범위
@@ -84,7 +85,6 @@ protected:
 	bool			m_bIsJumping;
 	bool			m_bIsGround;
 
-	float			m_fFallSpeed;
 private:
 };
 
