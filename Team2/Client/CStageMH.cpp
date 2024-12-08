@@ -2,12 +2,12 @@
 #include "CStageMH.h"
 #include "Define.h"
 #include "CObjectManager.h"
-#include "CPlayerDH.h"
+#include "CPlayerMH.h"
 #include "CAbstractFactory.h"
 
 void CStageMH::Initialize()
 {
-	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayerDH>::Create());
+	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayerMH>::Create());
 	Load();
 }
 

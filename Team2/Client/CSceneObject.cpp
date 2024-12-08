@@ -5,6 +5,7 @@
 #include "CAbstractFactory.h"
 #include "CObjectManager.h"
 #include "CBlockHard.h"
+#include "CBlockItem.h"
 
 void CSceneObject::Initialize()
 {
@@ -23,9 +24,13 @@ void CSceneObject::Render(HDC hDC)
 {
 }
 
-void CSceneObject::Load()
+void CSceneObject::Load(const TCHAR* _name)
 {
-	HANDLE		hFile = CreateFile(L"../Data/Box.dat", // 파일 경로와 이름을 명시
+	TCHAR url[100];
+
+	_stprintf_s(url, _T("../Data/%s.dat"), _name);
+
+	HANDLE		hFile = CreateFile(url, // 파일 경로와 이름을 명시
 		GENERIC_READ,		// 파일 접근 모드(GENERIC_READ)
 		NULL,				// 공유 방식, 파일이 열려있는 상태에서 다른 프로세스가 오픈 할 때 허용할 것인가
 		NULL,				// 보안 속성, NULL인 경우 기본 보안 상태
@@ -40,17 +45,28 @@ void CSceneObject::Load()
 	}
 
 	DWORD	dwByte(0);
-	CBlockHard	cBox;
+	CBlock	cBox;
 
 	int i = 0;
 	while (true)
 	{
-		ReadFile(hFile, &cBox, sizeof(CBlockHard), &dwByte, nullptr);
+		ReadFile(hFile, &cBox, sizeof(CBlock), &dwByte, nullptr);
 
 		if (0 == dwByte)
 			break;
+		CObject* obj = nullptr;
+		if (cBox.GetBlockType() == BLOCK_HARD) {
+			obj  = CAbstractFactory<CBlockHard>::Create(cBox.GetINFO().fX, cBox.GetINFO().fY);
+			
+		}
+		else if (cBox.GetBlockType() == BLOCK_ITEM) {
+			obj = CAbstractFactory<CBlockItem>::Create(cBox.GetINFO().fX, cBox.GetINFO().fY);
+		}
 
-		CObject* obj = CAbstractFactory<CBlockHard>::Create(cBox.GetINFO().fX, cBox.GetINFO().fY);
+		if (obj == nullptr) {
+			continue;
+		}
+
 		CObjectManager::GetInstance()->Add_Object(OBJ_BLOCK, obj);
 	}
 

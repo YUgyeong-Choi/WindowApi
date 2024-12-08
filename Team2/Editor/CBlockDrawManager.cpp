@@ -19,12 +19,12 @@ int CBlockDrawManager::Update()
 
 	ptMouse.x -= (int)CScrollManager::GetInstance()->GetScrollX();
 
-	if (CKeyManager::GetInstance()->KeyUp(VK_NUMPAD1))
+	if (CKeyManager::GetInstance()->KeyUp(VK_F1))
 	{
 		m_CurrentType = BLOCKTYPE::BLOCK_ITEM;
 		MessageBox(g_hWnd, _T("아이템 나오는 벽으로 변경"), L"창", MB_OK);
 	}
-	else if (CKeyManager::GetInstance()->KeyUp(VK_NUMPAD2))
+	else if (CKeyManager::GetInstance()->KeyUp(VK_F2))
 	{
 		m_CurrentType = BLOCKTYPE::BLOCK_HARD;
 		MessageBox(g_hWnd, _T("절대 안 부서지는 벽으로 변경"), L"창", MB_OK);

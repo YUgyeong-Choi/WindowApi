@@ -39,8 +39,8 @@ void CBlockItem::LateUpdate()
 
 void CBlockItem::Render(HDC hDC)
 {
-	/*Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
-	if (g_bDevmode) Hitbox(hDC, m_tRect);*/
+	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	if (g_bDevmode) Hitbox(hDC, m_tRect);
 
 	float	offset = CScrollManager::GetInstance()->GetScrollX();
 	HDC		hMemDC = CBitmapManager::GetInstance()->FindImage(L"Box");
@@ -73,8 +73,8 @@ void CBlockItem::OnCollision(CObject* _op)
         {
             if (m_bContain)
             {
-                //CreateMushRoom();
-                CreateFlower();
+                CreateMushRoom();
+                //CreateFlower();
                 m_bContain = false;
             }
 

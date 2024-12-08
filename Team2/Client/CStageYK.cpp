@@ -2,12 +2,12 @@
 #include "CStageYK.h"
 #include "Define.h"
 #include "CObjectManager.h"
-#include "CPlayerDH.h"
+#include "CPlayerYK.h"
 #include "CAbstractFactory.h"
 
 void CStageYK::Initialize()
 {
-	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayerDH>::Create());
+	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayerYK>::Create());
 	Load();
 }
 

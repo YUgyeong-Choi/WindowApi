@@ -8,6 +8,8 @@
 CMushRoom::CMushRoom() : m_fVelocityX(0.f), m_fVelocityY(0.f)
 {
 	m_eItemType = ITEM_MUSHROOM;
+	SetActionStatus(AS_FALL);
+	m_fFallSpeed = 10.f;
 }
 
 CMushRoom::~CMushRoom()

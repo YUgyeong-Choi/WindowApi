@@ -31,7 +31,7 @@ int CStartScene::Update()
 
 	if (GetAsyncKeyState(VK_F5))
 	{
-		return OBJ_MH;
+		return OBJ_YK;
 	}
 }
 
