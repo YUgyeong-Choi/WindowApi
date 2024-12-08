@@ -14,7 +14,5 @@ public:
 
 	void Move();
 	bool CheckOnGround();
-private:
-	int m_iAiDir;
 
 };

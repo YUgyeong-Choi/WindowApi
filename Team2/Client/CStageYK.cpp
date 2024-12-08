@@ -5,11 +5,14 @@
 #include "CPlayerYK.h"
 #include "CAbstractFactory.h"
 #include "CMonsterYK1.h"
+#include "CMonsterBossYK.h"
 
 void CStageYK::Initialize()
 {
 	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayerYK>::Create());
 	CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER, CAbstractFactory<CMonsterYK1>::Create());
+	CObjectManager::GetInstance()->GetLastMonster()->SetTargetObject(CObjectManager::GetInstance()->GetPlayer());
+	CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER, CAbstractFactory<CMonsterBossYK>::Create());
 	CObjectManager::GetInstance()->GetLastMonster()->SetTargetObject(CObjectManager::GetInstance()->GetPlayer());
 	Load();
 }

@@ -121,6 +121,9 @@ void CCollisionManager::CollisionRectEx2(list<CObject*> _Dst, list<CObject*> _Sr
 						if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_MONSTER) {
 							Dst->OnCollision(Src);
 						}
+						if (Dst->GetOBJID() == OBJ_MONSTER && Src->GetOBJID() == OBJ_BLOCK) {
+							Dst->OnCollision(Src);
+						}
 					}
 					// ¿ì Ãæµ¹
 					else
@@ -130,6 +133,9 @@ void CCollisionManager::CollisionRectEx2(list<CObject*> _Dst, list<CObject*> _Sr
 							Dst->OnCollision(Src);
 						}
 						if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_MONSTER) {
+							Dst->OnCollision(Src);
+						}
+						if (Dst->GetOBJID() == OBJ_MONSTER && Src->GetOBJID() == OBJ_BLOCK) {
 							Dst->OnCollision(Src);
 						}
 					}

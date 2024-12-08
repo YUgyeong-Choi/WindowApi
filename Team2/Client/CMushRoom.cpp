@@ -5,7 +5,7 @@
 #include "CCollisionManager.h"
 #include "CPlayerDH.h"
 
-CMushRoom::CMushRoom():m_iAiDir(0)
+CMushRoom::CMushRoom()
 {
 	m_eItemType = ITEM_MUSHROOM;
 }
@@ -20,8 +20,7 @@ void CMushRoom::Initialize()
 	m_tInfo.fCY = 40.f;
 	m_fSpeed = 5.f;
 	m_bIsGround = false;
-	m_tDir = { 0 , 1 };
-	m_iAiDir = 1;
+	m_tDir = { 1 , 1 };
 }
 
 int CMushRoom::Update()
@@ -29,9 +28,8 @@ int CMushRoom::Update()
 	if (m_bIsDead)
 		return OBJ_DEAD;
 
-	if (m_fTime >= 50) {
-		m_tDir.SetX(m_iAiDir);
-		m_iAiDir *= -1;
+	if (m_fTime >= 30) {
+		m_tDir.SetX(m_tDir.GetX()*-1);
 		m_fTime = 0.f;
 	}
 

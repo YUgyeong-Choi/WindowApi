@@ -155,6 +155,7 @@
     <ClInclude Include="CLineManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CMonsterBossYK.h" />
     <ClInclude Include="CMonsterBullet.h" />
     <ClInclude Include="CMonsterKL.h" />
     <ClInclude Include="CMonsterYK1.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="CLineManager.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CMonsterBossYK.cpp" />
     <ClCompile Include="CMonsterBullet.cpp" />
     <ClCompile Include="CMonsterKL.cpp" />
     <ClCompile Include="CMonsterYK1.cpp" />

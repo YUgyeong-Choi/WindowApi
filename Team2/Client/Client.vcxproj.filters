@@ -315,6 +315,9 @@
     <ClInclude Include="CMonsterYK1.h">
       <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
     </ClInclude>
+    <ClInclude Include="CMonsterBossYK.h">
+      <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -453,6 +456,9 @@
       <Filter>04. Scene\StageMH</Filter>
     </ClCompile>
     <ClCompile Include="CMonsterYK1.cpp">
+      <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterBossYK.cpp">
       <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,13 +16,22 @@ int CMonsterYK1::Update()
 	if (FindPlayer()) {
 		m_tInfo.fX += m_tDir.GetX() * m_fSpeed;
 		m_tInfo.fY += m_tDir.GetY() * m_fSpeed;
+		m_fTime += 0.2f;
 	}
+
+	if (m_fTime >= 30) {
+		m_tDir.SetX(m_tDir.GetX()*-1);
+		m_fTime = 0.f;
+	}
+	
+
 	__super::UpdateRect();
 	return 0;
 }
 
 void CMonsterYK1::LateUpdate()
 {
+	if (!m_bIsGround && m_fTime >= 2.f) m_tDir.SetY(1);
 }
 
 void CMonsterYK1::Render(HDC hDC)
@@ -39,6 +48,12 @@ void CMonsterYK1::OnCollision(CObject* _op)
 {
 	if (_op->GetOBJID() == OBJ_PLAYER) {
 		SetIsDead(true);
+	}
+
+	if (OBJ_BLOCK == _op->GetOBJID()) {
+		m_tDir.SetY(-1);
+		m_bIsGround = false;
+		m_fTime = 0.f;
 	}
 }
 
