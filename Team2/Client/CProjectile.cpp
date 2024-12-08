@@ -7,6 +7,8 @@ void CProjectile::Initialize()
 
 int CProjectile::Update()
 {
+	if (true == m_bIsDead)
+		return OBJ_DEAD;
 	return OBJ_NOEVENT;
 }
 

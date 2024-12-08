@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CMainGame.h"
-#include "CBoxDrawManager.h"
+#include "CBlockDrawManager.h"
 #include "CKeyManager.h"
 
 bool g_bDevmode = false;
@@ -14,20 +14,20 @@ void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
 
-	CBoxDrawManager::Get_Instance()->Initialize();
+	CBlockDrawManager::Get_Instance()->Initialize();
 }
 
 void CMainGame::Update()
 {
 	KeyInput();	
 
-	CBoxDrawManager::Get_Instance()->Update();
+	CBlockDrawManager::Get_Instance()->Update();
 }
 
 void CMainGame::LateUpdate()
 {	
 	CKeyManager::GetInstance()->Update();
-	CBoxDrawManager::Get_Instance()->Late_Update();
+	CBlockDrawManager::Get_Instance()->Late_Update();
 }
 
 void CMainGame::Render()
@@ -50,14 +50,14 @@ void CMainGame::Render()
 	//Background
 	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
 
-	CBoxDrawManager::Get_Instance()->Render(m_hDC);
+	CBlockDrawManager::Get_Instance()->Render(m_hDC);
 
 	if(g_bDevmode) TextOut(m_hDC, 0, 0, L"DevMode", lstrlenW(L"DevMode"));
 }
 
 void CMainGame::Release()
 {
-	CBoxDrawManager::Get_Instance()->Render(m_hDC);
+	CBlockDrawManager::Get_Instance()->Render(m_hDC);
 	ReleaseDC(g_hWnd, m_hDC);
 }
 

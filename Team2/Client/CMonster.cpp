@@ -29,3 +29,11 @@ void CMonster::OnCollision(CObject* _op)
 void CMonster::OnDead()
 {
 }
+
+bool CMonster::FindPlayer()
+{
+	if (m_pTarget->GetINFO().fX >= m_tInfo.fX + 500 || m_pTarget->GetINFO().fX <= m_tInfo.fX - 500) // 범위 밖이라면 멈추게
+		return false;
+	else
+		return true;
+}

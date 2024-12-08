@@ -42,8 +42,8 @@ int CObjectManager::Update()
 void CObjectManager::LateUpdate()
 {
 	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_BOX]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BOX]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_BLOCK]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BLOCK]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{

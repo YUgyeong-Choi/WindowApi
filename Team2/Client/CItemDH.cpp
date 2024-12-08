@@ -76,7 +76,7 @@ void CItemDH::OnCollision(CObject* _op)
 	}
 		break;
 
-	case OBJID::OBJ_BOX:
+	case OBJID::OBJ_BLOCK:
 	{		
 		if (m_tInfo.fY < _op->GetINFO().fY)
 		{

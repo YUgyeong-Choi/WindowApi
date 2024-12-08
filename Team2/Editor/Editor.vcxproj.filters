@@ -36,13 +36,13 @@
     <ClInclude Include="Define.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CBoxDrawManager.h">
+    <ClInclude Include="CBlockDrawManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CKeyManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CBox.h">
+    <ClInclude Include="CBlock.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CScrollManager.h">
@@ -51,10 +51,10 @@
     <ClInclude Include="CObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CBoxItem.h">
+    <ClInclude Include="CBlockItem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CBoxHard.h">
+    <ClInclude Include="CBlockHard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,13 +68,13 @@
     <ClCompile Include="CMainGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CBoxDrawManager.cpp">
+    <ClCompile Include="CBlockDrawManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CKeyManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CBox.cpp">
+    <ClCompile Include="CBlock.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CObject.cpp">
@@ -83,10 +83,10 @@
     <ClCompile Include="CScrollManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CBoxItem.cpp">
+    <ClCompile Include="CBlockItem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CBoxHard.cpp">
+    <ClCompile Include="CBlockHard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

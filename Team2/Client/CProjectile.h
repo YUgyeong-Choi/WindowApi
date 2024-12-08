@@ -3,7 +3,7 @@
 class CProjectile : public CObject
 {
 public:
-	CProjectile();
+	CProjectile() {};
 	virtual ~CProjectile() { Release(); }
 	virtual void Initialize() override;
 	virtual int  Update() override;

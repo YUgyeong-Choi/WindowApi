@@ -160,3 +160,63 @@ bool CCollisionManager::CollisionLine(float _fX, float* pY)
 
 	return false;
 }
+
+bool CCollisionManager::CheckRect(RECT& r1, RECT& r2)
+{
+	return !(r1.right <= r2.left || r1.left >= r2.right || r1.bottom <= r2.top || r1.top >= r2.bottom);
+}
+
+bool CCollisionManager::CheckRect(CObject* _Dst, CObject* _Src)
+{
+	RECT r1 = *_Dst->GetRECT();
+	RECT r2 = *_Src->GetRECT();
+	return !(r1.right <= r2.left || r1.left >= r2.right || r1.bottom <= r2.top || r1.top >= r2.bottom);
+}
+
+bool CCollisionManager::CollisionLine(INFO _tInfo, float* pY)
+{
+
+	if (CLineManager::GetInstance()->GetList()->empty())
+		return false;
+
+	CLine* pTargetLine = nullptr;
+	list<CLine*> TargetLineList;
+
+	for (auto& pLine : *CLineManager::GetInstance()->GetList())
+	{
+		if (_tInfo.fX >= pLine->GetLPoint().GetX() &&
+			_tInfo.fX < pLine->GetRPoint().GetX())
+		{
+			//pTargetLine = pLine;
+			TargetLineList.push_back(pLine);
+		}
+	}
+
+	float fHeight(0.f);
+
+	for (auto iter : TargetLineList)
+	{
+		if (iter->GetLPoint().GetY() < _tInfo.fY && iter->GetLPoint().GetY() < _tInfo.fY)
+		{
+			continue;
+		}
+		if (pTargetLine == nullptr || fHeight > iter->GetLPoint().GetY())
+		{
+			pTargetLine = iter;
+			fHeight = iter->GetLPoint().GetY();
+		}
+	}
+
+	if (nullptr == pTargetLine)
+		return false;
+
+	float x1 = pTargetLine->GetLPoint().GetX();
+	float y1 = pTargetLine->GetLPoint().GetY();
+	float x2 = pTargetLine->GetRPoint().GetX();
+	float y2 = pTargetLine->GetRPoint().GetY();
+
+	*pY = ((y2 - y1) / (x2 - x1)) * (_tInfo.fX - x1) + y1;
+
+	return true;
+
+}

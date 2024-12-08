@@ -11,6 +11,10 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void OnCollision(CObject* _op);
 
-private:
+	void Move();
+	bool CheckOnGround();
 
+private:
+	float	m_fVelocityX;
+	float	m_fVelocityY;
 };

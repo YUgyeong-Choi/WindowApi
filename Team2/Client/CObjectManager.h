@@ -3,8 +3,11 @@
 class CObjectManager
 {
 public:
+
+	list<CObject*> GetList() { return m_ObjectList[OBJ_NONE]; }
 	CObject* GetPlayer() { return m_ObjectList[OBJ_PLAYER].front(); }
 	CObject* GetLastMonster() { return m_ObjectList[OBJ_MONSTER].back(); }
+	CObject* GetLastMonsterBullet() { return m_ObjectList[OBJ_MONSTER_BULLET].back(); }
 
 	CObject* GetTarget(OBJID eID, CObject* pDst);
 

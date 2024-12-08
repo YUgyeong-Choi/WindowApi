@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "CFlower.h"
 #include "CScrollManager.h"
-#include "CPlayer.h"
+#include "CPlayerDH.h"
 
 CFlower::CFlower()
 {
+	m_eItemType = ITEM_FLOWER;
 }
 
 CFlower::~CFlower()
@@ -21,7 +22,7 @@ void CFlower::OnCollision(CObject* _op)
 {
 	if (OBJ_PLAYER == _op->GetOBJID())
 	{
-		static_cast<CPlayer*>(_op)->SetPlayerState(PS_FIRE);
+		static_cast<CPlayerDH*>(_op)->SetPlayerState(PS_FIRE);
 		(_op)->SetSize(150.f, 150.f);
 
 		SetIsDead(true);

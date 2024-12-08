@@ -35,9 +35,11 @@ private:
 	~CSceneManager() {};
 
 	static CSceneManager* m_pInstance;
-	
+
 	vector<CSceneObject*> m_Scenes;
 	int m_SceneNum;
 
 };
+
+
 

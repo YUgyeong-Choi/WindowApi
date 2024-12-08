@@ -45,7 +45,7 @@ void CMonsterKL::OnCollision(CObject* _op)
 			SetIsDead(true);
 
 	}
-	if (OBJ_BOX == _op->GetOBJID())
+	if (OBJ_BLOCK == _op->GetOBJID())
 	{
 		// 이거 수정 예정
 		if (m_tInfo.fY < _op->GetINFO().fY)

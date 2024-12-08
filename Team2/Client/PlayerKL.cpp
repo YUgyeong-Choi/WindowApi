@@ -61,7 +61,7 @@ void CPlayerKL::OnCollision(CObject* _op)
 		m_bCollision = false;
 
 	}
-	if (OBJ_BOX == _op->GetOBJID())
+	if (OBJ_BLOCK == _op->GetOBJID())
 	{
 		if (m_tInfo.fY < _op->GetINFO().fY)
 		{

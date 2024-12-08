@@ -8,8 +8,12 @@
 
 #define OBJ_NOEVENT			0
 #define OBJ_DEAD			1
-#define OBJ_CLEAR			2
-#define OBJ_FINISH			3
+#define OBJ_FINISH			2
+#define OBJ_KL			3
+#define OBJ_SH			4
+#define OBJ_DH			5
+#define OBJ_MH			6
+#define OBJ_YK			7
 
 #define GRAVITY				9.8;
 
@@ -21,21 +25,19 @@
 extern HWND		g_hWnd;
 extern bool		g_bDevmode;
 
-enum OBJID { OBJ_NONE, OBJ_BOX, OBJ_PLAYER, OBJ_MONSTER, OBJ_LINE, OBJ_ITEM, OBJ_END };
+enum OBJID { OBJ_NONE, OBJ_BLOCK, OBJ_PLAYER, OBJ_MONSTER, OBJ_LINE, OBJ_ITEM, OBJ_PLAYER_BULLET, OBJ_MONSTER_BULLET, OBJ_END };
 enum TAG { TAG_NONE, TAG_LINE, TAG_WALL, TAG_FLOOR, TAG_END };
 enum LINE { LINE_NONE, LINE_WALL, LINE_FLOOR, LINE_END };
 enum PLAYERSTATUS { PS_SMALL, PS_BIG, PS_FIRE, PS_STAR, PS_END };
 enum ACTIONSTATUS { AS_STOP, AS_MOVE, AS_MOVE_LEFT, AS_MOVE_RIGHT, AS_FALL, AS_JUMP, AS_DEAD, AS_END };
 enum ITEMTYPE { ITEM_MUSHROOM, ITEM_FLOWER, ITEM_STAR, ITEM_CLEAR, ITEM_END};
-//enum BLOCKTYPE{ BLOCK_NONE, BLOCK_ITEM, BLOCK_HARD, BLOCK_BROKEN, BLOCK_END};
+enum BLOCKTYPE{ BLOCK_NONE, BLOCK_ITEM, BLOCK_HARD, BLOCK_BROKEN, BLOCK_END};
 enum ANIMATIONSTATUS {};
 enum BOXSTATUS { HIDDEN, OPENED };
 enum DIRECTION { LEFT, RIGHT, DIR_END };
 
 //[»ó, ÇÏ, ÁÂ ¿ì, ³¡]
 enum COLDIRECTION { COL_TOP, COL_BOTTOM, COL_LEFT, COL_RIGHT, COL_END };
-
-enum SCENE{START, STAGE1, STAGE2, END,SCENE_END};
 
 typedef struct tagInfo
 {
@@ -141,6 +143,11 @@ static BOOL Rectangle(HDC hDC, RECT tRect, Vector<float> offset, float fAngle, f
 static BOOL Ellipse(HDC hDC, RECT tRect)
 {
 	return Ellipse(hDC, tRect.left, tRect.top, tRect.right, tRect.bottom);
+}
+
+static BOOL Ellipse(HDC hDC, RECT tRect, Vector<float> offset)
+{
+	return Ellipse(hDC, tRect.left + (int)offset.GetX(), tRect.top + (int)offset.GetY(), tRect.right + (int)offset.GetX(), tRect.bottom + (int)offset.GetY());
 }
 
 static BOOL Hitbox(HDC hDC, RECT tRect, Vector<float> offset = { 0, 0 })

@@ -40,7 +40,11 @@ public:
 	void SetOBJID(OBJID _id) { m_eOID = _id; }
 	OBJID GetOBJID() { return m_eOID; }
 
-	void SetTarget(CObject* _pObject) { m_pTarget = _pObject; }
+	void SetTargetObject(CObject* _pObject) { m_pTarget = _pObject; }
+	CObject* GetTargetObject() { return m_pTarget; }
+
+	void SetFallSpeed(float _fallSpeed) { m_fFallSpeed = _fallSpeed; }
+	void SetTime(float _fTime) { m_fTime += _fTime; }
 
 	// 나와 대상의 좌표 간의 각도 반환 (디그리로 반환).
 	// -180 ~ 180도 범위
@@ -68,10 +72,17 @@ protected:
 	Vector<float>	m_tDir;
 	OBJID			m_eOID;
 	CObject*		m_pTarget;	
+	
 
 	const float const		m_fGravity = 3.f;
 	float			m_fCurrentGravity;
 	bool			m_bIsFloor = false;
+
+	//
+	bool			m_bIsJumping;
+	bool			m_bIsGround;
+
+	float			m_fFallSpeed;
 private:
 };
 

@@ -4,7 +4,7 @@
 #include "CObject.h"
 #include "CAbstractFactory.h"
 #include "CObjectManager.h"
-#include "CBoxHard.h"
+#include "CBlockHard.h"
 
 void CSceneObject::Initialize()
 {
@@ -40,18 +40,18 @@ void CSceneObject::Load()
 	}
 
 	DWORD	dwByte(0);
-	CBoxHard	cBox;
+	CBlockHard	cBox;
 
 	int i = 0;
 	while (true)
 	{
-		ReadFile(hFile, &cBox, sizeof(CBoxHard), &dwByte, nullptr);
+		ReadFile(hFile, &cBox, sizeof(CBlockHard), &dwByte, nullptr);
 
 		if (0 == dwByte)
 			break;
 
-		CObject* obj = CAbstractFactory<CBoxHard>::Create(cBox.GetINFO().fX, cBox.GetINFO().fY);
-		CObjectManager::GetInstance()->Add_Object(OBJ_BOX, obj);
+		CObject* obj = CAbstractFactory<CBlockHard>::Create(cBox.GetINFO().fX, cBox.GetINFO().fY);
+		CObjectManager::GetInstance()->Add_Object(OBJ_BLOCK, obj);
 	}
 
 	CloseHandle(hFile);

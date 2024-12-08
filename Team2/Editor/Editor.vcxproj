@@ -135,10 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CBox.h" />
-    <ClInclude Include="CBoxDrawManager.h" />
-    <ClInclude Include="CBoxHard.h" />
-    <ClInclude Include="CBoxItem.h" />
+    <ClInclude Include="CBlock.h" />
+    <ClInclude Include="CBlockDrawManager.h" />
+    <ClInclude Include="CBlockHard.h" />
+    <ClInclude Include="CBlockItem.h" />
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CObject.h" />
@@ -151,10 +151,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CBox.cpp" />
-    <ClCompile Include="CBoxDrawManager.cpp" />
-    <ClCompile Include="CBoxHard.cpp" />
-    <ClCompile Include="CBoxItem.cpp" />
+    <ClCompile Include="CBlock.cpp" />
+    <ClCompile Include="CBlockDrawManager.cpp" />
+    <ClCompile Include="CBlockHard.cpp" />
+    <ClCompile Include="CBlockItem.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CObject.cpp" />
