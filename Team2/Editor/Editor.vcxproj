@@ -135,13 +135,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Client\CKeyManager.h" />
-    <ClInclude Include="..\Client\CLine.h" />
-    <ClInclude Include="..\Client\CLineManager.h" />
-    <ClInclude Include="..\Client\CObjectManager.h" />
-    <ClInclude Include="..\Client\CScrollManager.h" />
-    <ClInclude Include="..\Client\Define.h" />
-    <ClInclude Include="CMainEditor.h" />
+    <ClInclude Include="CBlock.h" />
+    <ClInclude Include="CBlockDrawManager.h" />
+    <ClInclude Include="CBlockHard.h" />
+    <ClInclude Include="CBlockItem.h" />
+    <ClInclude Include="CKeyManager.h" />
+    <ClInclude Include="CMainGame.h" />
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="CScrollManager.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
@@ -149,12 +151,14 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Client\CKeyManager.cpp" />
-    <ClCompile Include="..\Client\CLine.cpp" />
-    <ClCompile Include="..\Client\CLineManager.cpp" />
-    <ClCompile Include="..\Client\CObjectManager.cpp" />
-    <ClCompile Include="..\Client\CScrollManager.cpp" />
-    <ClCompile Include="CMainEditor.cpp" />
+    <ClCompile Include="CBlock.cpp" />
+    <ClCompile Include="CBlockDrawManager.cpp" />
+    <ClCompile Include="CBlockHard.cpp" />
+    <ClCompile Include="CBlockItem.cpp" />
+    <ClCompile Include="CKeyManager.cpp" />
+    <ClCompile Include="CMainGame.cpp" />
+    <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="CScrollManager.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

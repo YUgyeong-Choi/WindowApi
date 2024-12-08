@@ -7,7 +7,13 @@
 #define PI			3.141592f
 
 #define OBJ_NOEVENT			0
-#define OBJ_DEAD			1	
+#define OBJ_DEAD			1
+#define OBJ_FINISH			2
+#define OBJ_KL			3
+#define OBJ_SH			4
+#define OBJ_DH			5
+#define OBJ_MH			6
+#define OBJ_YK			7
 
 #define GRAVITY				9.8;
 
@@ -18,15 +24,15 @@
 
 extern HWND		g_hWnd;
 extern bool		g_bDevmode;
-enum ANIMATIONSTATUS {};
-enum ACTIONSTATUS { AS_STOP, AS_MOVE, AS_FALL, AS_JUMP, AS_DEAD, AS_END };
-enum PLAYERSTATUS { PS_SMALL, PS_BIG, PS_FIRE, PS_STAR, PS_END };
-//enum PLAYERSTATUS { PS_SMALL, PS_BIG, PS_FIRE, PS_STAR, PS_END };
-enum OBJID { OBJ_NONE, OBJ_PLAYER, OBJ_MONSTER, OBJ_ITEM, OBJ_BOX, OBJ_PROJECTILE, OBJ_LINE, OBJ_END };
+
+enum OBJID { OBJ_NONE, OBJ_BLOCK, OBJ_PLAYER, OBJ_MONSTER, OBJ_LINE, OBJ_ITEM, OBJ_PLAYER_BULLET, OBJ_MONSTER_BULLET, OBJ_END };
 enum TAG { TAG_NONE, TAG_LINE, TAG_WALL, TAG_FLOOR, TAG_END };
-enum LINETYPE { LINE_NONE, LINE_WALL, LINE_FLOOR, LINE_END };
-enum ITEMTYPE { ITEM_NONE, ITEM_MUSHROOM, ITEM_FLOWER, ITEM_STAR, ITEM_CLEAR, ITEM_END };
-enum BOXTYPE {BOX_NONE, BOX_BREAK, BOX_ITEM, BOX_END };
+enum LINE { LINE_NONE, LINE_WALL, LINE_FLOOR, LINE_END };
+enum PLAYERSTATUS { PS_SMALL, PS_BIG, PS_FIRE, PS_STAR, PS_END };
+enum ACTIONSTATUS { AS_STOP, AS_MOVE, AS_MOVE_LEFT, AS_MOVE_RIGHT, AS_FALL, AS_JUMP, AS_DEAD, AS_END };
+enum ITEMTYPE { ITEM_MUSHROOM, ITEM_FLOWER, ITEM_STAR, ITEM_CLEAR, ITEM_END};
+enum BLOCKTYPE{ BLOCK_NONE, BLOCK_ITEM, BLOCK_HARD, BLOCK_BROKEN, BLOCK_END};
+enum ANIMATIONSTATUS {};
 enum BOXSTATUS { HIDDEN, OPENED };
 enum DIRECTION { LEFT, RIGHT, DIR_END };
 
@@ -51,7 +57,7 @@ public:
 	T GetY() { return y; }
 	void SetX(T _x) { x = _x; }
 	void SetY(T _y) { y = _y; }
-public:
+private:
 	T x, y;
 };
 
@@ -97,17 +103,6 @@ typedef struct tagLinePoint
 
 }LINEPOINT;
 
-typedef struct tagLine
-{
-	LINEPOINT	tLPoint;
-	LINEPOINT	tRPoint;
-
-	tagLine() { ZeroMemory(this, sizeof(tagLine)); }
-	tagLine(LINEPOINT& _tLPoint, LINEPOINT& _tRPoint)
-		: tLPoint(_tLPoint), tRPoint(_tRPoint) {
-	}
-
-}LINE;
 
 template<typename T>
 void Safe_Delete(T& Temp)
@@ -119,9 +114,56 @@ void Safe_Delete(T& Temp)
 	}
 }
 
+static BOOL Rectangle(HDC hDC, RECT tRect)
+{
+	return Rectangle(hDC, tRect.left, tRect.top, tRect.right, tRect.bottom);
+}
+
+static BOOL Rectangle(HDC hDC, RECT tRect, Vector<float> offset = {0, 0})
+{
+	return Rectangle(hDC, tRect.left + offset.GetX(), tRect.top + offset.GetY(), tRect.right + offset.GetX(), tRect.bottom + offset.GetY());
+}
+
+static BOOL Rectangle(HDC hDC, RECT tRect, Vector<float> offset, float fAngle, float fTime, COLORREF color)
+{
+	HBRUSH hNewBrush = CreateSolidBrush(color);
+	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
+	HPEN hNewPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	HPEN hOldPen = (HPEN)SelectObject(hDC, hNewPen);
+	Rectangle(hDC, tRect.left + (int)offset.GetX(), tRect.top + (int)offset.GetY(), tRect.right + (int)offset.GetX(), tRect.bottom + (int)offset.GetY());
+	SelectObject(hDC, hOldPen);
+	SelectObject(hDC, hOldBrush);
+
+	DeleteObject(hNewPen);
+	DeleteObject(hNewBrush);
+	return true;
+}
 
 
-static void SmallMario(HDC hDC, HDC hMemDC, INFO m_tInfo, RECT m_tRect, Vector<float> offset = {0, 0})
+static BOOL Ellipse(HDC hDC, RECT tRect)
+{
+	return Ellipse(hDC, tRect.left, tRect.top, tRect.right, tRect.bottom);
+}
+
+static BOOL Ellipse(HDC hDC, RECT tRect, Vector<float> offset)
+{
+	return Ellipse(hDC, tRect.left + (int)offset.GetX(), tRect.top + (int)offset.GetY(), tRect.right + (int)offset.GetX(), tRect.bottom + (int)offset.GetY());
+}
+
+static BOOL Hitbox(HDC hDC, RECT tRect, Vector<float> offset = { 0, 0 })
+{
+	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
+	HPEN hNewPen = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	HPEN hOldPen = (HPEN)SelectObject(hDC, hNewPen);
+	Rectangle(hDC, tRect.left + (int)offset.GetX(), tRect.top + (int)offset.GetY(), tRect.right + (int)offset.GetX(), tRect.bottom + (int)offset.GetY());
+	SelectObject(hDC, hOldPen);
+	SelectObject(hDC, hOldBrush);
+
+	DeleteObject(hNewPen);
+	return true;
+}
+
+static void SmallMario(HDC hDC, HDC hMemDC, INFO m_tInfo, RECT m_tRect, Vector<float> offset = { 0, 0 })
 {
 	GdiTransparentBlt(hDC,			// 복사 받을 DC
 		m_tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
@@ -133,143 +175,6 @@ static void SmallMario(HDC hDC, HDC hMemDC, INFO m_tInfo, RECT m_tRect, Vector<f
 		0,
 		(int)m_tInfo.fCX,			// 복사할 이미지의 가로, 세로
 		(int)m_tInfo.fCY,
-		RGB(255, 255, 255));
-}
-
-//static void SmallMario(HDC hDC, HDC hMemDC, INFO m_tInfo, RECT m_tRect, ACTIONSTATUS as, PLAYERSTATUS ps, int& t, Vector<float> offset = { 0, 0 })
-//{
-//
-//	switch (as)
-//	{
-//	case AS_STOP:
-//		GdiTransparentBlt(hDC,			// 복사 받을 DC
-//			m_tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-//			m_tRect.top,
-//			(int)m_tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-//			(int)m_tInfo.fCY,
-//			hMemDC,						// 복사할 이미지 DC	
-//			0,							// 비트맵 출력 시작 좌표(Left, top)
-//			0,
-//			(int)m_tInfo.fCX,			// 복사할 이미지의 가로, 세로
-//			(int)m_tInfo.fCY,
-//			RGB(255, 255, 255));
-//		t = 0;
-//		break;
-//	case AS_MOVE_LEFT:
-//		if (t % 60 == 0)
-//		{
-//			GdiTransparentBlt(hDC,			// 복사 받을 DC
-//				m_tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-//				m_tRect.top,
-//				(int)m_tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				hMemDC,						// 복사할 이미지 DC	
-//				40,							// 비트맵 출력 시작 좌표(Left, top)
-//				40,
-//				(int)m_tInfo.fCX,			// 복사할 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				RGB(255, 255, 255));
-//			t = 0;
-//		}
-//		else
-//		{
-//			GdiTransparentBlt(hDC,			// 복사 받을 DC
-//				m_tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-//				m_tRect.top,
-//				(int)m_tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				hMemDC,						// 복사할 이미지 DC	
-//				0,							// 비트맵 출력 시작 좌표(Left, top)
-//				40,
-//				(int)m_tInfo.fCX,			// 복사할 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				RGB(255, 255, 255));
-//		}
-//		break;
-//	case AS_MOVE_RIGHT:
-//		if (t % 60 == 0)
-//		{
-//			GdiTransparentBlt(hDC,			// 복사 받을 DC
-//				m_tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-//				m_tRect.top,
-//				(int)m_tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				hMemDC,						// 복사할 이미지 DC	
-//				40,							// 비트맵 출력 시작 좌표(Left, top)
-//				40,
-//				(int)m_tInfo.fCX,			// 복사할 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				RGB(255, 255, 255));
-//			t = 0;
-//		}
-//		else
-//		{
-//			GdiTransparentBlt(hDC,			// 복사 받을 DC
-//				m_tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-//				m_tRect.top,
-//				(int)m_tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				hMemDC,						// 복사할 이미지 DC	
-//				0,							// 비트맵 출력 시작 좌표(Left, top)
-//				40,
-//				(int)m_tInfo.fCX,			// 복사할 이미지의 가로, 세로
-//				(int)m_tInfo.fCY,
-//				RGB(255, 255, 255));
-//		}
-//		break;
-//	case AS_FALL:
-//		break;
-//	case AS_JUMP:
-//		break;
-//	case AS_END:
-//		break;
-//	default:
-//		break;
-//	}
-//}
-
-static void Mushroom(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, Vector<float> offset = { 0 , 0 })
-{
-	GdiTransparentBlt(hDC,			// 복사 받을 DC
-		tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-		tRect.top,
-		(int)tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-		(int)tInfo.fCY,
-		hMemDC,						// 복사할 이미지 DC	
-		0,							// 비트맵 출력 시작 좌표(Left, top)
-		0,
-		(int)16,			// 복사할 이미지의 가로, 세로
-		(int)16,
-		RGB(255, 255, 255));
-}
-
-static void Flower(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, Vector<float> offset = { 0 , 0 })
-{
-	GdiTransparentBlt(hDC,			// 복사 받을 DC
-		tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-		tRect.top,
-		(int)tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-		(int)tInfo.fCY,
-		hMemDC,						// 복사할 이미지 DC	
-		32,							// 비트맵 출력 시작 좌표(Left, top)
-		0,
-		(int)16,			// 복사할 이미지의 가로, 세로
-		(int)16,
-		RGB(255, 255, 255));
-}
-
-static void Star(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, Vector<float> offset = { 0 , 0 })
-{
-	GdiTransparentBlt(hDC,			// 복사 받을 DC
-		tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
-		tRect.top,
-		(int)tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
-		(int)tInfo.fCY,
-		hMemDC,						// 복사할 이미지 DC	
-		16,							// 비트맵 출력 시작 좌표(Left, top)
-		48,
-		(int)16,			// 복사할 이미지의 가로, 세로
-		(int)16,
 		RGB(255, 255, 255));
 }
 
@@ -548,76 +453,7 @@ static void SmallMario(HDC hDC, HDC hMemDC, INFO m_tInfo, RECT m_tRect, bool lef
 	}
 }
 
-static BOOL Rectangle(HDC hDC, RECT tRect, Vector<float> offset, float fAngle, float fTime, COLORREF color)
-{
-	HBRUSH hNewBrush = CreateSolidBrush(color);
-	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
-	HPEN hNewPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
-	HPEN hOldPen = (HPEN)SelectObject(hDC, hNewPen);
-	Rectangle(hDC, tRect.left + (int)offset.GetX(), tRect.top + (int)offset.GetY(), tRect.right + (int)offset.GetX(), tRect.bottom + (int)offset.GetY());
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBrush);
-
-	DeleteObject(hNewPen);
-	DeleteObject(hNewBrush);
-	return true;
-}
-
-
-static BOOL Ellipse(HDC hDC, RECT tRect)
-{
-	return Ellipse(hDC, tRect.left, tRect.top, tRect.right, tRect.bottom);
-}
-
-static BOOL Hitbox(HDC hDC, RECT tRect, Vector<float> offset = { 0, 0 })
-{
-	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
-	HPEN hNewPen = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
-	HPEN hOldPen = (HPEN)SelectObject(hDC, hNewPen);
-	Rectangle(hDC, tRect.left + (int)offset.GetX(), tRect.top + (int)offset.GetY(), tRect.right + (int)offset.GetX(), tRect.bottom + (int)offset.GetY());
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBrush);
-
-	DeleteObject(hNewPen);
-	return true;
-}
-
-static void Line(HDC hDC, Vector<float> l, Vector<float> r, Vector<float> offset = { 0, 0 })
-{
-	MoveToEx(hDC, (int)l.GetX() + (int)offset.GetX(), (int)l.GetY() + (int)offset.GetY(), nullptr);
-	LineTo(hDC, (int)r.GetX() + (int)offset.GetX(), (int)r.GetY() + (int)offset.GetY());
-}
-
-static BOOL HitLine(HDC hDC, Vector<float> l, Vector<float> r, Vector<float> offset = { 0, 0 })
-{
-	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
-	HPEN hNewPen = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
-	HPEN hOldPen = (HPEN)SelectObject(hDC, hNewPen);
-	MoveToEx(hDC, (int)l.GetX() + (int)offset.GetX(), (int)l.GetY() + (int)offset.GetY(), nullptr);
-	LineTo(hDC, (int)r.GetX() + (int)offset.GetX(), (int)r.GetY() + (int)offset.GetY());
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBrush);
-
-	DeleteObject(hNewPen);
-	return true;
-}
-
-static BOOL HitLine(HDC hDC, Vector<float> l, Vector<float> r)
-{
-	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
-	HPEN hNewPen = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
-	HPEN hOldPen = (HPEN)SelectObject(hDC, hNewPen);
-	MoveToEx(hDC, (int)l.GetX(), (int)l.GetY(), nullptr);
-	LineTo(hDC, (int)r.GetX(), (int)r.GetY());
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBrush);
-
-	DeleteObject(hNewPen);
-	return true;
-}
-
-
-static void Mario(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, bool left, ACTIONSTATUS as, PLAYERSTATUS ps, int& t, Vector<float> offset = {0 , 0})
+static void Mario(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, bool left, ACTIONSTATUS as, PLAYERSTATUS ps, int& t, Vector<float> offset = { 0 , 0 })
 {
 	switch (ps)
 	{
@@ -635,30 +471,6 @@ static void Mario(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, bool left, ACTION
 	case PS_END:
 		break;
 	default:
-		break;
-	}
-}
-
-static void Item(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, ITEMTYPE is, Vector<float> offset = { 0 , 0 })
-{
-	switch (is)
-	{
-	default:
-	case ITEM_NONE:
-		Rectangle(hDC, tRect, offset, 0, 0, RGB(0, 0, 255));
-		break;
-	case ITEM_MUSHROOM:
-		Mushroom(hDC, hMemDC, tInfo, tRect, offset);
-		break;
-	case ITEM_FLOWER:
-		Flower(hDC, hMemDC, tInfo, tRect, offset);
-		break;
-	case ITEM_STAR:
-		Star(hDC, hMemDC, tInfo, tRect, offset);
-		break;
-	case ITEM_CLEAR:
-		break;
-	case ITEM_END:
 		break;
 	}
 }

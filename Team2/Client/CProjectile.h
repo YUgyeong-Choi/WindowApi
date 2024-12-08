@@ -3,7 +3,7 @@
 class CProjectile : public CObject
 {
 public:
-	CProjectile();
+	CProjectile() {};
 	virtual ~CProjectile() { Release(); }
 	virtual void Initialize() override;
 	virtual int  Update() override;
@@ -13,9 +13,5 @@ public:
 
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
-public:
-	bool	CheckBoundary();
-	void		Jump();
-	OBJID m_eOwner;
 };
 

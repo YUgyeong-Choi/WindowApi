@@ -1,11 +1,18 @@
 #pragma once
 #include "Define.h"
+#include "CSceneObject.h"
+
 class CSceneManager
 {
 public:
 
-	void ReadSaveFile();
-	void LoadScene();
+	//void ReadSaveFile();
+	//void LoadScene();
+
+	void Initialize();
+	void Update();
+	void LateUpdate();
+	void Render(HDC hDC);
 
 	static CSceneManager* GetInstance()
 	{
@@ -28,5 +35,11 @@ private:
 	~CSceneManager() {};
 
 	static CSceneManager* m_pInstance;
+
+	vector<CSceneObject*> m_Scenes;
+	int m_SceneNum;
+
 };
+
+
 

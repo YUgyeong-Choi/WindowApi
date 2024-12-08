@@ -1,21 +1,17 @@
 #pragma once
-#include "../Client/CObject.h"
+#include "CObject.h"
 class CObjectManager
 {
 public:
-	CObject* GetPlayer() 
-	{ 
-		if (!m_ObjectList[OBJ_PLAYER].empty()) return m_ObjectList[OBJ_PLAYER].front();
-		else return nullptr;
-	}
-	CObject* GetLastMonster() { return m_ObjectList[OBJ_MONSTER].back(); }
 
 	list<CObject*> GetList() { return m_ObjectList[OBJ_NONE]; }
+	CObject* GetPlayer() { return m_ObjectList[OBJ_PLAYER].front(); }
+	CObject* GetLastMonster() { return m_ObjectList[OBJ_MONSTER].back(); }
+	CObject* GetLastMonsterBullet() { return m_ObjectList[OBJ_MONSTER_BULLET].back(); }
 
 	CObject* GetTarget(OBJID eID, CObject* pDst);
 
 	void		Add_Object(OBJID eID, CObject* pObj);
-	void		FixedUpdate();
 	int			Update();
 	void		LateUpdate();
 	void		Render(HDC hDC);

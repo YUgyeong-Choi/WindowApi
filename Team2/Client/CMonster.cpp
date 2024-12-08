@@ -1,19 +1,12 @@
 #include "pch.h"
 #include "CMonster.h"
 
-CMonster::CMonster()
-{
-}
-
 void CMonster::Initialize()
 {
-	m_iHp = 5;
-	m_tInfo = { WINCX * 0.5, WINCY * 0.5, 50.f, 50.f };
 }
 
 int CMonster::Update()
 {
-	if (OBJ_DEAD) return OBJ_DEAD;
 	return OBJ_NOEVENT;
 }
 
@@ -37,6 +30,10 @@ void CMonster::OnDead()
 {
 }
 
-void CMonster::Move()
+bool CMonster::FindPlayer()
 {
+	if (m_pTarget->GetINFO().fX >= m_tInfo.fX + 500 || m_pTarget->GetINFO().fX <= m_tInfo.fX - 500) // 범위 밖이라면 멈추게
+		return false;
+	else
+		return true;
 }

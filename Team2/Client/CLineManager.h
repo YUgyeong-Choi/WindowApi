@@ -4,14 +4,10 @@ class CLineManager
 {
 public:
 	void	Initialize();
-	int		Update();
-	void	LateUpdate();
+
 	void	Render(HDC hDC);
 	void	Release();
 
-	void		AddLine(LINETYPE eID, CLine* pObj);
-
-	void	SaveLine();
 	void	LoadLine();
 
 	list<CLine*>* GetList()
@@ -33,13 +29,9 @@ public:
 		m_pInstance = nullptr;
 	}
 private:
-	CLineManager()
-	{
-		ZeroMemory(m_tLinePoint, sizeof(m_tLinePoint));
-	}
+	CLineManager();
 	~CLineManager() { Release(); }
 	static CLineManager* m_pInstance;
-	list<CLine*>		m_LineList[LINE_END];
-	Vector<float>		m_tLinePoint[DIR_END];
+	list<CLine*> m_LineList[LINE_END];
 };
 
