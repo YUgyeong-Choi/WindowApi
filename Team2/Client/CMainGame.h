@@ -13,10 +13,12 @@ public:
 	void		Render();
 	void		Release();
 	void		KeyInput();
+	void		Load();
 private:
 	HDC			m_hDC;
 
 	ULONG64		m_ullTime;
+	TCHAR		m_szPlayer[36];
 	TCHAR		m_szFPS[16];
 	int			m_iFPS;
 };

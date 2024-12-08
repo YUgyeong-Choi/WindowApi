@@ -135,70 +135,88 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoxBroken.h" />
     <ClInclude Include="CAbstractFactory.h" />
-    <ClInclude Include="CBreakBlock.h" />
+    <ClInclude Include="CBitmap.h" />
+    <ClInclude Include="CBitmapManager.h" />
+    <ClInclude Include="CBox.h" />
+    <ClInclude Include="CBoxHard.h" />
+    <ClInclude Include="CBoxItem.h" />
     <ClInclude Include="CCollisionManager.h" />
+    <ClInclude Include="CEndScene.h" />
+    <ClInclude Include="CFlower.h" />
     <ClInclude Include="CFloor.h" />
     <ClInclude Include="CItem.h" />
-    <ClInclude Include="CItemBlock.h" />
+    <ClInclude Include="CItemDH.h" />
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLine.h" />
     <ClInclude Include="CLineManager.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CMonsterKL.h" />
     <ClInclude Include="CMouseManager.h" />
-    <ClInclude Include="CNormalBlock.h" />
+    <ClInclude Include="CMushRoom.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CObjectManager.h" />
     <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CPlayerKL.h" />
     <ClInclude Include="CProjectile.h" />
-    <ClInclude Include="CBlock.h" />
-    <ClInclude Include="CRectangleManager.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CScrollManager.h" />
-    <ClInclude Include="CSecretBlock.h" />
     <ClInclude Include="CSpawnManager.h" />
+    <ClInclude Include="CStage1Scene.h" />
+    <ClInclude Include="CStage2Scene.h" />
+    <ClInclude Include="CStartScene.h" />
     <ClInclude Include="CWall.h" />
-    <ClInclude Include="CWallBlock.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="CSceneObject.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CBreakBlock.cpp" />
+    <ClCompile Include="BoxBroken.cpp" />
+    <ClCompile Include="CBitmap.cpp" />
+    <ClCompile Include="CBitmapManager.cpp" />
+    <ClCompile Include="CBox.cpp" />
+    <ClCompile Include="CBoxHard.cpp" />
+    <ClCompile Include="CBoxItem.cpp" />
     <ClCompile Include="CCollisionManager.cpp" />
+    <ClCompile Include="CEndScene.cpp" />
     <ClCompile Include="CFloor.cpp" />
+    <ClCompile Include="CFlower.cpp" />
     <ClCompile Include="CItem.cpp" />
-    <ClCompile Include="CItemBlock.cpp" />
+    <ClCompile Include="CItemDH.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CLine.cpp" />
     <ClCompile Include="CLineManager.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CMonsterKL.cpp" />
     <ClCompile Include="CMouseManager.cpp" />
-    <ClCompile Include="CNormalBlock.cpp" />
+    <ClCompile Include="CMushRoom.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CObjectManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CProjectile.cpp" />
-    <ClCompile Include="CBlock.cpp" />
-    <ClCompile Include="CRectangleManager.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CScrollManager.cpp" />
-    <ClCompile Include="CSecretBlock.cpp" />
     <ClCompile Include="CSpawnManager.cpp" />
+    <ClCompile Include="CStage1Scene.cpp" />
+    <ClCompile Include="CStage2Scene.cpp" />
+    <ClCompile Include="CStartScene.cpp" />
     <ClCompile Include="CWall.cpp" />
-    <ClCompile Include="CWallBlock.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PlayerKL.cpp" />
+    <ClCompile Include="CSceneObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

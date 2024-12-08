@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CObjectManager.h"
 #include "CCollisionManager.h"
-#include "CRectangleManager.h"
 
 CObjectManager* CObjectManager::m_pInstance = nullptr;
 
@@ -16,7 +15,7 @@ void CObjectManager::Add_Object(OBJID eID, CObject* pObj)
 		return;
 
 	m_ObjectList[eID].push_back(pObj);
-	m_ObjectList[eID].back()->SetOID(eID);
+	m_ObjectList[eID].back()->SetOBJID(eID);
 }
 
 int CObjectManager::Update()
@@ -35,22 +34,22 @@ int CObjectManager::Update()
 			}
 			else
 				++iter;
-		}
+		} 
 	}
 	return 0;
 }
 
 void CObjectManager::LateUpdate()
 {
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_RECT]);
-	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_RECT]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_BOX]);
+	CCollisionManager::CollisionRect(m_ObjectList[OBJ_ITEM], m_ObjectList[OBJ_BOX]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& pObj : m_ObjectList[i])
 			pObj->LateUpdate();
 	}
-
 }
 
 void CObjectManager::Render(HDC hDC)

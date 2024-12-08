@@ -5,6 +5,9 @@ CLineManager* CLineManager::m_pInstance = nullptr;
 
 void CLineManager::Initialize()
 {
+	m_LineList[LINE_NONE].push_back(new CLine(Vector<float>{-100, 400}, Vector<float>{400, 300}));
+	m_LineList[LINE_NONE].push_back(new CLine(Vector<float>{400, 300}, Vector<float>{400, 500}));
+	m_LineList[LINE_NONE].push_back(new CLine(Vector<float>{400, 500}, Vector<float>{700, 500}));
 }
 
 void CLineManager::Render(HDC hDC)

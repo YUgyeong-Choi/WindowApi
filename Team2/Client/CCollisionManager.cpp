@@ -157,4 +157,6 @@ bool CCollisionManager::CollisionLine(float _fX, float* pY)
 
 	*pY = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
 	return true;
+
+	return false;
 }

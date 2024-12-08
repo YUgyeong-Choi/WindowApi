@@ -5,7 +5,6 @@ class CObjectManager
 public:
 	CObject* GetPlayer() { return m_ObjectList[OBJ_PLAYER].front(); }
 	CObject* GetLastMonster() { return m_ObjectList[OBJ_MONSTER].back(); }
-	CObject* GetLastItem() { return m_ObjectList[OBJ_ITEM].back(); }
 
 	CObject* GetTarget(OBJID eID, CObject* pDst);
 

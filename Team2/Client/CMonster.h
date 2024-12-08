@@ -12,7 +12,5 @@ public:
 	virtual void Release() override;
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
-private:
-	bool m_bActive;
 };
 

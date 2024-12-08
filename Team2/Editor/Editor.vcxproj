@@ -135,6 +135,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBox.h" />
+    <ClInclude Include="CBoxDrawManager.h" />
+    <ClInclude Include="CBoxHard.h" />
+    <ClInclude Include="CBoxItem.h" />
+    <ClInclude Include="CKeyManager.h" />
+    <ClInclude Include="CMainGame.h" />
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="CScrollManager.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
@@ -142,6 +151,14 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBox.cpp" />
+    <ClCompile Include="CBoxDrawManager.cpp" />
+    <ClCompile Include="CBoxHard.cpp" />
+    <ClCompile Include="CBoxItem.cpp" />
+    <ClCompile Include="CKeyManager.cpp" />
+    <ClCompile Include="CMainGame.cpp" />
+    <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="CScrollManager.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

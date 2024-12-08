@@ -15,15 +15,13 @@ public:
 	virtual void OnDead();
 	void Jump();
 	void KeyInput();
+	PLAYERSTATUS GetPlayerState() { return m_ePlayerStatus; }
+	void SetPlayerState(PLAYERSTATUS _state) { m_ePlayerStatus = _state; }
 
 	void ScrollOffset();
-
-	void SetStatus(PLAYERSTATUS _status) { m_bPlayerStatus = _status; }
-	PLAYERSTATUS GetStatus(PLAYERSTATUS _status) { return m_bPlayerStatus; }
-
-
 protected:
+	PLAYERSTATUS	m_ePlayerStatus;
 private:
-	PLAYERSTATUS	m_bPlayerStatus;
+
 };
 

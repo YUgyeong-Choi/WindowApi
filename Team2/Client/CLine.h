@@ -15,6 +15,8 @@ public:
 
 	Vector<float> GetLPoint() { return m_LPoint; }
 	Vector<float> GetRPoint() { return m_RPoint; }
+
+	float		  GetCurrentY(float _fX);
 private:
 	Vector<float> m_LPoint;
 	Vector<float> m_RPoint;

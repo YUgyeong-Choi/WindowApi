@@ -67,26 +67,53 @@
     <Filter Include="01. Object\03. Item">
       <UniqueIdentifier>{2070fccf-516b-424a-ae6e-057915cd7e78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="99. Design\09.RectangleManager">
-      <UniqueIdentifier>{e95575c6-128d-44b8-a4e7-7c389fe6c8e8}</UniqueIdentifier>
+    <Filter Include="01. Object\04. Box">
+      <UniqueIdentifier>{6ce86812-583f-43ab-b09f-5619cc9c1c8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04.Rectangle">
-      <UniqueIdentifier>{35d63336-3429-4327-b227-b0ddc531de17}</UniqueIdentifier>
+    <Filter Include="01. Object\01. Monster\00. Boss\01. MonsterKL">
+      <UniqueIdentifier>{b18b1f9c-8167-45e7-aa91-fa38c743ec64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04.Rectangle\ItemBlock">
-      <UniqueIdentifier>{a9ae357c-9083-4026-8917-e259ba3e49b0}</UniqueIdentifier>
+    <Filter Include="01. Object\03. Item\CItemDH">
+      <UniqueIdentifier>{a71b83cc-51c3-4d04-b1b9-4c32e3095477}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04.Rectangle\NormalBlock">
-      <UniqueIdentifier>{50a45886-a5ee-41a8-86f0-070b24deb789}</UniqueIdentifier>
+    <Filter Include="01. Object\03. Item\Flower">
+      <UniqueIdentifier>{e2070e34-c598-43a7-9077-9562f4365c45}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04.Rectangle\SecretBlock">
-      <UniqueIdentifier>{bad38f4d-5a82-46df-ad9d-5442ca7afdbd}</UniqueIdentifier>
+    <Filter Include="01. Object\03. Item\MushRoom">
+      <UniqueIdentifier>{f3fa349f-9569-400c-ba3a-c6866e056f62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04.Rectangle\BreakBlock">
-      <UniqueIdentifier>{9a23be54-390c-4d6a-9be7-147c127fa6af}</UniqueIdentifier>
+    <Filter Include="01. Object\04. Box\BoxHard">
+      <UniqueIdentifier>{ccfb4241-ba9e-4edf-b043-a114635e790a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04.Rectangle\WallBlock">
-      <UniqueIdentifier>{97c03095-15f5-4efd-80ae-5fd4a06892fe}</UniqueIdentifier>
+    <Filter Include="01. Object\04. Box\BoxItem">
+      <UniqueIdentifier>{58e9212c-f2e6-4c8f-a80f-4b2c8ce63a49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\04. Box\BoxBroken">
+      <UniqueIdentifier>{2cdd3829-06c3-4826-9a88-c0f7a3e7293d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Object\00. Player\PlayerKL">
+      <UniqueIdentifier>{3df2f5f6-4db3-4fcb-a5f7-5a455af0b2b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Bitmap">
+      <UniqueIdentifier>{3b1c3d05-0609-4ba8-b370-a1828819624c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene">
+      <UniqueIdentifier>{b66ec937-d656-4a55-8f83-f4ccf7a4c6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Design\09. BitmapManager">
+      <UniqueIdentifier>{fbf987c7-07aa-424d-9cd6-3289d5fa1e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene\StartScene">
+      <UniqueIdentifier>{05dee914-bb8b-431f-8607-0ccb4fad5242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene\Stage1">
+      <UniqueIdentifier>{4e30ca30-9187-4732-93ba-037b5d84a709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene\EndScene">
+      <UniqueIdentifier>{2daf8076-f1fb-42d4-89db-f23a999ec269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene\Stage2">
+      <UniqueIdentifier>{3fd6586d-9434-47b7-b104-ac1d69b55bc5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -159,29 +186,56 @@
     <ClInclude Include="CProjectile.h">
       <Filter>01. Object\02. Projectile</Filter>
     </ClInclude>
+    <ClInclude Include="CBox.h">
+      <Filter>01. Object\04. Box</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterKL.h">
+      <Filter>01. Object\01. Monster\00. Boss\01. MonsterKL</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemDH.h">
+      <Filter>01. Object\03. Item\CItemDH</Filter>
+    </ClInclude>
     <ClInclude Include="CItem.h">
       <Filter>01. Object\03. Item</Filter>
     </ClInclude>
-    <ClInclude Include="CRectangleManager.h">
-      <Filter>99. Design\09.RectangleManager</Filter>
+    <ClInclude Include="CFlower.h">
+      <Filter>01. Object\03. Item\Flower</Filter>
     </ClInclude>
-    <ClInclude Include="CBlock.h">
-      <Filter>01. Object\04.Rectangle</Filter>
+    <ClInclude Include="CMushRoom.h">
+      <Filter>01. Object\03. Item\MushRoom</Filter>
     </ClInclude>
-    <ClInclude Include="CNormalBlock.h">
-      <Filter>01. Object\04.Rectangle\NormalBlock</Filter>
+    <ClInclude Include="CBoxHard.h">
+      <Filter>01. Object\04. Box\BoxHard</Filter>
     </ClInclude>
-    <ClInclude Include="CSecretBlock.h">
-      <Filter>01. Object\04.Rectangle\SecretBlock</Filter>
+    <ClInclude Include="CBoxItem.h">
+      <Filter>01. Object\04. Box\BoxItem</Filter>
     </ClInclude>
-    <ClInclude Include="CBreakBlock.h">
-      <Filter>01. Object\04.Rectangle\BreakBlock</Filter>
+    <ClInclude Include="BoxBroken.h">
+      <Filter>01. Object\04. Box\BoxBroken</Filter>
     </ClInclude>
-    <ClInclude Include="CItemBlock.h">
-      <Filter>01. Object\04.Rectangle\ItemBlock</Filter>
+    <ClInclude Include="CPlayerKL.h">
+      <Filter>01. Object\00. Player\PlayerKL</Filter>
     </ClInclude>
-    <ClInclude Include="CWallBlock.h">
-      <Filter>01. Object\04.Rectangle\WallBlock</Filter>
+    <ClInclude Include="CBitmap.h">
+      <Filter>03. Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CBitmapManager.h">
+      <Filter>99. Design\09. BitmapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneObject.h">
+      <Filter>04. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage1Scene.h">
+      <Filter>04. Scene\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="CStartScene.h">
+      <Filter>04. Scene\StartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CEndScene.h">
+      <Filter>04. Scene\EndScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage2Scene.h">
+      <Filter>04. Scene\Stage2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,29 +293,56 @@
     <ClCompile Include="CProjectile.cpp">
       <Filter>01. Object\02. Projectile</Filter>
     </ClCompile>
+    <ClCompile Include="CBox.cpp">
+      <Filter>01. Object\04. Box</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterKL.cpp">
+      <Filter>01. Object\01. Monster\00. Boss\01. MonsterKL</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemDH.cpp">
+      <Filter>01. Object\03. Item\CItemDH</Filter>
+    </ClCompile>
     <ClCompile Include="CItem.cpp">
       <Filter>01. Object\03. Item</Filter>
     </ClCompile>
-    <ClCompile Include="CRectangleManager.cpp">
-      <Filter>99. Design\09.RectangleManager</Filter>
+    <ClCompile Include="CFlower.cpp">
+      <Filter>01. Object\03. Item\Flower</Filter>
     </ClCompile>
-    <ClCompile Include="CBlock.cpp">
-      <Filter>01. Object\04.Rectangle</Filter>
+    <ClCompile Include="CMushRoom.cpp">
+      <Filter>01. Object\03. Item\MushRoom</Filter>
     </ClCompile>
-    <ClCompile Include="CNormalBlock.cpp">
-      <Filter>01. Object\04.Rectangle\NormalBlock</Filter>
+    <ClCompile Include="CBoxHard.cpp">
+      <Filter>01. Object\04. Box\BoxHard</Filter>
     </ClCompile>
-    <ClCompile Include="CSecretBlock.cpp">
-      <Filter>01. Object\04.Rectangle\SecretBlock</Filter>
+    <ClCompile Include="CBoxItem.cpp">
+      <Filter>01. Object\04. Box\BoxItem</Filter>
     </ClCompile>
-    <ClCompile Include="CBreakBlock.cpp">
-      <Filter>01. Object\04.Rectangle\BreakBlock</Filter>
+    <ClCompile Include="BoxBroken.cpp">
+      <Filter>01. Object\04. Box\BoxBroken</Filter>
     </ClCompile>
-    <ClCompile Include="CItemBlock.cpp">
-      <Filter>01. Object\04.Rectangle\ItemBlock</Filter>
+    <ClCompile Include="PlayerKL.cpp">
+      <Filter>01. Object\00. Player\PlayerKL</Filter>
     </ClCompile>
-    <ClCompile Include="CWallBlock.cpp">
-      <Filter>01. Object\04.Rectangle\WallBlock</Filter>
+    <ClCompile Include="CBitmap.cpp">
+      <Filter>03. Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CBitmapManager.cpp">
+      <Filter>99. Design\09. BitmapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneObject.cpp">
+      <Filter>04. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage1Scene.cpp">
+      <Filter>04. Scene\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CStartScene.cpp">
+      <Filter>04. Scene\StartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CEndScene.cpp">
+      <Filter>04. Scene\EndScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage2Scene.cpp">
+      <Filter>04. Scene\Stage2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

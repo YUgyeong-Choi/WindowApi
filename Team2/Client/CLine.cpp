@@ -32,3 +32,14 @@ void CLine::Render(HDC hDC)
 void CLine::Release()
 {
 }
+
+float CLine::GetCurrentY(float _fX)
+{
+	float x1 = m_LPoint.GetX();
+	float y1 = m_LPoint.GetY();
+	float x2 = m_RPoint.GetX();
+	float y2 = m_RPoint.GetY();
+	float cY = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
+	return cY;
+}
+

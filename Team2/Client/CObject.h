@@ -13,7 +13,7 @@ public:
 	virtual void Release()			PURE;
 
 	virtual void UpdateRect();
-	virtual void OnCollision(CObject* _op);
+	virtual void OnCollision(CObject* _op);	
 	virtual void OnDead();
 
 	INFO GetINFO() { return m_tInfo; }
@@ -27,6 +27,9 @@ public:
 	bool GetIsDead() { return m_bIsDead; }
 	void SetIsDead(bool _b) { m_bIsDead = _b; }
 
+	void SetActionStatus(ACTIONSTATUS _status) { m_eAction = _status; }
+	ACTIONSTATUS GetActionStatus() { return m_eAction; }
+
 	Vector<float> GetDirection() { return m_tDir; }
 	void SetDirection(Vector<float>& _d) { m_tDir = _d; }
 	void SetDirection(float _fx, float _fy) { m_tDir = { _fx, _fy }; }
@@ -34,30 +37,41 @@ public:
 	void SetLevel(int _l) { m_iLevel = _l; }
 	int GetLevel() { return m_iLevel; }
 
-	void SetActionStatus(ACTIONSTATUS _actionStatus) { m_bActionStatus = _actionStatus; }
-	ACTIONSTATUS GetActionStatus() { return m_bActionStatus; }
+	void SetOBJID(OBJID _id) { m_eOID = _id; }
+	OBJID GetOBJID() { return m_eOID; }
 
-	void SetOID(OBJID _oid) { m_eOID = _oid; }
-	OBJID GetOID() { return m_eOID; }
+	void SetTarget(CObject* _pObject) { m_pTarget = _pObject; }
 
-	void SetFallSpeed(float _fallSpeed) { m_fFallSpeed = _fallSpeed; }
+	// 나와 대상의 좌표 간의 각도 반환 (디그리로 반환).
+	// -180 ~ 180도 범위
+	float GetDegreeAngle(INFO _info)
+	{
+		INFO vector = {_info.fX - m_tInfo.fX, _info.fY - m_tInfo.fY };
+		float angle = atan2f(vector.fY, vector.fX);
+
+		return angle * (180.f / PI);
+	}
 
 protected:
-	ACTIONSTATUS    m_bActionStatus;
+	ACTIONSTATUS	m_eAction;
 	INFO			m_tInfo;
 	RECT			m_tRect;
-	bool			m_bIsDead;
+	bool			m_bIsDead;	
+
 	int				m_iLevel;
 	int				m_iHp;
 	float			m_fSpeed;
 	float			m_fAngle;
 	float			m_fJumpPower;
 	float			m_fTime;
-	float			m_fFallSpeed;
 	ULONG64			m_ullTime;
 	Vector<float>	m_tDir;
 	OBJID			m_eOID;
-	CObject*		m_pTarget;
+	CObject*		m_pTarget;	
+
+	const float const		m_fGravity = 3.f;
+	float			m_fCurrentGravity;
+	bool			m_bIsFloor = false;
 private:
 };
 

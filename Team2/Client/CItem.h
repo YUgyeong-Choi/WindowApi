@@ -3,7 +3,7 @@
 class CItem : public CObject
 {
 public:
-	CItem();
+	CItem() {};
 	virtual ~CItem() { Release(); }
 	virtual void Initialize() override;
 	virtual int  Update() override;
@@ -16,4 +16,3 @@ protected:
 private:
 
 };
-
