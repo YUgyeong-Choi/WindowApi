@@ -13,6 +13,7 @@ public:
 	void Update();
 	void LateUpdate();
 	void Render(HDC hDC);
+	void Release();
 
 	static CSceneManager* GetInstance()
 	{
@@ -32,7 +33,7 @@ public:
 	}
 private:
 	CSceneManager();
-	~CSceneManager() {};
+	~CSceneManager() { Release(); }
 
 	static CSceneManager* m_pInstance;
 

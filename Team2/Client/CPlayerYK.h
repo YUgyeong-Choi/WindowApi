@@ -25,5 +25,6 @@ public:
 protected:
 private:
 	PLAYERSTATUS	m_bPlayerStatus;
+	float friction;
 };
 

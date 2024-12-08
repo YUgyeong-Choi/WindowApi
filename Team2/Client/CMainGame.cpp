@@ -107,6 +107,7 @@ void CMainGame::Release()
 	CKeyManager::DestroyInstance();
 	CLineManager::DestroyInstance();
 	CObjectManager::DestroyInstance();
+	CSceneManager::DestroyInstance();
 	ReleaseDC(g_hWnd, m_hDC);
 }
 

@@ -84,6 +84,13 @@ void CSceneManager::Render(HDC hDC)
 	m_Scenes.at(m_SceneNum)->Render(hDC);
 }
 
+void CSceneManager::Release()
+{
+	for (auto& scene : m_Scenes) {
+		Safe_Delete<CSceneObject*>(scene);
+	}
+}
+
 CSceneManager::CSceneManager() : m_SceneNum(0)
 {
 

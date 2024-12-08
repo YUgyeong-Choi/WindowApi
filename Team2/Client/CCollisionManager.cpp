@@ -93,6 +93,60 @@ void CCollisionManager::CollisionRectEx(list<CObject*> _Dst, list<CObject*> _Src
 	}
 }
 
+void CCollisionManager::CollisionRectEx2(list<CObject*> _Dst, list<CObject*> _Src)
+{
+	float	fX(0.f), fY(0.f);
+
+	for (auto& Dst : _Dst)
+	{
+		for (auto& Src : _Src)
+		{
+			if (CheckRect(Dst, Src, &fX, &fY))
+			{
+				if (Dst->GetOBJID() == OBJ_PLAYER && Src->GetOBJID() == OBJ_ITEM)
+				{
+					Dst->OnCollision(Src);
+					Src->OnCollision(Dst);
+				}
+				// 좌 우 충돌
+				if (fX < fY)
+				{
+					// 좌 충돌
+					if (Dst->GetINFO().fX < Src->GetINFO().fX)
+					{
+						Dst->SetPos(Dst->GetINFO().fX - fX - 10.f, Dst->GetINFO().fY);
+					}
+					// 우 충돌
+					else
+					{
+						Dst->SetPos(Dst->GetINFO().fX + fX + 10.f, Dst->GetINFO().fY);
+					}
+				}
+				// 상 하 충돌
+				else if (fX > fY)
+				{
+					// 상 충돌
+					if (Dst->GetINFO().fY < Src->GetINFO().fY)
+					{
+						Dst->SetPos(Dst->GetINFO().fX, Dst->GetINFO().fY - fY - 10.f);
+						Dst->SetIsGround(true);
+					}
+					// 하 충돌
+					else
+					{
+						if (Src->GetOBJID() == OBJ_BLOCK)
+						{
+							Src->OnCollision(Dst);
+						}
+						Dst->SetPos(Dst->GetINFO().fX, Dst->GetINFO().fY + fY + 10.f);
+						Dst->SetIsGround(false);
+					}
+				}
+			}
+		}
+	}
+}
+
 bool CCollisionManager::CheckRect(CObject* _Dst, CObject* _Src, float* pX, float* pY)
 {
 	float		fX = abs(_Dst->GetINFO().fX - _Src->GetINFO().fX);
