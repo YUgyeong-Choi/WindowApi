@@ -13,6 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="00. MainEditor">
+      <UniqueIdentifier>{410fdb0b-31ce-4575-a69f-0829c2cedc4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Managers">
+      <UniqueIdentifier>{69c76dc5-fbf7-4cc2-be1c-c21bb1727bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Managers\03. ScrollManager">
+      <UniqueIdentifier>{acda07d6-ee7d-4eef-bc40-71b9233e52b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Managers\00. KeyManager">
+      <UniqueIdentifier>{66e56a8a-5c11-4d63-8780-5b2e0fd76f21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Managers\01. ObjectManager">
+      <UniqueIdentifier>{6ebd2d21-bd7c-4332-a624-f4514f2815e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Managers\02.. LineManager">
+      <UniqueIdentifier>{261a4c97-4499-46bc-a0e5-20cd5de4c01d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Managers\02.. LineManager\00. Line">
+      <UniqueIdentifier>{cf8a6188-d521-4564-bdbb-fd0e822024b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -30,32 +51,26 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CMainGame.h">
+    <ClInclude Include="..\Client\CScrollManager.h">
+      <Filter>99. Managers\03. ScrollManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Client\CObjectManager.h">
+      <Filter>99. Managers\01. ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Client\CLineManager.h">
+      <Filter>99. Managers\02.. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Client\Define.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Define.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="..\Client\CLine.h">
+      <Filter>99. Managers\02.. LineManager\00. Line</Filter>
     </ClInclude>
-    <ClInclude Include="CBlockDrawManager.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CMainEditor.h">
+      <Filter>00. MainEditor</Filter>
     </ClInclude>
-    <ClInclude Include="CKeyManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlock.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CScrollManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlockItem.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlockHard.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="..\Client\CKeyManager.h">
+      <Filter>99. Managers\00. KeyManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,29 +80,23 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CMainGame.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="..\Client\CScrollManager.cpp">
+      <Filter>99. Managers\03. ScrollManager</Filter>
     </ClCompile>
-    <ClCompile Include="CBlockDrawManager.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="..\Client\CObjectManager.cpp">
+      <Filter>99. Managers\01. ObjectManager</Filter>
     </ClCompile>
-    <ClCompile Include="CKeyManager.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="..\Client\CLineManager.cpp">
+      <Filter>99. Managers\02.. LineManager</Filter>
     </ClCompile>
-    <ClCompile Include="CBlock.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="..\Client\CLine.cpp">
+      <Filter>99. Managers\02.. LineManager\00. Line</Filter>
     </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CMainEditor.cpp">
+      <Filter>00. MainEditor</Filter>
     </ClCompile>
-    <ClCompile Include="CScrollManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlockItem.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlockHard.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="..\Client\CKeyManager.cpp">
+      <Filter>99. Managers\00. KeyManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

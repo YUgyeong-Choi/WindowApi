@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "CObject.h"
+#include "../Client/CObject.h"
 
 CObject::CObject() : 
-	m_bIsDead(false),
+	m_bIsDead(false), m_bIsActive(false), m_bIsJumping(false), m_bIsGround(false),
 	m_fSpeed(0.f), m_fAngle(0.f), m_ullTime(0), m_fJumpPower(0.f), m_fTime(0.f), m_iLevel(0), m_iHp(0),
-	m_tDir(0.f, 0.f),
-	m_eOID(OBJID::OBJ_NONE), m_pTarget(nullptr), m_fFallSpeed(0.f)
+	m_tDir(0.f, 0.f), m_eActionStatus(AS_STOP),
+	m_eOID(OBJID::OBJ_NONE), m_pTarget(nullptr), m_pTargetLine(nullptr)
 {
 	ZeroMemory(&m_tInfo, sizeof(INFO));
 	ZeroMemory(&m_tRect, sizeof(RECT));

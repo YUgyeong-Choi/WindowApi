@@ -3,7 +3,7 @@
 class CMonster : public CObject
 {
 public:
-	CMonster() {};
+	CMonster();
 	virtual ~CMonster() { Release(); }
 	virtual void Initialize() override;
 	virtual int  Update() override;
@@ -13,6 +13,6 @@ public:
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
 
-	bool FindPlayer();
+	virtual void Move();
 };
 

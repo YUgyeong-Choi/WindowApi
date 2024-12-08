@@ -43,6 +43,9 @@
     <Filter Include="01. Object\01. Monster">
       <UniqueIdentifier>{ced078b0-58f1-421d-923b-06f81135c950}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Object\01. Monster\00. Boss">
+      <UniqueIdentifier>{fcb42e8d-3baa-40dc-bb2b-58e493dd5acb}</UniqueIdentifier>
+    </Filter>
     <Filter Include="99. Design\04. KeyManager">
       <UniqueIdentifier>{49fec1bf-8ebd-409b-9e64-34bad2261d97}</UniqueIdentifier>
     </Filter>
@@ -64,98 +67,29 @@
     <Filter Include="01. Object\03. Item">
       <UniqueIdentifier>{2070fccf-516b-424a-ae6e-057915cd7e78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\03. Item\CItemDH">
-      <UniqueIdentifier>{a71b83cc-51c3-4d04-b1b9-4c32e3095477}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\03. Item\Flower">
-      <UniqueIdentifier>{e2070e34-c598-43a7-9077-9562f4365c45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\03. Item\MushRoom">
-      <UniqueIdentifier>{f3fa349f-9569-400c-ba3a-c6866e056f62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\00. Player\PlayerKL">
-      <UniqueIdentifier>{3df2f5f6-4db3-4fcb-a5f7-5a455af0b2b3}</UniqueIdentifier>
+    <Filter Include="01. Object\04. Box">
+      <UniqueIdentifier>{f04ffa9a-acd4-47a2-8488-03f0cc0d12d8}</UniqueIdentifier>
     </Filter>
     <Filter Include="03. Bitmap">
-      <UniqueIdentifier>{3b1c3d05-0609-4ba8-b370-a1828819624c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene">
-      <UniqueIdentifier>{b66ec937-d656-4a55-8f83-f4ccf7a4c6e1}</UniqueIdentifier>
+      <UniqueIdentifier>{21006e62-2c3c-44bc-9aff-6553a594fbc2}</UniqueIdentifier>
     </Filter>
     <Filter Include="99. Design\09. BitmapManager">
-      <UniqueIdentifier>{fbf987c7-07aa-424d-9cd6-3289d5fa1e77}</UniqueIdentifier>
+      <UniqueIdentifier>{20d0bfde-ba44-421b-a6e6-16b5d3bedf3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04. Block">
-      <UniqueIdentifier>{6ce86812-583f-43ab-b09f-5619cc9c1c8f}</UniqueIdentifier>
+    <Filter Include="04. Scene">
+      <UniqueIdentifier>{7face85f-b761-4219-a7e5-a7b14355e446}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04. Block\BlockHard">
-      <UniqueIdentifier>{ccfb4241-ba9e-4edf-b043-a114635e790a}</UniqueIdentifier>
+    <Filter Include="99. Design\10. SoundManager">
+      <UniqueIdentifier>{e3d648a6-b72d-43a9-bcf8-6ce410459a12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04. Block\BlockItem">
-      <UniqueIdentifier>{58e9212c-f2e6-4c8f-a80f-4b2c8ce63a49}</UniqueIdentifier>
+    <Filter Include="01. Object\05. Mouse">
+      <UniqueIdentifier>{44567056-9995-4738-933d-f3479ddca738}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\04. Block\BlockBroken">
-      <UniqueIdentifier>{2cdd3829-06c3-4826-9a88-c0f7a3e7293d}</UniqueIdentifier>
+    <Filter Include="01. Object\00. Player\01. MHPlayer">
+      <UniqueIdentifier>{3a14ace7-5247-4114-9d6b-41743c684690}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Object\03. Item\Star">
-      <UniqueIdentifier>{1817e300-d4f9-4b76-bcde-c0146ed90cc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\00. Player\PlayerMH">
-      <UniqueIdentifier>{75f03497-c46d-44d0-a88e-aada98107989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\04. Block\BlockSecret">
-      <UniqueIdentifier>{8b5e183a-f1ac-4696-9657-ebc762c788fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\00. Player\PlayerYK">
-      <UniqueIdentifier>{d823b3d2-4711-4825-8bb1-7e16b43d5634}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\00. Player\PlayerDH">
-      <UniqueIdentifier>{ba559f4a-4e3b-415e-a115-73e3a42ed4cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="99. Design\10. BlockManager">
-      <UniqueIdentifier>{7bb1c737-0561-47ce-97c4-2c1d45ecd402}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\02. Projectile\00. PlayerBullet">
-      <UniqueIdentifier>{0e5ea05e-aa5c-4bad-a04e-f2271d860c8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\02. Projectile\01. MonsterBullet">
-      <UniqueIdentifier>{d22bc6d9-a2a0-4295-8fe9-a5284fd4d3ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\01. Monster\각자 한거">
-      <UniqueIdentifier>{fcb42e8d-3baa-40dc-bb2b-58e493dd5acb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\01. Monster\각자 한거\01. MonsterKL">
-      <UniqueIdentifier>{b18b1f9c-8167-45e7-aa91-fa38c743ec64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\01. Monster\각자 한거\02. MonsterSH">
-      <UniqueIdentifier>{26dcfd1d-7641-4f26-ab08-df0d0d960377}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\01. Monster\각자 한거\02. MonsterSH\01. FollowMonster">
-      <UniqueIdentifier>{eb8224d4-7a0e-4b0d-9a52-628551ac4c24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\01. Monster\각자 한거\02. MonsterSH\02. WanderMonster">
-      <UniqueIdentifier>{62131f81-c79b-4fb7-8517-f599131c9324}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Object\00. Player\PlayerSH">
-      <UniqueIdentifier>{5935e3ab-436e-4c71-967f-b2bad930adb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene\StartScene">
-      <UniqueIdentifier>{2a0a7259-4097-46ce-a544-c9158d6d39c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene\StageKL">
-      <UniqueIdentifier>{cc36bd96-7313-4ac1-a1ab-c60f9f16079a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene\StageSH">
-      <UniqueIdentifier>{ef2c7fab-9853-4224-96e4-133b5e4ca035}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene\StageMH">
-      <UniqueIdentifier>{8f294d38-f7e2-41f9-917c-d8f91640ffc0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene\StageYK">
-      <UniqueIdentifier>{29d1b97d-0394-42ea-ae58-024f251cca29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Scene\StageDH">
-      <UniqueIdentifier>{484ec2da-28bd-4fd7-afd6-66b265c2e192}</UniqueIdentifier>
+    <Filter Include="리소스 파일\Mario">
+      <UniqueIdentifier>{61447d32-f576-4f92-99ef-371d4f71d274}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="CObject.h">
       <Filter>01. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>01. Object\00. Player</Filter>
     </ClInclude>
     <ClInclude Include="CAbstractFactory.h">
       <Filter>99. Design\00. AbstractFactory</Filter>
@@ -225,35 +162,11 @@
     <ClInclude Include="CProjectile.h">
       <Filter>01. Object\02. Projectile</Filter>
     </ClInclude>
-    <ClInclude Include="CBlock.h">
-      <Filter>01. Object\04. Block</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonsterKL.h">
-      <Filter>01. Object\01. Monster\각자 한거\01. MonsterKL</Filter>
-    </ClInclude>
-    <ClInclude Include="CItemDH.h">
-      <Filter>01. Object\03. Item\CItemDH</Filter>
-    </ClInclude>
     <ClInclude Include="CItem.h">
       <Filter>01. Object\03. Item</Filter>
     </ClInclude>
-    <ClInclude Include="CFlower.h">
-      <Filter>01. Object\03. Item\Flower</Filter>
-    </ClInclude>
-    <ClInclude Include="CMushRoom.h">
-      <Filter>01. Object\03. Item\MushRoom</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlockHard.h">
-      <Filter>01. Object\04. Block\BlockHard</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlockItem.h">
-      <Filter>01. Object\04. Block\BlockItem</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlockBroken.h">
-      <Filter>01. Object\04. Block\BlockBroken</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerKL.h">
-      <Filter>01. Object\00. Player\PlayerKL</Filter>
+    <ClInclude Include="CBox.h">
+      <Filter>01. Object\04. Box</Filter>
     </ClInclude>
     <ClInclude Include="CBitmap.h">
       <Filter>03. Bitmap</Filter>
@@ -261,53 +174,17 @@
     <ClInclude Include="CBitmapManager.h">
       <Filter>99. Design\09. BitmapManager</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayerMH.h">
-      <Filter>01. Object\00. Player\PlayerMH</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerYK.h">
-      <Filter>01. Object\00. Player\PlayerYK</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerDH.h">
-      <Filter>01. Object\00. Player\PlayerDH</Filter>
-    </ClInclude>
-    <ClInclude Include="CBlockManager.h">
-      <Filter>99. Design\10. BlockManager</Filter>
-    </ClInclude>
-    <ClInclude Include="CFollowMonster.h">
-      <Filter>01. Object\01. Monster\각자 한거\02. MonsterSH\01. FollowMonster</Filter>
-    </ClInclude>
-    <ClInclude Include="CWanderMonster.h">
-      <Filter>01. Object\01. Monster\각자 한거\02. MonsterSH\02. WanderMonster</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerBullet.h">
-      <Filter>01. Object\02. Projectile\00. PlayerBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonsterBullet.h">
-      <Filter>01. Object\02. Projectile\01. MonsterBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerSH.h">
-      <Filter>01. Object\00. Player\PlayerSH</Filter>
-    </ClInclude>
-    <ClInclude Include="CStageKL.h">
-      <Filter>04. Scene\StageKL</Filter>
-    </ClInclude>
-    <ClInclude Include="CStageSH.h">
-      <Filter>04. Scene\StageSH</Filter>
-    </ClInclude>
-    <ClInclude Include="CStartScene.h">
-      <Filter>04. Scene\StartScene</Filter>
-    </ClInclude>
-    <ClInclude Include="CSceneObject.h">
+    <ClInclude Include="CScene.h">
       <Filter>04. Scene</Filter>
     </ClInclude>
-    <ClInclude Include="CStageDH.h">
-      <Filter>04. Scene\StageDH</Filter>
+    <ClInclude Include="CMouse.h">
+      <Filter>01. Object\05. Mouse</Filter>
     </ClInclude>
-    <ClInclude Include="CStageYK.h">
-      <Filter>04. Scene\StageYK</Filter>
+    <ClInclude Include="CMHPlayer.h">
+      <Filter>01. Object\00. Player\01. MHPlayer</Filter>
     </ClInclude>
-    <ClInclude Include="CStageMH.h">
-      <Filter>04. Scene\StageMH</Filter>
+    <ClInclude Include="CBoss.h">
+      <Filter>01. Object\01. Monster\00. Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="CObject.cpp">
       <Filter>01. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>01. Object\00. Player</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
       <Filter>99. Design\01. CollisionManager</Filter>
@@ -362,35 +242,11 @@
     <ClCompile Include="CProjectile.cpp">
       <Filter>01. Object\02. Projectile</Filter>
     </ClCompile>
-    <ClCompile Include="CBlock.cpp">
-      <Filter>01. Object\04. Block</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonsterKL.cpp">
-      <Filter>01. Object\01. Monster\각자 한거\01. MonsterKL</Filter>
-    </ClCompile>
-    <ClCompile Include="CItemDH.cpp">
-      <Filter>01. Object\03. Item\CItemDH</Filter>
-    </ClCompile>
     <ClCompile Include="CItem.cpp">
       <Filter>01. Object\03. Item</Filter>
     </ClCompile>
-    <ClCompile Include="CFlower.cpp">
-      <Filter>01. Object\03. Item\Flower</Filter>
-    </ClCompile>
-    <ClCompile Include="CMushRoom.cpp">
-      <Filter>01. Object\03. Item\MushRoom</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlockHard.cpp">
-      <Filter>01. Object\04. Block\BlockHard</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlockItem.cpp">
-      <Filter>01. Object\04. Block\BlockItem</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlockBroken.cpp">
-      <Filter>01. Object\04. Block\BlockBroken</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerKL.cpp">
-      <Filter>01. Object\00. Player\PlayerKL</Filter>
+    <ClCompile Include="CBox.cpp">
+      <Filter>01. Object\04. Box</Filter>
     </ClCompile>
     <ClCompile Include="CBitmap.cpp">
       <Filter>03. Bitmap</Filter>
@@ -398,53 +254,17 @@
     <ClCompile Include="CBitmapManager.cpp">
       <Filter>99. Design\09. BitmapManager</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayerMH.cpp">
-      <Filter>01. Object\00. Player\PlayerMH</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayerYK.cpp">
-      <Filter>01. Object\00. Player\PlayerYK</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayerDH.cpp">
-      <Filter>01. Object\00. Player\PlayerDH</Filter>
-    </ClCompile>
-    <ClCompile Include="CBlockManager.cpp">
-      <Filter>99. Design\10. BlockManager</Filter>
-    </ClCompile>
-    <ClCompile Include="CFollowMonster.cpp">
-      <Filter>01. Object\01. Monster\각자 한거\02. MonsterSH\01. FollowMonster</Filter>
-    </ClCompile>
-    <ClCompile Include="CWanderMonster.cpp">
-      <Filter>01. Object\01. Monster\각자 한거\02. MonsterSH\02. WanderMonster</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayerBullet.cpp">
-      <Filter>01. Object\02. Projectile\00. PlayerBullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonsterBullet.cpp">
-      <Filter>01. Object\02. Projectile\01. MonsterBullet</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayerSH.cpp">
-      <Filter>01. Object\00. Player\PlayerSH</Filter>
-    </ClCompile>
-    <ClCompile Include="CStageKL.cpp">
-      <Filter>04. Scene\StageKL</Filter>
-    </ClCompile>
-    <ClCompile Include="CStageSH.cpp">
-      <Filter>04. Scene\StageSH</Filter>
-    </ClCompile>
-    <ClCompile Include="CStartScene.cpp">
-      <Filter>04. Scene\StartScene</Filter>
-    </ClCompile>
-    <ClCompile Include="CSceneObject.cpp">
+    <ClCompile Include="CScene.cpp">
       <Filter>04. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="CStageDH.cpp">
-      <Filter>04. Scene\StageDH</Filter>
+    <ClCompile Include="CMouse.cpp">
+      <Filter>01. Object\05. Mouse</Filter>
     </ClCompile>
-    <ClCompile Include="CStageYK.cpp">
-      <Filter>04. Scene\StageYK</Filter>
+    <ClCompile Include="CMHPlayer.cpp">
+      <Filter>01. Object\00. Player\01. MHPlayer</Filter>
     </ClCompile>
-    <ClCompile Include="CStageMH.cpp">
-      <Filter>04. Scene\StageMH</Filter>
+    <ClCompile Include="CBoss.cpp">
+      <Filter>01. Object\01. Monster\00. Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,6 +278,12 @@
     </Image>
     <Image Include="Client.ico">
       <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\SuperMarioBros3 Object\Texture\Player\SmallMario\SmallMarioLeft.bmp">
+      <Filter>리소스 파일\Mario</Filter>
+    </Image>
+    <Image Include="..\SuperMarioBros3 Object\Texture\Player\SmallMario\SmallMarioRight.bmp">
+      <Filter>리소스 파일\Mario</Filter>
     </Image>
   </ItemGroup>
 </Project>
