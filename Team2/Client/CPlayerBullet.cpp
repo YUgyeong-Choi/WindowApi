@@ -45,7 +45,7 @@ void CPlayerBullet::LateUpdate()
 
 void CPlayerBullet::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect, { 0.f, 0.f }, 0.f, 0.f, RGB(255, 0, 0));
+	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0.f}, 0.f, 0.f, RGB(255, 0, 0));
 }
 
 void CPlayerBullet::Release()

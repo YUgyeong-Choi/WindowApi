@@ -321,6 +321,9 @@
     <ClInclude Include="CStar.h">
       <Filter>01. Object\03. Item\Star</Filter>
     </ClInclude>
+    <ClInclude Include="CMonsterYK2.h">
+      <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -466,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="CStar.cpp">
       <Filter>01. Object\03. Item\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterYK2.cpp">
+      <Filter>01. Object\01. Monster\각자 한거\MonsterYK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

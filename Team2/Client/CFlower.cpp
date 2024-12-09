@@ -14,8 +14,8 @@ CFlower::~CFlower()
 }
 void CFlower::Initialize()
 {
-	m_tInfo.fCX = 16.f;
-	m_tInfo.fCY = 16.f;
+	m_tInfo.fCX = 40.f;
+	m_tInfo.fCY = 40.f;
 	m_fSpeed = 5.f;
 	m_bIsGround = false;
 	m_tDir = { 0 , 1 };
@@ -27,7 +27,7 @@ int CFlower::Update()
 	if (m_bIsDead)
 		return OBJ_DEAD;
 
-	if (m_fTime >= 50) {
+	if (m_fTime >= 20) {
 		m_tDir.SetX(m_iAiDir);
 		m_iAiDir *= -1;
 		m_fTime = 0.f;
@@ -54,9 +54,7 @@ void CFlower::OnCollision(CObject* _op)
 		SetIsDead(true);
 	}
 
-	if (OBJ_BLOCK == _op->GetOBJID()) {
-		m_tDir.SetY(-1);
-		m_bIsGround = false;
-		m_fTime = 0.f;
+	if (_op->GetOBJID() == OBJ_BLOCK) {
+		m_tDir.SetX(m_tDir.GetX() * -1);
 	}
 }

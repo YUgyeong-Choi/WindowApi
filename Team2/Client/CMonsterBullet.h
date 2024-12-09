@@ -14,6 +14,4 @@ public:
 	void OnCollision(CObject* _op) override;
 
 	void Set_Degree();
-private:
-	bool m_dir;
 };

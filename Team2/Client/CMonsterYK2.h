@@ -1,10 +1,10 @@
 #pragma once
 #include "CMonster.h"
-class CMonsterYK1 :public CMonster
+class CMonsterYK2 :public CMonster
 {
 public:
-	CMonsterYK1();
-	virtual ~CMonsterYK1() { Release(); }
+	CMonsterYK2();
+	virtual ~CMonsterYK2() { Release(); }
 	virtual void Initialize() override;
 	virtual int  Update() override;
 	virtual void LateUpdate() override;
@@ -13,6 +13,10 @@ public:
 	virtual void OnCollision(CObject* _op);
 	virtual void OnDead();
 private:
+	void Fire();
+private:
 	float m_fDeadTime;
+	int m_iFireRate;
+	int m_iFireTick;
 };
 

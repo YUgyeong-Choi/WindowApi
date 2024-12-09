@@ -84,7 +84,7 @@ int CMonsterBossYK::Update()
 	__super::UpdateRect();
 	return 0;
 }
-
+ 
 void CMonsterBossYK::LateUpdate()
 {
 	if (m_iHp <= 0) {
@@ -94,12 +94,10 @@ void CMonsterBossYK::LateUpdate()
 
 void CMonsterBossYK::Render(HDC hDC)
 {
+	float	offset = CScrollManager::GetInstance()->GetScrollX();
 	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 0, 0));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
-	//static BOOL Rectangle(HDC hDC, RECT tRect, Vector<float> offset = { 0, 0 })
-	//{
-	//	return Rectangle(hDC, tRect.left + offset.GetX(), tRect.top + offset.GetY(), tRect.right + offset.GetX(), tRect.bottom + offset.GetY());
-	//}
+
 	Rectangle(hDC, m_tInfo.fX-50 + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 70, m_tInfo.fX+50+ CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 60);
 	SelectObject(hDC, oldBrush);
 	DeleteObject(myBrush);
@@ -113,7 +111,7 @@ void CMonsterBossYK::Render(HDC hDC)
 
 	
 	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
-	if (g_bDevmode) Hitbox(hDC, m_tRect);
+	if (g_bDevmode) Hitbox(hDC, m_tRect, { offset, 0 });
 }
 
 void CMonsterBossYK::Release()
@@ -127,6 +125,10 @@ void CMonsterBossYK::OnCollision(CObject* _op)
 			m_iHp -= 5;
 			m_isCanDamage = false;
 		}
+	}
+
+	if (_op->GetOBJID() == OBJ_PLAYER_BULLET) {
+		m_iHp -= 3;
 	}
 
 	if (_op->GetOBJID() == OBJ_BLOCK) {
@@ -155,12 +157,13 @@ void CMonsterBossYK::Pattern2()
 {
 	if (m_iFireTick > m_iFireRate) {
 		if (rand() % 2 == 0) {
-			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 40));
-			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 30));
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX, m_tInfo.fY - 40));
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX, m_tInfo.fY - 20));
+
 		}
 		else {
-			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY + 40));
-			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY + 30));
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX, m_tInfo.fY +40));
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX, m_tInfo.fY +20));
 		}
 
 		m_iFireTick = 0;

@@ -51,7 +51,10 @@ void CBlockHard::Render(HDC hDC)
 		(int)16,			// 복사할 이미지의 가로, 세로
 		(int)16,
 		RGB(255, 255, 255));
-	if (g_bDevmode) Hitbox(hDC, m_tRect);
+	if (g_bDevmode) Hitbox(hDC, m_tRect, { offset, 0 });
+	//if (g_bDevmode) Hitbox(hDC, m_tRect);
+
+
 }
 
 void CBlockHard::Release()

@@ -29,7 +29,7 @@ int CMushRoom::Update()
 	if (m_bIsDead)
 		return OBJ_DEAD;
 
-	if (m_fTime >= 30) {
+	if (m_fTime >= 20) {
 		m_tDir.SetX(m_tDir.GetX()*-1);
 		m_fTime = 0.f;
 	}
@@ -53,10 +53,8 @@ void CMushRoom::OnCollision(CObject* _op)
 		SetIsDead(true);
 	}
 
-	if (OBJ_BLOCK == _op->GetOBJID()) {
-		m_tDir.SetY(-1);
-		m_bIsGround = false;
-		m_fTime = 0.f;
+	if (_op->GetOBJID() == OBJ_BLOCK) {
+		m_tDir.SetX(m_tDir.GetX() * -1);
 	}
 
 	//if (OBJ_PLAYER == _op->GetOBJID())

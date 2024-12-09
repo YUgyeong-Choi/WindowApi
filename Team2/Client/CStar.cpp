@@ -14,8 +14,8 @@ CStar::~CStar()
 
 void CStar::Initialize()
 {
-	m_tInfo.fCX = 16.f;
-	m_tInfo.fCY = 16.f;
+	m_tInfo.fCX = 40.f;
+	m_tInfo.fCY = 40.f;
 	m_fSpeed = 5.f;
 	m_bIsGround = false;
 	m_tDir = { 1 , 1 };

@@ -30,6 +30,7 @@ void CPlayerYK::Initialize()
 	m_iFireRate = 13;
 	m_iTick = 0;
 	m_bIsDirLeft = false;
+	m_iHp = 100;
 }
 
 int CPlayerYK::Update()
@@ -53,13 +54,31 @@ void CPlayerYK::LateUpdate()
 	if (m_bIsGround) {
 		m_tDir.SetX(m_tDir.GetX() * friction);
 	}
+	if (m_iHp < 0) {
+		SetIsDead(true);
+	}
 	
 	ScrollOffset();
 }
 
 void CPlayerYK::Render(HDC hDC)
 {
+	float	offset = CScrollManager::GetInstance()->GetScrollX();
 	HDC		hMemDC;
+
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
+
+	Rectangle(hDC, m_tInfo.fX - 50 + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 70, m_tInfo.fX + 50 + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 60);
+	SelectObject(hDC, oldBrush);
+	DeleteObject(myBrush);
+
+	myBrush = (HBRUSH)CreateSolidBrush(RGB(255, 0, 0));
+	oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
+
+	Rectangle(hDC, m_tInfo.fX - 50 + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 70, m_tInfo.fX - 50 + CScrollManager::GetInstance()->GetScrollX() + m_iHp, m_tInfo.fY - 60);
+	SelectObject(hDC, oldBrush);
+	DeleteObject(myBrush);
 
 	//Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	switch (m_ePlayerStatus)
@@ -84,7 +103,8 @@ void CPlayerYK::Render(HDC hDC)
 	}
 	Mario(hDC, hMemDC, m_tInfo, m_tRect, m_bIsDirLeft, m_eAction, m_ePlayerStatus, m_iAnimationTime, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	
-	if (g_bDevmode) Hitbox(hDC, m_tRect);
+	//if (g_bDevmode) Hitbox(hDC, m_tRect);
+	if (g_bDevmode) Hitbox(hDC, m_tRect, { offset, 0 });
 }
 
 void CPlayerYK::Release()
@@ -115,8 +135,13 @@ void CPlayerYK::OnCollision(CObject* _op)
 	}
 
 	if (_op->GetOBJID() == OBJ_MONSTER) {
-		SetIsDead(true);
+		m_iHp -= 5;
 	}
+
+	if (_op->GetOBJID() == OBJ_MONSTER_BULLET) {
+		m_iHp -= 3;
+	}
+
 }
 
 void CPlayerYK::OnDead()
@@ -205,5 +230,5 @@ void CPlayerYK::OnFlower()
 void CPlayerYK::Fire()
 {
 
-	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER_BULLET, CAbstractFactory<CPlayerBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY));
+	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER_BULLET, CAbstractFactory<CPlayerBullet>::Create(m_tInfo.fX , m_tInfo.fY));
 }

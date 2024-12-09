@@ -13,7 +13,6 @@ void CMonsterBullet::Initialize()
     m_tInfo.fCY = 15.f;
     m_fSpeed = 5.f;
     m_fJumpPower = 10.f;
-    m_dir = CObjectManager::GetInstance()->GetLastMonster()->GetDir();
 }
 
 int CMonsterBullet::Update()
@@ -21,13 +20,7 @@ int CMonsterBullet::Update()
     if (m_bIsDead)
         return OBJ_DEAD;
 
-    if (m_dir) {
-        m_tInfo.fX -= 10.f;
-    }
-    else {
-        m_tInfo.fX += 10.f;
-    }
-
+    m_tInfo.fX += 10.f;
     CObject::UpdateRect();
 }
 
@@ -38,7 +31,7 @@ void CMonsterBullet::LateUpdate()
 
 void CMonsterBullet::Render(HDC hDC)
 {
-    Ellipse(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+    Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 }
 
 void CMonsterBullet::Release()
@@ -47,7 +40,7 @@ void CMonsterBullet::Release()
 
 void CMonsterBullet::OnCollision(CObject* _op)
 {
-    if (_op->GetOBJID() == OBJ_MONSTER) {
+    if (_op->GetOBJID() == OBJ_PLAYER) {
         SetIsDead(true);
     }
 }

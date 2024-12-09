@@ -19,7 +19,7 @@ CBlockItem::~CBlockItem()
 
 void CBlockItem::Initialize()
 {
-	m_tInfo = { m_tInfo.fX, m_tInfo.fY, 50.f, 50.f };
+	m_tInfo = { 0, 0, 50.f, 50.f };
 	m_BlockType = BLOCK_ITEM;
 }
 

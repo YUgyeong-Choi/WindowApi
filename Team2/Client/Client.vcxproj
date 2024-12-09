@@ -159,6 +159,7 @@
     <ClInclude Include="CMonsterBullet.h" />
     <ClInclude Include="CMonsterKL.h" />
     <ClInclude Include="CMonsterYK1.h" />
+    <ClInclude Include="CMonsterYK2.h" />
     <ClInclude Include="CMouseManager.h" />
     <ClInclude Include="CMushRoom.h" />
     <ClInclude Include="CObject.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="CMonsterBullet.cpp" />
     <ClCompile Include="CMonsterKL.cpp" />
     <ClCompile Include="CMonsterYK1.cpp" />
+    <ClCompile Include="CMonsterYK2.cpp" />
     <ClCompile Include="CMouseManager.cpp" />
     <ClCompile Include="CMushRoom.cpp" />
     <ClCompile Include="CObject.cpp" />
