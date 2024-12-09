@@ -18,6 +18,7 @@ public:
 	//이거 안쓰고 onblockevent에서 if문으로 itemtype 맞게 생성하는게 좋긴 할듯? 
 	void CreateMushRoom();
 	void CreateFlower();
+	void CreateStar();
 
 	void SetContain() { m_bContain = !m_bContain; }
 	void SetItemType(ITEMTYPE _eItemType) { m_eItemType = _eItemType; }

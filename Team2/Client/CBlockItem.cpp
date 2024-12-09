@@ -5,6 +5,7 @@
 #include "CItemDH.h"
 #include "CMushRoom.h"
 #include "CFlower.h"
+#include "CStar.h"
 #include "CBitmapManager.h"
 
 CBlockItem::CBlockItem() : m_bContain(true), m_eItemType(ITEM_END)
@@ -39,7 +40,7 @@ void CBlockItem::LateUpdate()
 
 void CBlockItem::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	//Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	if (g_bDevmode) Hitbox(hDC, m_tRect);
 
 	float	offset = CScrollManager::GetInstance()->GetScrollX();
@@ -75,6 +76,7 @@ void CBlockItem::OnCollision(CObject* _op)
             {
                 //CreateMushRoom();
                 CreateFlower();
+				//CreateStar();
                 m_bContain = false;
             }
 
@@ -97,4 +99,9 @@ void CBlockItem::CreateFlower()
 {
     // 빼는거는 나중에 바꾸기, 박스 위에 생성하게끔
     CObjectManager::GetInstance()->Add_Object(OBJ_ITEM, CAbstractFactory<CFlower>::Create(this->GetINFO().fX, this->GetINFO().fY - 150));
+}
+
+void CBlockItem::CreateStar()
+{
+	CObjectManager::GetInstance()->Add_Object(OBJ_ITEM, CAbstractFactory<CStar>::Create(this->GetINFO().fX, this->GetINFO().fY - 150));
 }

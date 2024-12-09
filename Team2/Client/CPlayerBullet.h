@@ -15,5 +15,7 @@ public:
 
 	virtual void OnCollision(CObject* _op)override;
 	virtual void OnDead();
+private:
+	bool m_dir;
 };
 

@@ -48,6 +48,7 @@ public:
 	void	SetIsGround(bool _b) { m_bIsGround = _b; }
 
 	float GetSpeed() { return m_fSpeed; }
+	bool GetDir() { return m_bIsDirLeft; }
 
 	// 나와 대상의 좌표 간의 각도 반환 (디그리로 반환).
 	// -180 ~ 180도 범위
@@ -84,6 +85,7 @@ protected:
 	//
 	bool			m_bIsJumping;
 	bool			m_bIsGround;
+	bool			m_bIsDirLeft;
 
 private:
 };

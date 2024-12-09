@@ -1,17 +1,13 @@
 #pragma once
 #include "CItem.h"
-
-class CMushRoom : public CItem
+class CStar :public CItem
 {
 public:
-	CMushRoom();
-	~CMushRoom();
+	CStar();
+	~CStar();
 	virtual void Initialize();
 	virtual int  Update() override;
 	virtual void LateUpdate() override;
 	virtual void OnCollision(CObject* _op);
-
-	void Move();
-	bool CheckOnGround();
-
 };
+

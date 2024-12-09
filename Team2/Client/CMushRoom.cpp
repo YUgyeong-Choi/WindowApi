@@ -4,6 +4,7 @@
 #include "CObjectManager.h"
 #include "CCollisionManager.h"
 #include "CPlayerDH.h"
+#include "CBitmapManager.h"
 
 CMushRoom::CMushRoom()
 {
@@ -44,12 +45,6 @@ int CMushRoom::Update()
 void CMushRoom::LateUpdate()
 {
 	if (!m_bIsGround && m_fTime >= 2.f) m_tDir.SetY(1);
-}
-
-void CMushRoom::Render(HDC hDC)
-{
-	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
-	if (g_bDevmode) Hitbox(hDC, m_tRect);
 }
 
 void CMushRoom::OnCollision(CObject* _op)

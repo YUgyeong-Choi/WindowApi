@@ -23,5 +23,7 @@ private:
 	int m_PatternTick;
 	int m_iPattern;
 	int m_iPatternCycle;
+	int m_iFireRate; //총알 발사 속도
+	int m_iFireTick;
 };
 

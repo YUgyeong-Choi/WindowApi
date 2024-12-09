@@ -22,11 +22,14 @@ void CPlayerYK::Initialize()
 	m_bIsGround = false;
 	m_tDir = { 0 , 1 };
 	friction = 0.8f;
-	m_ePlayerStatus = PS_SMALL;
+	m_ePlayerStatus = PS_FIRE;
+	m_tInfo.fCX = 52.f;
+	m_tInfo.fCY = 70.f;
 	m_iAnimationTime = 0;
 	m_eAction = AS_STOP;
 	m_iFireRate = 13;
 	m_iTick = 0;
+	m_bIsDirLeft = false;
 }
 
 int CPlayerYK::Update()
@@ -39,7 +42,7 @@ int CPlayerYK::Update()
 	m_tInfo.fY += m_tDir.GetY() * m_fSpeed;
 	m_fTime += 0.2f;
 	++m_iTick;
-	//if (m_eAction != AS_STOP) m_iAnimationTime += (int)m_fSpeed;
+	if (m_eAction != AS_STOP) m_iAnimationTime += (int)m_fSpeed;
 	__super::UpdateRect();
 	return OBJ_NOEVENT;
 }
@@ -58,29 +61,28 @@ void CPlayerYK::Render(HDC hDC)
 {
 	HDC		hMemDC;
 
-	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
-	//switch (m_ePlayerStatus)
-	//{
-	//default:
-	//case PS_SMALL:
-	//	if (m_eAction == AS_MOVE_LEFT) {
-	//		hMemDC = CBitmapManager::GetInstance()->FindImage(L"SmallMarioLeft");
-	//	}
-	//	else{
-	//		hMemDC = CBitmapManager::GetInstance()->FindImage(L"SmallMarioRight");
-	//	}
-	//	break;
-	//case PS_BIG:
-	//	if (m_bFacingLeft) hMemDC = CBitmapManager::GetInstance()->FindImage(L"BigMarioLeft");
-	//	else hMemDC = CBitmapManager::GetInstance()->FindImage(L"BigMarioRight");
-	//	break;
-	//case PS_FIRE:
-	//	if (m_bFacingLeft) hMemDC = CBitmapManager::GetInstance()->FindImage(L"FireMarioLeft");
-	//	else hMemDC = CBitmapManager::GetInstance()->FindImage(L"FireMarioRight");
-	//	break;
-	//}
-	//hMemDC = CBitmapManager::GetInstance()->FindImage(L"SmallMarioLeft");
-	//Mario(hDC, hMemDC, m_tInfo, m_tRect, false, m_eAction, m_ePlayerStatus, m_iAnimationTime, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	//Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	switch (m_ePlayerStatus)
+	{
+	default:
+	case PS_SMALL:
+		if (m_eAction == AS_MOVE && m_bIsDirLeft) {
+			hMemDC = CBitmapManager::GetInstance()->FindImage(L"SmallMarioLeft");
+		}
+		else{
+			hMemDC = CBitmapManager::GetInstance()->FindImage(L"SmallMarioRight");
+		}
+		break;
+	case PS_BIG:
+		if (m_bIsDirLeft) hMemDC = CBitmapManager::GetInstance()->FindImage(L"BigMarioLeft");
+		else hMemDC = CBitmapManager::GetInstance()->FindImage(L"BigMarioRight");
+		break;
+	case PS_FIRE:
+		if (m_bIsDirLeft) hMemDC = CBitmapManager::GetInstance()->FindImage(L"FireMarioLeft");
+		else hMemDC = CBitmapManager::GetInstance()->FindImage(L"FireMarioRight");
+		break;
+	}
+	Mario(hDC, hMemDC, m_tInfo, m_tRect, m_bIsDirLeft, m_eAction, m_ePlayerStatus, m_iAnimationTime, { CScrollManager::GetInstance()->GetScrollX(), 0 });
 	
 	if (g_bDevmode) Hitbox(hDC, m_tRect);
 }
@@ -131,13 +133,15 @@ void CPlayerYK::KeyInput()
 	if (CKeyManager::GetInstance()->KeyPressing(VK_LEFT))
 	{
 		m_tDir.SetX(-1);
-		m_eAction = AS_MOVE_LEFT;
+		m_eAction = AS_MOVE;
+		m_bIsDirLeft = true;
 	}
 
 	if (CKeyManager::GetInstance()->KeyPressing(VK_RIGHT))
 	{
 		m_tDir.SetX(1);
-		m_eAction = AS_MOVE_RIGHT;
+		m_eAction = AS_MOVE;
+		m_bIsDirLeft = false;
 	}
 
 	if (CKeyManager::GetInstance()->KeyDown(VK_SPACE))
@@ -200,5 +204,6 @@ void CPlayerYK::OnFlower()
 
 void CPlayerYK::Fire()
 {
+
 	CObjectManager::GetInstance()->Add_Object(OBJ_PLAYER_BULLET, CAbstractFactory<CPlayerBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY));
 }

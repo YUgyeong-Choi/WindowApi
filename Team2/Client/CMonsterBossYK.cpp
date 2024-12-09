@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "CMonsterBossYK.h"
 #include "CScrollManager.h"
-CMonsterBossYK::CMonsterBossYK():m_iDamageRate(0), m_PatternRate(0),m_iTick(0), m_isCanDamage(true), m_PatternTick(0), m_iPattern(0),m_iPatternCycle(0)
+#include "CObjectManager.h"
+#include "CAbstractFactory.h"
+#include "CMonsterBullet.h"
+CMonsterBossYK::CMonsterBossYK():m_iDamageRate(0), m_PatternRate(0),m_iTick(0), m_isCanDamage(true), m_PatternTick(0), m_iPattern(0),m_iPatternCycle(0), m_iFireRate(0),m_iFireTick(0)
 {
 }
 void CMonsterBossYK::Initialize()
 {
-	m_tInfo = { 3400, 400, 80, 80 };
+	m_tInfo = { 2800, 400, 80, 80 };
 	m_fSpeed = 3.f;
 	m_tDir = { -1 , 1 };
 	m_bIsGround = false;
@@ -14,18 +17,31 @@ void CMonsterBossYK::Initialize()
 	m_iDamageRate = 13.f;
 	m_PatternRate = 10000.f;
 	m_fTime = 0.f;
+	m_iFireRate = 20.f;
 }
 
 int CMonsterBossYK::Update()
 {
 	if (m_bIsDead) return OBJ_DEAD;
 	if (FindPlayer()) {
-		m_PatternRate = 20.f;
+		switch (m_iPattern)
+		{
+		case 0:
+			m_PatternRate = 25.f;
+			break;
+		case 1:
+			m_PatternRate = 20.f;
+			break;
+		default:
+			break;
+		}
+		
 		m_tInfo.fX += m_tDir.GetX() * m_fSpeed;
 		m_tInfo.fY += m_tDir.GetY() * m_fSpeed;
 	}
 	m_iTick++;
 	m_PatternTick++;
+	m_iFireTick++;
 	if (m_iTick > m_iDamageRate) {
 		if (!m_isCanDamage) { 
  			m_isCanDamage = true;
@@ -38,7 +54,7 @@ int CMonsterBossYK::Update()
 		{
 		case 0:
 			if (m_iPatternCycle == 0) {
-				m_iPatternCycle = 5;
+				m_iPatternCycle = 3;
 			}
 			Pattern1();
 			break;
@@ -135,7 +151,19 @@ void CMonsterBossYK::Pattern1()
 	}
 }
 
-void CMonsterBossYK::Pattern2() {
-	m_PatternRate = 50.f;
+void CMonsterBossYK::Pattern2() 
+{
+	if (m_iFireTick > m_iFireRate) {
+		if (rand() % 2 == 0) {
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 40));
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY - 30));
+		}
+		else {
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY + 40));
+			CObjectManager::GetInstance()->Add_Object(OBJ_MONSTER_BULLET, CAbstractFactory<CMonsterBullet>::Create(m_tInfo.fX + CScrollManager::GetInstance()->GetScrollX(), m_tInfo.fY + 30));
+		}
+
+		m_iFireTick = 0;
+	}
 	m_iPatternCycle--;
 }

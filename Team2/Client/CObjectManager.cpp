@@ -52,6 +52,9 @@ void CObjectManager::LateUpdate()
 	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_MONSTER], m_ObjectList[OBJ_BLOCK]);
 	CCollisionManager::CollisionRectEx2(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_MONSTER]);
 	CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER], m_ObjectList[OBJ_ITEM]);
+	//CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER_BULLET], m_ObjectList[OBJ_MONSTER]);
+	//CCollisionManager::CollisionRect(m_ObjectList[OBJ_PLAYER_BULLET], m_ObjectList[OBJ_BLOCK]);
+	//CCollisionManager::CollisionCircle(m_ObjectList[OBJ_MONSTER_BULLET], m_ObjectList[OBJ_PLAYER]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{

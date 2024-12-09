@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CItem.h"
 #include "CScrollManager.h"
+#include "CBitmapManager.h"
 
 void CItem::Initialize()
 {
@@ -25,7 +26,9 @@ void CItem::LateUpdate()
 
 void CItem::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect, { CScrollManager::GetInstance()->GetScrollX(), 0 });
+	HDC hMemDC = CBitmapManager::GetInstance()->FindImage(L"Items");
+	Item(hDC, hMemDC, m_tInfo, m_tRect, m_eItemType, { CScrollManager::GetInstance()->GetScrollX(), 0.f });
+
 	if (g_bDevmode) Hitbox(hDC, m_tRect);
 }
 

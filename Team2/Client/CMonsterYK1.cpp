@@ -50,6 +50,7 @@ void CMonsterYK1::OnCollision(CObject* _op)
 		SetIsDead(true);
 	}
 
+
 	if (OBJ_BLOCK == _op->GetOBJID()) {
 		m_tDir.SetY(-1);
 		m_bIsGround = false;

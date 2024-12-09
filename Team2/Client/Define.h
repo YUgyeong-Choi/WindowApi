@@ -474,3 +474,69 @@ static void Mario(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, bool left, ACTION
 		break;
 	}
 }
+
+static void Mushroom(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, Vector<float> offset = { 0 , 0 })
+{
+	GdiTransparentBlt(hDC,			// 복사 받을 DC
+		tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
+		tRect.top,
+		(int)tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
+		(int)tInfo.fCY,
+		hMemDC,						// 복사할 이미지 DC	
+		0,							// 비트맵 출력 시작 좌표(Left, top)
+		0,
+		(int)16,			// 복사할 이미지의 가로, 세로
+		(int)16,
+		RGB(255, 255, 255));
+}
+
+static void Flower(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, Vector<float> offset = { 0 , 0 })
+{
+	GdiTransparentBlt(hDC,			// 복사 받을 DC
+		tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
+		tRect.top,
+		(int)tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
+		(int)tInfo.fCY,
+		hMemDC,						// 복사할 이미지 DC	
+		32,							// 비트맵 출력 시작 좌표(Left, top)
+		0,
+		(int)16,			// 복사할 이미지의 가로, 세로
+		(int)16,
+		RGB(255, 255, 255));
+}
+
+static void Star(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, Vector<float> offset = { 0 , 0 })
+{
+	GdiTransparentBlt(hDC,			// 복사 받을 DC
+		tRect.left + (int)offset.GetX(),	// 복사 받을 위치 좌표 X, Y	
+		tRect.top,
+		(int)tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
+		(int)tInfo.fCY,
+		hMemDC,						// 복사할 이미지 DC	
+		16,							// 비트맵 출력 시작 좌표(Left, top)
+		48,
+		(int)16,			// 복사할 이미지의 가로, 세로
+		(int)16,
+		RGB(255, 255, 255));
+}
+
+
+static void Item(HDC hDC, HDC hMemDC, INFO tInfo, RECT tRect, ITEMTYPE is, Vector<float> offset = { 0 , 0 })
+{
+	switch (is)
+	{
+	case ITEM_MUSHROOM:
+		Mushroom(hDC, hMemDC, tInfo, tRect, offset);
+		break;
+	case ITEM_FLOWER:
+		Flower(hDC, hMemDC, tInfo, tRect, offset);
+		break;
+	case ITEM_STAR:
+		Star(hDC, hMemDC, tInfo, tRect, offset);
+		break;
+	case ITEM_CLEAR:
+		break;
+	case ITEM_END:
+		break;
+	}
+}

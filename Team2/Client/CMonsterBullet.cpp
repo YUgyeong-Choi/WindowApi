@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CMonsterBullet.h"
 #include "CScrollManager.h"
+#include "CObjectManager.h"
 
 CMonsterBullet::CMonsterBullet()
 {
@@ -10,29 +11,29 @@ void CMonsterBullet::Initialize()
 {
     m_tInfo.fCX = 15.f;
     m_tInfo.fCY = 15.f;
-    m_fSpeed = 4.f;
-    m_fAngle = 0.f;
-    m_ullTime = GetTickCount64();
+    m_fSpeed = 5.f;
+    m_fJumpPower = 10.f;
+    m_dir = CObjectManager::GetInstance()->GetLastMonster()->GetDir();
 }
 
 int CMonsterBullet::Update()
 {
-    if (true == m_bIsDead)
+    if (m_bIsDead)
         return OBJ_DEAD;
 
-    if (m_ullTime + 3000 < GetTickCount64())
-        return OBJ_DEAD;
-
-    m_tInfo.fX += m_fSpeed * cosf(m_fAngle * PI / 180.f);
-    m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * PI / 180.f);
+    if (m_dir) {
+        m_tInfo.fX -= 10.f;
+    }
+    else {
+        m_tInfo.fX += 10.f;
+    }
 
     CObject::UpdateRect();
-
-    return OBJ_NOEVENT;
 }
 
 void CMonsterBullet::LateUpdate()
 {
+
 }
 
 void CMonsterBullet::Render(HDC hDC)
@@ -46,6 +47,9 @@ void CMonsterBullet::Release()
 
 void CMonsterBullet::OnCollision(CObject* _op)
 {
+    if (_op->GetOBJID() == OBJ_MONSTER) {
+        SetIsDead(true);
+    }
 }
 
 void CMonsterBullet::Set_Degree()

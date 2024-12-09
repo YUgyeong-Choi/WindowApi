@@ -179,6 +179,7 @@
     <ClInclude Include="CStageSH.h" />
     <ClInclude Include="CStageKL.h" />
     <ClInclude Include="CStageYK.h" />
+    <ClInclude Include="CStar.h" />
     <ClInclude Include="CStartScene.h" />
     <ClInclude Include="CWall.h" />
     <ClInclude Include="CWanderMonster.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="CStageSH.cpp" />
     <ClCompile Include="CStageKL.cpp" />
     <ClCompile Include="CStageYK.cpp" />
+    <ClCompile Include="CStar.cpp" />
     <ClCompile Include="CStartScene.cpp" />
     <ClCompile Include="CWall.cpp" />
     <ClCompile Include="CWanderMonster.cpp" />
